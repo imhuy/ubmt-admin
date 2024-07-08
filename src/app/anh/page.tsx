@@ -1,9 +1,33 @@
 "use client";
 import html2canvas from "html2canvas";
 import { useSearchParams } from "next/navigation";
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
 
 export default function Home() {
+  useEffect(() => {
+    // takeScreenshot();
+  }, []);
+
+  var base64ToBlob = function (base64: any) {
+    const byteCharacters = atob(base64.split(",")[1]);
+    const byteArrays = [];
+
+    for (let offset = 0; offset < byteCharacters.length; offset += 512) {
+      const slice = byteCharacters.slice(offset, offset + 512);
+
+      const byteNumbers = new Array(slice.length);
+      for (let i = 0; i < slice.length; i++) {
+        byteNumbers[i] = slice.charCodeAt(i);
+      }
+
+      const byteArray = new Uint8Array(byteNumbers);
+      byteArrays.push(byteArray);
+    }
+
+    const blob = new Blob(byteArrays, { type: base64.split(",")[0].split(":")[1].split(";")[0] });
+    return blob;
+  };
+
   const takeScreenshot = () => {
     const style = document.createElement("style");
     document.head.appendChild(style);
@@ -12,11 +36,16 @@ export default function Home() {
     if (element) {
       html2canvas(element)
         .then((canvas) => {
-          const img = canvas.toDataURL("image/png");
-          const link = document.createElement("a");
-          link.href = img;
-          console.log("link.hreflink.hreflink.href", link.href);
-          link.download = `card.png`;
+          // const img = canvas.toDataURL("image/png");
+          const link: any = document.createElement("a");
+          link.href = URL.createObjectURL(base64ToBlob(canvas.toDataURL("image/png")));
+          window.open(link, "_blank");
+          // link.href = img;
+
+          // link.download = `card.png`;
+          // console.log("linklinklink", img);
+          // window.open(img);
+
           document.body.appendChild(link);
           link.click();
           link.remove();
