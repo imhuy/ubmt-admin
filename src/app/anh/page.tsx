@@ -5,7 +5,7 @@ import { Suspense, useEffect } from "react";
 
 export default function Home() {
   useEffect(() => {
-    // takeScreenshot();
+    takeScreenshot();
   }, []);
 
   var base64ToBlob = function (base64: any) {
