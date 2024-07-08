@@ -1,9 +1,10 @@
 "use client";
 import html2canvas from "html2canvas";
 import { useSearchParams } from "next/navigation";
-import { Suspense, useEffect } from "react";
+import { Suspense, useEffect, useState } from "react";
 
 export default function Home() {
+  const [done, setDone] = useState(false);
   useEffect(() => {
     takeScreenshot();
   }, []);
@@ -29,6 +30,7 @@ export default function Home() {
   };
 
   const takeScreenshot = () => {
+    setDone(true);
     const style = document.createElement("style");
     document.head.appendChild(style);
     style.sheet?.insertRule("body > div:last-child img { display: inline-block; }");
@@ -39,7 +41,8 @@ export default function Home() {
           // const img = canvas.toDataURL("image/png");
           const link: any = document.createElement("a");
           link.href = URL.createObjectURL(base64ToBlob(canvas.toDataURL("image/png")));
-          window.open(link, "_blank");
+
+          // window.open(link, "_blank");
           // link.href = img;
 
           // link.download = `card.png`;
