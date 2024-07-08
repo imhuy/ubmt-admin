@@ -5,7 +5,32 @@ import { Suspense, useEffect, useState } from "react";
 
 export default function Home() {
   const [done, setDone] = useState(false);
+  let load = false;
   useEffect(() => {
+    takeScreenshot();
+  }, [load]);
+
+  var base64ToBlob = function (base64: any) {
+    const byteCharacters = atob(base64.split(",")[1]);
+    const byteArrays = [];
+
+    for (let offset = 0; offset < byteCharacters.length; offset += 512) {
+      const slice = byteCharacters.slice(offset, offset + 512);
+
+      const byteNumbers = new Array(slice.length);
+      for (let i = 0; i < slice.length; i++) {
+        byteNumbers[i] = slice.charCodeAt(i);
+      }
+
+      const byteArray = new Uint8Array(byteNumbers);
+      byteArrays.push(byteArray);
+    }
+
+    const blob = new Blob(byteArrays, { type: base64.split(",")[0].split(":")[1].split(";")[0] });
+    return blob;
+  };
+
+  const takeScreenshot = () => {
     const style = document.createElement("style");
     document.head.appendChild(style);
     style.sheet?.insertRule("body > div:last-child img { display: inline-block; }");
@@ -35,29 +60,7 @@ export default function Home() {
     } else {
       console.error("Element to capture not found!");
     }
-  }, [done]);
-
-  var base64ToBlob = function (base64: any) {
-    const byteCharacters = atob(base64.split(",")[1]);
-    const byteArrays = [];
-
-    for (let offset = 0; offset < byteCharacters.length; offset += 512) {
-      const slice = byteCharacters.slice(offset, offset + 512);
-
-      const byteNumbers = new Array(slice.length);
-      for (let i = 0; i < slice.length; i++) {
-        byteNumbers[i] = slice.charCodeAt(i);
-      }
-
-      const byteArray = new Uint8Array(byteNumbers);
-      byteArrays.push(byteArray);
-    }
-
-    const blob = new Blob(byteArrays, { type: base64.split(",")[0].split(":")[1].split(";")[0] });
-    return blob;
   };
-
-  const takeScreenshot = () => {};
 
   function Search() {
     const searchParams = useSearchParams();
@@ -78,6 +81,7 @@ export default function Home() {
       </div>
     );
   }
+
   return (
     <>
       <div className=' flex w-screen h-screen justify-center'>
