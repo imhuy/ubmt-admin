@@ -7,7 +7,9 @@ export default function Home() {
   const [done, setDone] = useState(false);
   let load = false;
   useEffect(() => {
-    takeScreenshot();
+    setTimeout(() => {
+      takeScreenshot();
+    }, 1000);
   }, [load]);
 
   var base64ToBlob = function (base64: any) {
@@ -45,9 +47,7 @@ export default function Home() {
           // window.open(link, "_blank");
           // link.href = img;
 
-          // link.download = `card.png`;
-          // console.log("linklinklink", img);
-          // window.open(img);
+          link.download = `card.png`;
 
           document.body.appendChild(link);
           link.click();
