@@ -21,6 +21,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ContextConsumer>
           <QueryClientProvider client={queryClient}>
             {children}
+
             <SideMenu />
             <ToastContainer
               position='top-right'
