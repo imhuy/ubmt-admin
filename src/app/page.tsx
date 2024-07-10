@@ -60,8 +60,13 @@ export default function Home() {
     const [data, setData] = useState<any>(null);
     const { SVG } = useQRCode();
     const fetchData = async (id: string) => {
+      if (typeof window !== "undefined") {
+        const hostname = window.location.hostname;
+
+        console.log("hostnamehostnamehostnamehostname", hostname);
+      }
       try {
-        const response = await axios.get(`http://103.82.196.162:8000/api/user/get-delegation?code=${id}`);
+        const response = await axios.get(`/api/delegate`);
         console.log("responseresponseresponse", response.data);
         const { data } = response.data;
         setData(data);
@@ -137,11 +142,19 @@ export default function Home() {
         <div className=' w-[400px] h-[600px] flex items-center flex-col  relative' id='capture'>
           <img src='/anhnen.jpg' alt='Sample Image' className=' w-[400px] h-[600px]  rounded-[10px]' />
 
-          <img
-            src={data?.avatar}
-            alt='Sample Image'
-            className='w-[98px] h-[147px]  absolute top-[287px] left-[36px] '
-          />
+          {data?.avatar ? (
+            <img
+              src={data?.avatar}
+              alt='Sample Image'
+              className='w-[98px] h-[147px]  absolute top-[287px] left-[36px] '
+            />
+          ) : (
+            <img
+              src='/avatar.jpg'
+              alt='Sample Image'
+              className='w-[98px] h-[147px]  absolute top-[287px] left-[36px] '
+            />
+          )}
 
           <div className='absolute w-[70px] h-[70]  top-[480px] left-[220px]'>
             <SVG
