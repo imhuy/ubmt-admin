@@ -2,8 +2,175 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+@layer base {
+  @font-face {
+    font-family: "WorkSans-ExtraLight";
+    src: url("/fonts/WorkSans-ExtraLight.ttf");
   }
+
+  @font-face {
+    font-family: "WorkSans-Light";
+    src: url("/fonts/WorkSans-Light.ttf");
+  }
+
+  @font-face {
+    font-family: "WorkSans-Thin";
+    src: url("/fonts/WorkSans-Thin.ttf");
+  }
+
+  @font-face {
+    font-family: "WorkSans-Regular";
+    src: url("/fonts/WorkSans-Regular.ttf");
+  }
+
+  @font-face {
+    font-family: "WorkSans-Medium";
+    src: url("/fonts/WorkSans-Medium.ttf");
+  }
+
+  @font-face {
+    font-family: "WorkSans-SemiBold";
+    src: url("/fonts/WorkSans-SemiBold.ttf");
+  }
+
+  @font-face {
+    font-family: "WorkSans-Bold";
+    src: url("/fonts/WorkSans-Bold.ttf");
+  }
+
+  @font-face {
+    font-family: "WorkSans-Black";
+    src: url("/fonts/WorkSans-Black.ttf");
+  }
+}
+
+body,
+html {
+  background: #f5f5f5;
+  /* color: #FAFAFA; */
+  font-family: WorkSans-Regular;
+}
+
+.linear-bg-gradient-home {
+  background: linear-gradient(180deg, rgba(36, 181, 146, 0) 0%, #24b592 63.3%);
+}
+
+.linear-bg-gradient-subscription {
+  background: linear-gradient(180deg, #191e2d 0%, rgba(25, 30, 45, 0) 100%);
+}
+
+.linear-bg-gradient-subscription-2 {
+  background: linear-gradient(266.9deg, #24b592 0%, #e25148 100%);
+  opacity: 0.15;
+}
+
+/* Change Autocomplete styles in Chrome*/
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: 1px solid "#38405B";
+  -webkit-box-shadow: none;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 1px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #2f3138;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.custom-circle-linear-btn {
+  background: linear-gradient(
+    245.26deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(17px);
+  /* Note: backdrop-filter has minimal browser support */
+}
+
+.custom-border-linear {
+  border-image-slice: 1;
+  border-image-source: linear-gradient(to right bottom, #24b592, #e25148);
+}
+
+.custom-card-sub {
+  background: linear-gradient(
+    245.26deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(17px);
+}
+
+.custom-card-sub-border-linear {
+  border-image-slice: 1;
+  border-image-source: linear-gradient(to right bottom, #e25148, #24b592);
+}
+
+.custom-circle-bg {
+  background: linear-gradient(180deg, rgba(36, 181, 146, 0) 0%, #24b592 63.3%);
+  opacity: 0.4;
+}
+
+.bg-linear-backdrop {
+  background: linear-gradient(180deg, rgba(17, 20, 30, 0) 0%, #11141e 69.93%);
+}
+
+.filter-backdrop-custom {
+  filter: drop-shadow(0px 15px 15px rgba(0, 0, 0, 0.2));
+}
+
+div.scrollmenu {
+  overflow: auto;
+  white-space: nowrap;
+}
+
+div.scrollmenu a {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px;
+  text-decoration: none;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
