@@ -1,14 +1,16 @@
 "use client";
-import MyChart from "@/components/Mychart";
+import Header from "@/components/Header";
+import AppLayout from "@/components/Layout/AppLayout";
+import { InformationCircleIcon } from "@heroicons/react/24/outline";
+import { NextPage } from "next";
 import dynamic from "next/dynamic";
 import { useState } from "react";
-import "react-quill/dist/quill.snow.css"; // Import Quill styles
+import "react-quill/dist/quill.snow.css";
 
 const QuillEditor = dynamic(() => import("react-quill"), { ssr: false });
 
-export default function Home() {
+const Profile: NextPage<any> = () => {
   const [content, setContent] = useState("");
-
   const quillModules = {
     toolbar: [
       [{ header: "1" }, { header: "2" }, { header: [3, 4, 5, 6, false] }],
@@ -56,27 +58,24 @@ export default function Home() {
   const handleEditorChange = (newContent: any) => {
     setContent(newContent);
   };
-
   return (
-    <main>
-      <div className='h-screen w-screen flex items-center flex-col'>
-        <div className='m-10  flex flex-col items-center'>
-          <span className='text-2xl text-center'>Quill Rich Text Editor </span>
-          <div className='text-center'>Author : Soubhagyajit Borah</div>
+    <AppLayout>
+      <div className='w-full bg-white  h-screen flex flex-col'>
+        <div className='p-6'>
+          <Header title='Đăng bài viết' />
+          <div className='h-[1px] bg-black  bg-opacity-20 my-4 max-lg:hidden' />
+          <div className=' h-lvh    rounded-xl '>
+            <QuillEditor
+              value={content}
+              onChange={handleEditorChange}
+              modules={quillModules}
+              formats={quillFormats}
+              className='w-full h-[70%] mt-10 bg-white'
+            />
+          </div>
         </div>
-        <div className='h-full w-[90vw]'>
-          <QuillEditor
-            value={content}
-            onChange={handleEditorChange}
-            modules={quillModules}
-            formats={quillFormats}
-            className='w-full h-[70%] mt-10 bg-white'
-          />
-        </div>
-        {/* {content} */}
-
-        {content}
       </div>
-    </main>
+    </AppLayout>
   );
-}
+};
+export default Profile;
