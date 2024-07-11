@@ -3,9 +3,12 @@ import SideMenu from "@/components/Layout/SideMenu";
 import ContextConsumer from "@/context";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Poppins } from "next/font/google";
+
 import { Slide, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
+import { usePathname } from "next/navigation";
+// import { useRouter } from "next/router";
 const queryClient = new QueryClient();
 
 const poppins = Poppins({
@@ -15,6 +18,8 @@ const poppins = Poppins({
 });
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const pathName = usePathname();
+
   return (
     <html lang='en' dir='' className={poppins.className}>
       <body className=' '>
@@ -22,7 +27,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <QueryClientProvider client={queryClient}>
             {children}
 
-            <SideMenu />
+            {/* {pathName == "/" || pathName == "/chinh-sach-bao-mat" ? null : <SideMenu />} */}
+            {/* <SideMenu /> */}
             <ToastContainer
               position='top-right'
               theme='dark'

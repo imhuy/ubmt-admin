@@ -1,6 +1,6 @@
 "use client";
 import html2canvas from "html2canvas";
-import { useSearchParams } from "next/navigation";
+import { redirect, useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useState } from "react";
 import { useQRCode } from "next-qrcode";
 const axios = require("axios");
@@ -59,6 +59,11 @@ export default function Home() {
     const [id] = searchParams.getAll("id") || "";
     const [data, setData] = useState<any>(null);
     const { SVG } = useQRCode();
+
+    console.log("idididididid", id);
+    if (id == "" || id == undefined) {
+      redirect("https://mttqhanoi.org.vn/");
+    }
     const fetchData = async (id: string) => {
       if (typeof window !== "undefined") {
         const hostname = window.location.hostname;
@@ -66,7 +71,7 @@ export default function Home() {
         console.log("hostnamehostnamehostnamehostname", hostname);
       }
       try {
-        const response = await axios.get(`/api/delegate`);
+        const response = await axios.get(`https://mattranhanoi.com/api/user/get-delegation?code=${id}`);
         console.log("responseresponseresponse", response.data);
         const { data } = response.data;
         setData(data);

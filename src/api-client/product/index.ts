@@ -20,6 +20,16 @@ class ApiProduct extends ApiClientBase {
     return res.data;
   }
 
+  public async uploadProduct(access_token: string, productData: FormData): Promise<BaseResponse | any> {
+    const res = await this.instance.post(`/api/common/upload-images?type=1`, productData, {
+      headers: {
+        Authorization: "Bearer " + access_token,
+
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    return res.data;
+  }
   public async buyHistory(access_token: string): Promise<BaseResponse | any> {
     const res = await this.instance.get(`/api/products/buy-history`, {
       headers: {
