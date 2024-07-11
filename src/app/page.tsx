@@ -91,10 +91,10 @@ export default function Home() {
         <div className='  grid grid-cols-6  bg-[#1E6FA2] text-white items-center  pb-5 px-4 text  '>
           <img src='/icon.svg' alt='Sample Image' className=' col-span-1  max-w-[50px] mt-4   ' />
 
-          <span className='  mt-5 col-span-3  text-sm  font-bold  '>UỶ BAN MTTQ VIỆT NAMTHÀNH PHỐ HÀ NỘI</span>
+          <span className='  mt-5 col-span-3  text-sm  font-workSansBold  '>UỶ BAN MTTQ VIỆT NAM THÀNH PHỐ HÀ NỘI</span>
           <button
             onClick={() => takeScreenshot()}
-            className='  mt-5  col-span-2 text-center  p-2 rounded-lg font-semibold uppercase  bg-white text-xs  text-red-600  '
+            className='  mt-5  col-span-2 text-center  font-workSansBold p-2 rounded-lg  uppercase  bg-white text-xs  text-red-600  '
           >
             Tải thẻ đại biểu
           </button>
@@ -123,21 +123,21 @@ export default function Home() {
               <div className='flex items-center'>
                 <div className=' mx-2 w-2 h-2 bg-black' />
                 <span className=' font-light'>
-                  Mã đại biểu: <span className='font-semibold'>{data?.code}</span>
+                  Mã đại biểu: <span className=' font-workSansBold'>{data?.code}</span>
                 </span>
               </div>
 
               <div className='flex items-center'>
                 <div className=' mx-2 w-2 h-2 bg-black' />
                 <span className=' font-light'>
-                  <span className='font-semibold'>{data?.delegation}</span>
+                  <span className='font-workSansBold'>{data?.delegation}</span>
                 </span>
               </div>
 
               <div className='flex items-center'>
                 <div className=' mx-2 w-2 h-2 bg-black' />
                 <span className=' font-light'>
-                  Chức vụ: <span className='font-semibold'>{data?.position}</span>
+                  Chức vụ: <span className='font-workSansBold'>{data?.position}</span>
                 </span>
               </div>
             </div>
@@ -189,7 +189,7 @@ export default function Home() {
         </div>
 
         <button
-          className='px-4 py-3  uppercase  bg-[#1E6FA2] rounded-md mt-2  text-center self-center text-white  font-bold  w-full  '
+          className='px-4 py-3  uppercase  bg-[#1E6FA2] rounded-md mt-2  text-center self-center text-white  font-workSansBold  w-full  '
           onClick={takeScreenshot}
         >
           Tải thẻ đại biểu
