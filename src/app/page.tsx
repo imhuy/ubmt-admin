@@ -175,14 +175,16 @@ export default function Home() {
             />
           </div>
           <div className='flex flex-col self-center justify-start items-center absolute top-[365px] left-[150px]  w-[210px] '>
-            <span className=' text-[#3760AE] uppercase  font-black  text-[15px] '>{data?.full_name}</span>
-            <span className='  uppercase text-[#3760AE] font-black  self-center text-center text-[15px]'>
+            <span className=' text-[#3760AE] uppercase  font-workSansBlack  text-[15px] '>{data?.full_name}</span>
+            <span className='  uppercase text-[#3760AE]  font-workSansBold  self-center text-center text-[15px]'>
               {data?.delegation}
             </span>
           </div>
 
           <div className='flex flex-col self-center justify-start items-center absolute top-[455px] left-[150px]  w-[210px] '>
-            <span className=' text-[#3760AE] uppercase  font-black  text-[15px] '>Mã đại biểu : {data?.code}</span>
+            <span className=' text-[#3760AE] uppercase  font-workSansBold  text-[15px] '>
+              Mã đại biểu : {data?.code}
+            </span>
           </div>
         </div>
 
