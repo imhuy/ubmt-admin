@@ -100,7 +100,7 @@ export default function Home() {
           </button>
         </div>
         <div className='flex flex-col '>
-          <span className=' uppercase text-center  text-red-600 font-bold'>Chào mừng đại biểu</span>
+          <span className=' uppercase text-center  text-red-600 font-workSansBold mt-4'>Chào mừng đại biểu</span>
           <div className='flex shadow-lg rounded-lg justify-around   py-10 my-8  items-center    h-40'>
             <div className='w-[30%]  '>
               <SVG
@@ -151,13 +151,13 @@ export default function Home() {
             <img
               src={data?.avatar}
               alt='Sample Image'
-              className='w-[98px] h-[147px]  absolute top-[287px] left-[36px] '
+              className='w-[98px] h-[147px]  absolute top-[287px] left-[35px] '
             />
           ) : (
             <img
               src='/avatar.jpg'
               alt='Sample Image'
-              className='w-[98px] h-[147px]  absolute top-[287px] left-[36px] '
+              className='w-[98px] h-[147px]  absolute top-[287px] left-[35px] '
             />
           )}
 
@@ -205,7 +205,7 @@ export default function Home() {
           <div className='px-4 py-3  uppercase  bg-[#1E6FA2] mt-2 flex flex-col  text-center self-center text-white  font-bold    '>
             <img src='/icon.svg' alt='Sample Image' className='w-[98px] self-center  ' />
 
-            <span className='  mt-5 px-8  '>
+            <span className='  mt-5 px-8  font-workSansBold '>
               BAN TỔ CHỨC ĐẠI HỘI ĐẠI BIỂU MẶT TRẬN TỔ QUỐC VIỆT NAM THÀNH PHỐ HÀ NỘI LẦN THỨ XVIII NHIỆM KỲ 2024 - 2029
             </span>
           </div>
