@@ -1,26 +1,12 @@
 "use client";
-import {
-  AdsIcon,
-  AffiliateIcon,
-  ChatIcon,
-  ContactIcon,
-  CreditCardIcon,
-  FacebookIcon,
-  HistoryIcon,
-  IdCardIcon,
-  ProfileIcon,
-  QuestionIcon,
-  TicketIcon,
-  ToolFbIcon,
-  ToolIcon,
-} from "@/assets/images";
+import { LoginIcon } from "@/assets/icon";
+import { AdsIcon, ContactIcon, FacebookIcon, ProfileIcon, TicketIcon } from "@/assets/images";
+import { AuthContext } from "@/context/useAuthContext";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { use, useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import Avatar from "../Avatar";
-import { AuthContext } from "@/context/useAuthContext";
-import { LoginIcon } from "@/assets/icon";
 
 interface MenuItemType {
   key: string;
@@ -50,9 +36,16 @@ const SideMenu = () => {
     },
 
     {
-      key: "client/service-mxhx",
+      key: "client/list-delegate",
       icon: AdsIcon,
-      label: "Quản lý đại biểu",
+      label: "Danh sách đại biểu",
+      active: false,
+    },
+
+    {
+      key: "client/update-delegate",
+      icon: AdsIcon,
+      label: "Cập nhật thông tin ",
       active: false,
     },
     {

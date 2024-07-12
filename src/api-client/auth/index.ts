@@ -83,6 +83,20 @@ class ApiAuth extends ApiClientBase {
     return res.data;
   }
 
+  public async upDateUserInfo(access_token: string, formData: any): Promise<AccountDetailResponse> {
+    const res = await this.instance.post("/api/user/", formData, {
+      headers: {
+        Authorization: "Bearer " + access_token,
+      },
+    });
+    return res.data;
+  }
+
+  public async listDelegate(): Promise<any> {
+    const res = await this.instance.get("/api/posts/get-all?cat_id=2&skip=0&take=10", {});
+    return res.data;
+  }
+
   public async changePassword(access_token: string, currentPassword: string, newPassword: string): Promise<any> {
     const res = await this.instance.post(
       `/api/app/account-extend/change-password?currentPassword=${currentPassword}&newPassword=${newPassword}`,

@@ -27,7 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <QueryClientProvider client={queryClient}>
             {children}
 
-            {/* {pathName == "/" || pathName == "/chinh-sach-bao-mat" ? null : <SideMenu />} */}
+            {pathName == "/" || pathName == "/chinh-sach-bao-mat" ? null : <SideMenu />}
             {/* <SideMenu /> */}
             <ToastContainer
               position='top-right'

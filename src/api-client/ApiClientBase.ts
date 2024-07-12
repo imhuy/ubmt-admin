@@ -1,5 +1,11 @@
 import { BASE_URL } from "@/utils/config";
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
+import axios, {
+  AxiosHeaders,
+  AxiosInstance,
+  AxiosRequestConfig,
+  AxiosResponse,
+  InternalAxiosRequestConfig,
+} from "axios";
 
 class ApiClientBase {
   protected instance: AxiosInstance;
@@ -12,8 +18,27 @@ class ApiClientBase {
       },
     });
 
+    this.initializeRequestInterceptor();
     this.initializeResponseInterceptor();
   }
+
+  private attachToken = (config: InternalAxiosRequestConfig): InternalAxiosRequestConfig => {
+    const tokenParse = JSON.parse(localStorage.getItem("UBMTToken")!);
+    const token = tokenParse?.access_token;
+    if (token) {
+      if (!config.headers) {
+        config.headers = {} as AxiosHeaders;
+      }
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  };
+  private handleRequestError = (error: any) => {
+    return Promise.reject(error);
+  };
+  private initializeRequestInterceptor = () => {
+    this.instance.interceptors.request.use(this.attachToken, this.handleRequestError);
+  };
 
   private initializeResponseInterceptor = () => {
     this.instance.interceptors.response.use(this.handleResponse, this.handleError);

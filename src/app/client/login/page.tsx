@@ -26,7 +26,7 @@ const Login: NextPage<any> = () => {
 
   useEffect(() => {
     if (authState) {
-      router.push("/");
+      router.push("/client/update-delegate");
     } else {
       console.log("not logined");
     }

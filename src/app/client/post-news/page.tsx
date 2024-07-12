@@ -62,13 +62,25 @@ const Profile: NextPage<any> = () => {
     "code-block",
   ];
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     console.log("title", title);
     console.log("description", description);
     console.log("image", image);
     console.log("content", content);
 
+    const postForm: any = {
+      title: title,
+      content: content,
+      image: image,
+      cat_id: 3,
+      hashtag: [],
+      day: "1",
+      short_description: description,
+    };
     try {
+      console.log("postFormpostFormpostForm", postForm);
+      const data = await productApi.postNews(authState?.access_token, postForm);
+      console.log("datadatadatadatadata", data);
     } catch (error: any) {
       console.log(error);
     }
@@ -76,7 +88,7 @@ const Profile: NextPage<any> = () => {
   const handleUploadImage = async (files: any) => {
     const formData = new FormData();
     formData.append("images", files[0]);
-    const data = await productApi.uploadProduct(authState?.access_token, formData);
+    const data = await productApi.uploadProduct(formData);
     setImage(data[0]);
   };
   const handleEditorChange = (newContent: any) => {
@@ -93,7 +105,7 @@ const Profile: NextPage<any> = () => {
               <p className=' font-workSansMedium text-lg'>Tiêu đề</p>
               <input
                 onChange={(e) => setTitle(e.target.value)}
-                className='w-[50%] border h-12 rounded-md px-2 mt-2'
+                className='w-[80%] border h-12 rounded-md px-2 mt-2'
                 placeholder={"Tiêu đề bài viết"}
               ></input>
             </div>
@@ -102,7 +114,7 @@ const Profile: NextPage<any> = () => {
               <p className=' font-workSansMedium text-lg'>Mô tả bài viết</p>
               <input
                 onChange={(e) => setDescription(e.target.value)}
-                className='w-[50%] border h-12 rounded-md px-2 mt-2'
+                className='w-[80%] border h-12 rounded-md px-2 mt-2'
                 placeholder={"Mô tả bài viết"}
               ></input>
             </div>

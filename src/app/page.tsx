@@ -62,7 +62,7 @@ export default function Home() {
 
     console.log("idididididid", id);
     if (id == "" || id == undefined) {
-      redirect("https://mttqhanoi.org.vn/");
+      // redirect("https://mttqhanoi.org.vn/");
     }
     const fetchData = async (id: string) => {
       if (typeof window !== "undefined") {
@@ -175,7 +175,9 @@ export default function Home() {
             />
           </div>
           <div className='flex flex-col self-center justify-start items-center absolute top-[365px] left-[150px]  w-[210px] '>
-            <span className=' text-[#3760AE] uppercase  font-workSansBlack  text-[15px] '>{data?.full_name}</span>
+            <span className=' text-[#3760AE] uppercase  font-workSansBlack  text-[15px] '>
+              {data?.sex ? data.sex : ""} {data?.full_name}
+            </span>
             <span className='  uppercase text-[#3760AE]  font-workSansBold  self-center text-center text-[15px]'>
               {data?.delegation}
             </span>
