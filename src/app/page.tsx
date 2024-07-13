@@ -47,10 +47,10 @@ export default function Home() {
 
           if (img) {
             link.href = img;
-            alert(link.href);
+            // alert(link.href);
           } else {
             link.href = dataUrl;
-            alert(link.href);
+            // alert(link.href);
           }
 
           link.download = `${id}.png`;
