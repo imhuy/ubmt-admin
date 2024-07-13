@@ -3,6 +3,7 @@ import html2canvas from "html2canvas";
 import { redirect, useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useState } from "react";
 import { useQRCode } from "next-qrcode";
+import { productApi } from "@/api-client";
 const axios = require("axios");
 
 export default function Home() {
@@ -38,12 +39,19 @@ export default function Home() {
         allowTaint: true,
         logging: true,
       })
-        .then((canvas) => {
+        .then(async (canvas) => {
           const img = canvas.toDataURL("image/png");
           const link: any = document.createElement("a");
-          // link.href = URL.createObjectURL(base64ToBlob(canvas.toDataURL("image/png")));
-          link.href = img;
-          // link.href = img;
+
+          const dataUrl = await productApi.uploadImageBase64({ type: 4, image: img });
+
+          if (img) {
+            alert("Đang tải ảnh ");
+            link.href = img;
+          } else {
+            alert("Đang tải ảnh.");
+            link.href = dataUrl;
+          }
 
           link.download = `${id}.png`;
 
@@ -51,6 +59,7 @@ export default function Home() {
           // document.body.appendChild(canvas);
           link.click();
           link.remove();
+          document.body.removeChild(link);
           style.remove();
         })
         .catch((err) => {

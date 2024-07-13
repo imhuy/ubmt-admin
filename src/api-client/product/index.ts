@@ -29,6 +29,11 @@ class ApiProduct extends ApiClientBase {
     return res.data;
   }
 
+  public async uploadImageBase64(imageData: any): Promise<BaseResponse | any> {
+    const res = await this.instance.post(`/api/common/upload-images-base64`, imageData, {});
+    return res.data;
+  }
+
   public async postNews(access_token: string, productData: FormData): Promise<BaseResponse | any> {
     const res = await this.instance.post(`/api/posts/add`, productData, {
       headers: {
