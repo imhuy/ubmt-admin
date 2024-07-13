@@ -36,6 +36,13 @@ const SideMenu = () => {
     },
 
     {
+      key: "client/create-delegate",
+      icon: AdsIcon,
+      label: "Tạo và thêm thông tin đại biểu",
+      active: false,
+    },
+
+    {
       key: "client/list-delegate",
       icon: AdsIcon,
       label: "Danh sách đại biểu",

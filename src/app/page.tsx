@@ -30,29 +30,51 @@ export default function Home() {
     document.head.appendChild(style);
     style.sheet?.insertRule("body > div:last-child img { display: inline-block; }");
     const element = document.getElementById("capture");
-    if (element) {
-      html2canvas(element)
-        .then((canvas) => {
-          // const img = canvas.toDataURL("image/png");
-          const link: any = document.createElement("a");
-          link.href = URL.createObjectURL(base64ToBlob(canvas.toDataURL("image/png")));
 
-          // window.open(link, "_blank");
-          // link.href = img;
+    html2canvas(element!, {
+      allowTaint: true,
+      useCORS: true,
+    })
+      .then((canvas) => {
+        const img = canvas.toDataURL("image/png");
+        const link: any = document.createElement("a");
+        // link.href = URL.createObjectURL(base64ToBlob(canvas.toDataURL("image/png")));
+        link.href = img;
+        // link.href = img;
 
-          link.download = `card.png`;
+        link.download = `card.png`;
 
-          document.body.appendChild(link);
-          link.click();
-          link.remove();
-          style.remove();
-        })
-        .catch((err) => {
-          console.error("Error taking screenshot:", err);
-        });
-    } else {
-      console.error("Element to capture not found!");
-    }
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        style.remove();
+      })
+      .catch((err) => {
+        console.error("Error taking screenshot:", err);
+      });
+
+    // if (element) {
+    //   html2canvas(element)
+    //     .then((canvas) => {
+    //       const img = canvas.toDataURL("image/png");
+    //       const link: any = document.createElement("a");
+    //       // link.href = URL.createObjectURL(base64ToBlob(canvas.toDataURL("image/png")));
+    //       link.href = img;
+    //       // link.href = img;
+
+    //       link.download = `card.png`;
+
+    //       document.body.appendChild(link);
+    //       link.click();
+    //       link.remove();
+    //       style.remove();
+    //     })
+    //     .catch((err) => {
+    //       console.error("Error taking screenshot:", err);
+    //     });
+    // } else {
+    //   console.error("Element to capture not found!");
+    // }
   };
   function MainView() {
     const searchParams = useSearchParams();

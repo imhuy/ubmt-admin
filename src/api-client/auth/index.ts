@@ -92,8 +92,13 @@ class ApiAuth extends ApiClientBase {
     return res.data;
   }
 
+  public async listDelegateUser(): Promise<any> {
+    const res = await this.instance.get("/api/delegate/get-all", {});
+    return res.data;
+  }
+
   public async listDelegate(): Promise<any> {
-    const res = await this.instance.get("/api/posts/get-all?cat_id=2&skip=0&take=10", {});
+    const res = await this.instance.get("/api/delegate/list", {});
     return res.data;
   }
 

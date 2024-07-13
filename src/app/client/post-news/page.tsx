@@ -8,6 +8,7 @@ import { useContext, useState } from "react";
 import "react-quill/dist/quill.snow.css";
 import { productApi } from "@/api-client";
 import { AuthContext } from "@/context/useAuthContext";
+import SelectCategory from "@/components/DropDown/SelectCategory";
 const QuillEditor = dynamic(() => import("react-quill"), { ssr: false });
 
 const Profile: NextPage<any> = () => {
@@ -94,6 +95,13 @@ const Profile: NextPage<any> = () => {
   const handleEditorChange = (newContent: any) => {
     setContent(newContent);
   };
+
+  const [selectedItem, setSelectedItem] = useState<any>("");
+
+  const handleItemSelected = (item: string) => {
+    setSelectedItem(item);
+  };
+
   return (
     <AppLayout>
       <div className='w-full bg-white  h-screen flex flex-col'>
@@ -119,7 +127,10 @@ const Profile: NextPage<any> = () => {
               ></input>
             </div>
 
-            <input type='file' accept='image/*' onChange={(e) => handleUploadImage(e.target.files as any)} />
+            <div className='flex gap-x-8 mt-6 mb-2'>
+              <SelectCategory onItemSelected={handleItemSelected} />
+              <input type='file' accept='image/*' onChange={(e) => handleUploadImage(e.target.files as any)} />
+            </div>
 
             <button
               className='  mt-6 h-16  w-1/2  '
@@ -131,7 +142,7 @@ const Profile: NextPage<any> = () => {
                 Đăng bài
               </p>
             </button>
-
+            <span>{content}</span>
             <div className='flex  flex-col h-screen '>
               <QuillEditor
                 value={content}
