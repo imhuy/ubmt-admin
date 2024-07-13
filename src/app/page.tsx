@@ -34,7 +34,7 @@ export default function Home() {
     if (element) {
       html2canvas(element, {
         useCORS: false,
-        proxy: `${avatar}`,
+        proxy: `${avatar ? avatar : "https://daihoi.mttqhanoi.org.vn/avatar.jpg"}`,
         allowTaint: true,
         logging: true,
       })
@@ -223,7 +223,7 @@ export default function Home() {
           className='px-4 py-3  uppercase  bg-[#1E6FA2] rounded-md mt-2  text-center self-center text-white  font-workSansBold  w-full  '
           onClick={() => takeScreenshot(id, data.avatar)}
         >
-          Tải thẻ đại biểu1
+          Tải thẻ đại biểu
         </button>
       </div>
     );
