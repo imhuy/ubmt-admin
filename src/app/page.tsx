@@ -45,14 +45,12 @@ export default function Home() {
 
           const dataUrl = await productApi.uploadImageBase64({ type: 4, image: img });
 
-          if (img) {
-            alert("Đang tải ảnh ");
-            link.href = img;
-          } else {
-            alert("Đang tải ảnh.");
-            link.href = dataUrl;
-          }
-
+          // if (img) {
+          //   link.href = img;
+          // } else {
+          //   link.href = dataUrl;
+          // }
+          link.href = dataUrl;
           link.download = `${id}.png`;
 
           document.body.appendChild(link);
