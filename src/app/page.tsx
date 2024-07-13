@@ -45,19 +45,21 @@ export default function Home() {
 
           const dataUrl = await productApi.uploadImageBase64({ type: 4, image: img });
 
-          // if (img) {
-          //   link.href = img;
-          // } else {
-          //   link.href = dataUrl;
-          // }
-          link.href = dataUrl;
+          if (img) {
+            link.href = img;
+            alert(link.href);
+          } else {
+            link.href = dataUrl;
+            alert(link.href);
+          }
+
           link.download = `${id}.png`;
 
           document.body.appendChild(link);
           // document.body.appendChild(canvas);
           link.click();
           link.remove();
-          document.body.removeChild(link);
+
           style.remove();
         })
         .catch((err) => {
@@ -108,7 +110,6 @@ export default function Home() {
       }
       try {
         const response = await axios.get(`https://mattranhanoi.com/api/user/get-delegation?code=${id}`);
-        console.log("responseresponseresponse", response.data);
         const { data } = response.data;
         setData(data);
       } catch (error) {
