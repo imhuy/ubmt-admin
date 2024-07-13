@@ -33,10 +33,20 @@ const SelectCategory: React.FC<DropdownProps> = ({ onItemSelected }) => {
     onItemSelected(item);
   };
 
-  const { isPending, error, data } = useQuery<ItemType[]>({
-    queryKey: ["getListDelegate", authState?.access_token],
-    queryFn: async () => await authApi.listDelegate(),
-  });
+  const data = [
+    {
+      id: 2,
+      name: "Thông tin hội nghị",
+    },
+    {
+      id: 3,
+      name: "Chương trình đại hội",
+    },
+    {
+      id: 1,
+      name: "Tin tức",
+    },
+  ];
 
   return (
     <div className='relative inline-block text-left'>
@@ -46,7 +56,7 @@ const SelectCategory: React.FC<DropdownProps> = ({ onItemSelected }) => {
           type='button'
           className='inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
         >
-          Chọn đoàn đại biểu
+          Chon mục đăng bài
           <svg
             className='-mr-1 ml-2 h-5 w-5'
             xmlns='http://www.w3.org/2000/svg'

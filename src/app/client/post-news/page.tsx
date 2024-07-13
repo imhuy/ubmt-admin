@@ -16,6 +16,7 @@ const Profile: NextPage<any> = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
+  const [selectedItem, setSelectedItem] = useState<any>("");
 
   const { authState, accountExtendDetail } = useContext(AuthContext);
 
@@ -63,6 +64,10 @@ const Profile: NextPage<any> = () => {
     "code-block",
   ];
 
+  const handleItemSelected = (item: string) => {
+    setSelectedItem(item);
+  };
+
   const handleSubmit = async () => {
     console.log("title", title);
     console.log("description", description);
@@ -73,15 +78,15 @@ const Profile: NextPage<any> = () => {
       title: title,
       content: content,
       image: image,
-      cat_id: 3,
+      cat_id: selectedItem.id,
       hashtag: [],
       day: "1",
       short_description: description,
     };
+    console.log("postFormpostFormpostForm", selectedItem);
     try {
-      console.log("postFormpostFormpostForm", postForm);
-      const data = await productApi.postNews(authState?.access_token, postForm);
-      console.log("datadatadatadatadata", data);
+      // const data = await productApi.postNews(authState?.access_token, postForm);
+      // console.log("datadatadatadatadata", data);
     } catch (error: any) {
       console.log(error);
     }
@@ -94,12 +99,6 @@ const Profile: NextPage<any> = () => {
   };
   const handleEditorChange = (newContent: any) => {
     setContent(newContent);
-  };
-
-  const [selectedItem, setSelectedItem] = useState<any>("");
-
-  const handleItemSelected = (item: string) => {
-    setSelectedItem(item);
   };
 
   return (

@@ -21,7 +21,7 @@ const SideMenu = () => {
   const [listMenu] = useState<MenuItemType[]>([
     {
       key: "",
-      icon: FacebookIcon,
+      icon: ProfileIcon,
       label: "Trang chủ ",
       active: false,
     },
@@ -30,29 +30,35 @@ const SideMenu = () => {
   const [listMenu2] = useState<MenuItemType[]>([
     {
       key: "client/post-news",
-      icon: FacebookIcon,
+      icon: ProfileIcon,
       label: "Đăng bài",
       active: false,
     },
 
     {
       key: "client/create-delegate",
-      icon: AdsIcon,
+      icon: ProfileIcon,
       label: "Tạo và thêm thông tin đại biểu",
       active: false,
     },
 
     {
       key: "client/list-delegate",
-      icon: AdsIcon,
+      icon: ProfileIcon,
       label: "Danh sách đại biểu",
+      active: false,
+    },
+    {
+      key: "client/update-delegate",
+      icon: ProfileIcon,
+      label: "Cập nhật thông tin ",
       active: false,
     },
 
     {
-      key: "client/update-delegate",
-      icon: AdsIcon,
-      label: "Cập nhật thông tin ",
+      key: "client/list-delegation",
+      icon: ProfileIcon,
+      label: "Danh sách đoàn đại biểu",
       active: false,
     },
     {
@@ -64,7 +70,7 @@ const SideMenu = () => {
 
     {
       key: "client/tickets",
-      icon: TicketIcon,
+      icon: ProfileIcon,
       label: "Ticket hỗ trợ",
       active: false,
     },

@@ -102,6 +102,11 @@ class ApiAuth extends ApiClientBase {
     return res.data;
   }
 
+  public async addDelegation(name: string): Promise<any> {
+    const res = await this.instance.post("/api/delegate/add", { name: name });
+    return res.data;
+  }
+
   public async changePassword(access_token: string, currentPassword: string, newPassword: string): Promise<any> {
     const res = await this.instance.post(
       `/api/app/account-extend/change-password?currentPassword=${currentPassword}&newPassword=${newPassword}`,

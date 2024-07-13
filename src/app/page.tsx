@@ -25,7 +25,7 @@ export default function Home() {
     const blob = new Blob(byteArrays, { type: base64.split(",")[0].split(":")[1].split(";")[0] });
     return blob;
   };
-  const takeScreenshot = () => {
+  const takeScreenshot = (id: string) => {
     const style = document.createElement("style");
     document.head.appendChild(style);
     style.sheet?.insertRule("body > div:last-child img { display: inline-block; }");
@@ -42,7 +42,7 @@ export default function Home() {
         link.href = img;
         // link.href = img;
 
-        link.download = `card.png`;
+        link.download = `${id}.png`;
 
         document.body.appendChild(link);
         link.click();
@@ -115,7 +115,7 @@ export default function Home() {
 
           <span className='  mt-5 col-span-3  text-sm  font-workSansBold  '>UỶ BAN MTTQ VIỆT NAM THÀNH PHỐ HÀ NỘI</span>
           <button
-            onClick={() => takeScreenshot()}
+            onClick={() => takeScreenshot(id)}
             className='  mt-5  col-span-2 text-center  font-workSansBold p-2 rounded-lg  uppercase  bg-white text-xs  text-red-600  '
           >
             Tải thẻ đại biểu
@@ -214,7 +214,7 @@ export default function Home() {
 
         <button
           className='px-4 py-3  uppercase  bg-[#1E6FA2] rounded-md mt-2  text-center self-center text-white  font-workSansBold  w-full  '
-          onClick={takeScreenshot}
+          onClick={() => takeScreenshot(id)}
         >
           Tải thẻ đại biểu
         </button>
