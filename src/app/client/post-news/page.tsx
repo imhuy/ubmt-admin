@@ -4,11 +4,12 @@ import AppLayout from "@/components/Layout/AppLayout";
 
 import { NextPage } from "next";
 import dynamic from "next/dynamic";
-import { useContext, useState } from "react";
+import { FormEvent, useContext, useState } from "react";
 import "react-quill/dist/quill.snow.css";
 import { productApi } from "@/api-client";
 import { AuthContext } from "@/context/useAuthContext";
 import SelectCategory from "@/components/DropDown/SelectCategory";
+import { toast } from "react-toastify";
 const QuillEditor = dynamic(() => import("react-quill"), { ssr: false });
 
 const Profile: NextPage<any> = () => {
@@ -16,7 +17,6 @@ const Profile: NextPage<any> = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
-  const [selectedItem, setSelectedItem] = useState<any>("");
 
   const { authState, accountExtendDetail } = useContext(AuthContext);
 
@@ -63,16 +63,36 @@ const Profile: NextPage<any> = () => {
     "video",
     "code-block",
   ];
-
+  const [selectedItem, setSelectedItem] = useState<any>("");
   const handleItemSelected = (item: string) => {
     setSelectedItem(item);
   };
 
-  const handleSubmit = async () => {
-    console.log("title", title);
-    console.log("description", description);
-    console.log("image", image);
-    console.log("content", content);
+  const formValidate = () => {
+    if (!title) {
+      toast.error("Vui lòng nhập tiêu đề", { autoClose: 4000 });
+      return false;
+    }
+
+    if (!content) {
+      toast.error("Vui lòng nhập nội dung", { autoClose: 4000 });
+      return false;
+    }
+    if (!selectedItem.name) {
+      toast.error("Vui lòng chọn danh mục", { autoClose: 4000 });
+      return false;
+    }
+    if (!image) {
+      toast.error("Vui lòng chọn ảnh đại diện", { autoClose: 4000 });
+      return false;
+    }
+
+    return true;
+  };
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    if (!formValidate()) return;
 
     const postForm: any = {
       title: title,
@@ -83,10 +103,15 @@ const Profile: NextPage<any> = () => {
       day: "1",
       short_description: description,
     };
-    console.log("postFormpostFormpostForm", selectedItem);
+    console.log("postFormpostFormpostForm", postForm);
     try {
-      // const data = await productApi.postNews(authState?.access_token, postForm);
-      // console.log("datadatadatadatadata", data);
+      const data = await productApi.postNews(postForm);
+      console.log("datadatadatadatadata", data.code);
+      if (data.code === 0) {
+        toast.success("Đăng bài thành công", { autoClose: 4000 });
+      } else {
+        toast.error("Xảy ra lỗi vui lòng thử lại", { autoClose: 4000 });
+      }
     } catch (error: any) {
       console.log(error);
     }
@@ -133,15 +158,15 @@ const Profile: NextPage<any> = () => {
 
             <button
               className='  mt-6 h-16  w-1/2  '
-              onClick={() => {
-                handleSubmit();
+              onClick={(e) => {
+                handleSubmit(e);
               }}
             >
               <p className=' bg-primary-500 font-extrabold text-lg border z-50  px-8 py-2 border-slate-400 rounded-md flex items-center justify-center text-white	'>
                 Đăng bài
               </p>
             </button>
-            <span>{content}</span>
+            {/* <span>{content}</span> */}
             <div className='flex  flex-col h-screen '>
               <QuillEditor
                 value={content}

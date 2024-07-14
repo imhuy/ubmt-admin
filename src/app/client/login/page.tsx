@@ -88,14 +88,14 @@ const Login: NextPage<any> = () => {
               </button>
             </BMForm>
 
-            <div className='w-[100%] flex  gap-x-2 text-sm justify-center  mb-2 '>
+            {/* <div className='w-[100%] flex  gap-x-2 text-sm justify-center  mb-2 '>
               <p>Chưa có tài khoản?</p>
 
               <p className=' text-blue-500 font-workSansSemiBold'>
                 {" "}
                 <a href='/client/register'> Đăng ký tài khoản</a>{" "}
               </p>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

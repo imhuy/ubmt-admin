@@ -1,11 +1,13 @@
 "use client";
 
-import { authApi } from "@/api-client";
+import { authApi, productApi } from "@/api-client";
 import Dropdown from "@/components/DropDown";
+import SexDropDown from "@/components/DropDown/SexDropDown";
 import { AuthContext } from "@/context/useAuthContext";
 import { ChangeEvent, FormEvent, useContext, useState } from "react";
-
+import { toast } from "react-toastify";
 interface FormData {
+  id: any;
   username: string;
   email: string;
   full_name: string;
@@ -47,15 +49,15 @@ interface FormData {
 const CustomerForm: React.FC = () => {
   const [formData, setFormData] = useState<any>({
     username: "",
-    email: " ",
+    email: "",
     full_name: "",
     status: 0,
     avatar: "",
     role_id: 1,
     date_of_birth: "",
-    number_card: " ",
-    date_range: " ",
-    issued: " ",
+    number_card: "",
+    date_range: "",
+    issued: "",
     place_of_residence: "",
     current_residence: "",
     image_card: [],
@@ -77,29 +79,66 @@ const CustomerForm: React.FC = () => {
   });
 
   const { authState, accountExtendDetail } = useContext(AuthContext);
-
+  const [image, setImage] = useState("");
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
   const [selectedItem, setSelectedItem] = useState<any>("");
-
+  const [delegation, setDelegation] = useState<any>("");
   const handleItemSelected = (item: string) => {
     setSelectedItem(item);
   };
+  const handleUploadImage = async (files: any) => {
+    const formData = new FormData();
+    formData.append("images", files[0]);
+    const data = await productApi.uploadAvatar(formData);
+    setImage(data[0]);
+  };
+  const handleSelectDelegation = (item: string) => {
+    setDelegation(item);
+  };
 
+  const formValidate = () => {
+    if (!selectedItem.name) {
+      toast.error("Vui lòng chọn Giới tinh", { autoClose: 4000 });
+      return false;
+    }
+    if (!image) {
+      toast.error("Vui lòng chọn ảnh đại diện", { autoClose: 4000 });
+      return false;
+    }
+    if (!delegation?.id) {
+      toast.error("Vui lòng chọn đoàn đại biểu", { autoClose: 4000 });
+      return false;
+    }
+
+    return true;
+  };
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    if (!formValidate()) return;
 
-    let update = await authApi.upDateUserInfo(authState?.access_token, formData);
+    formData.code = `HC${formData.phone.slice(-7)}`;
+    formData.password = formData.phone;
+
+    formData.avatar = image.toString();
+    formData.sex = selectedItem.name;
+    formData.delegation = delegation?.id?.toString();
+    console.log("formDataformDataformData", formData);
+    let update = await authApi.createUser(formData);
+    if (update.code === 0) {
+      toast.success("Thêm đại biểu thành công", { autoClose: 4000 });
+    } else {
+      toast.error("Xảy ra lỗi vui lòng thử lại", { autoClose: 4000 });
+    }
     console.log("payloadpayloadpayloadpayload", update);
   };
 
   return (
     <form onSubmit={handleSubmit} className='max-w-2xl mx-auto p-4 bg-white shadow-md rounded-lg'>
-      <h2 className='text-2xl font-bold mb-4'>Tạo tài khoản và thông tin đại biểu</h2>
-
+      <h2 className='text-2xl font-bold mb-4'>Tạo thông tin đại biểu</h2>
       <div className='grid grid-cols-1 gap-4'>
         <input
           type='number'
@@ -110,6 +149,7 @@ const CustomerForm: React.FC = () => {
           onChange={handleChange}
           placeholder='Số điện thoại'
         />
+
         <input
           required={true}
           className='border p-2 rounded'
@@ -119,13 +159,30 @@ const CustomerForm: React.FC = () => {
           placeholder='Họ tên'
         />
 
+        <div className='flex gap-x-8 mt-2 mb-2'>
+          <SexDropDown onItemSelected={handleItemSelected} />
+          <div className=' flex gap-x-2'>
+            <p>Ảnh đại diện</p>
+            <input type='file' accept='image/*' onChange={(e) => handleUploadImage(e.target.files as any)} />
+          </div>
+        </div>
+
         <input
           required={true}
           className='border p-2 rounded'
-          name='sex'
-          value={formData.sex}
+          name='position'
+          value={formData.position}
           onChange={handleChange}
-          placeholder='Giới tính'
+          placeholder='Chức vụ'
+        />
+
+        <input
+          required={true}
+          className='border p-2 rounded'
+          name='email'
+          value={formData.email}
+          onChange={handleChange}
+          placeholder='Email'
         />
 
         <input
@@ -146,45 +203,60 @@ const CustomerForm: React.FC = () => {
           placeholder='Quê quán'
         />
 
-        {/* <input
+        <input
           required={true}
           className='border p-2 rounded'
-          name='delegation'
-          value={formData.delegation}
+          name='qualification'
+          value={formData.qualification}
           onChange={handleChange}
-          placeholder='Đoàn'
-        /> */}
+          placeholder='Trình độ chuyên môn'
+        />
 
-        <Dropdown onItemSelected={handleItemSelected} />
-        {selectedItem && (
-          <form className='mt-4'>
-            <input
-              id='selectedItem'
-              name='selectedItem'
-              type='text'
-              value={selectedItem.name}
-              readOnly
-              className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
-            />
-          </form>
-        )}
+        <Dropdown onItemSelected={handleSelectDelegation} />
 
         <input
           required={true}
           className='border p-2 rounded'
-          name='position'
-          value={formData.position}
+          name='job'
+          value={formData.job}
           onChange={handleChange}
-          placeholder='Mã đại biểu'
+          placeholder='Công việc hiện tại'
         />
 
         <input
           required={true}
           className='border p-2 rounded'
-          name='code'
-          value={formData.code}
+          name='nation'
+          value={formData.nation}
           onChange={handleChange}
-          placeholder='Chức vụ'
+          placeholder='Dân tộc'
+        />
+
+        <input
+          required={true}
+          className='border p-2 rounded'
+          name='nationality'
+          value={formData.nationality}
+          onChange={handleChange}
+          placeholder='Quốc tịch'
+        />
+
+        <input
+          required={true}
+          className='border p-2 rounded'
+          name='degree'
+          value={formData.degree}
+          onChange={handleChange}
+          placeholder='Bằng cấp'
+        />
+
+        <input
+          required={true}
+          className='border p-2 rounded'
+          name='political_theory'
+          value={formData.political_theory}
+          onChange={handleChange}
+          placeholder='Lý luận chính trị'
         />
         <button type='submit' className='bg-blue-500 text-white p-2 rounded'>
           Submit

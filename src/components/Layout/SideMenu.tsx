@@ -48,12 +48,12 @@ const SideMenu = () => {
       label: "Danh sách đại biểu",
       active: false,
     },
-    {
-      key: "client/update-delegate",
-      icon: ProfileIcon,
-      label: "Cập nhật thông tin ",
-      active: false,
-    },
+    // {
+    //   key: "client/update-delegate",
+    //   icon: ProfileIcon,
+    //   label: "Cập nhật thông tin ",
+    //   active: false,
+    // },
 
     {
       key: "client/list-delegation",

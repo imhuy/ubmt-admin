@@ -1,3 +1,4 @@
+import { AxiosResponse } from "axios";
 import ApiClientBase from "../ApiClientBase";
 import { AccountDetailResponse, LoginParamsType, LoginResponseType, RegisterParamsType } from "../types/AuthType";
 
@@ -90,6 +91,13 @@ class ApiAuth extends ApiClientBase {
       },
     });
     return res.data;
+  }
+
+  public async createUser(formData: any): Promise<any> {
+    const res = await this.instance.post("/api/user/add", formData, {
+      headers: {},
+    });
+    return res;
   }
 
   public async listDelegateUser(): Promise<any> {

@@ -29,18 +29,10 @@ const Profile: NextPage<any> = () => {
             </div>
 
             <div className='flex justify-between px-4 mr-4 '>
-              <p className=' font-workSansMedium text-lg'>Tên đăng nhập</p>
-              <input
-                className='w-[50%] border h-12 rounded-md px-2'
-                placeholder={accountExtendDetail?.username}
-              ></input>
-            </div>
-
-            <div className='flex justify-between px-4 mr-4 '>
               <p className=' font-workSansMedium text-lg'>Số điện thoại</p>
               <input
                 className='w-[50%] border h-12 rounded-md px-2'
-                placeholder={accountExtendDetail?.phone_number}
+                placeholder={accountExtendDetail?.username}
               ></input>
             </div>
 

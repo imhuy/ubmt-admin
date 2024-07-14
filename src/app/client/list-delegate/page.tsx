@@ -6,6 +6,7 @@ import CopyModal from "@/components/Modal/CopyModal";
 import { AuthContext } from "@/context/useAuthContext";
 import { useQuery } from "@tanstack/react-query";
 import { NextPage } from "next";
+import Link from "next/link";
 import { useContext, useState } from "react";
 export interface ItemType {
   id: number;
@@ -59,8 +60,14 @@ const ListDelegate: NextPage<any> = () => {
                     <th className=' w-32  text-center'>
                       <span className='  text-sm  '>Đoàn đại biểu </span>{" "}
                     </th>
-                    <th className=' w-64  text-center'>
+                    <th className=' w-32  text-center'>
                       <span className='   text-sm  '>Mã đại biểu</span>{" "}
+                    </th>
+                    {/* <th className=' w-16  text-center'>
+                      <span className='   text-sm  '> </span>{" "}
+                    </th> */}
+                    <th className=' w-48  text-center'>
+                      <span className='   text-sm  '> </span>{" "}
                     </th>
                   </tr>
                 </thead>
@@ -69,7 +76,9 @@ const ListDelegate: NextPage<any> = () => {
                     {data?.map((item, i: number) => (
                       <tr
                         key={i}
-                        className={`flex  gap-x-6 py-5  px-5 border-b     ${i % 2 == 0 ? "bg-slate-100" : ""}`}
+                        className={`flex  gap-x-6 py-5  px-5 border-b   items-center   ${
+                          i % 2 == 0 ? "bg-slate-100" : ""
+                        }`}
                       >
                         <td className='text-center font-normal text-sm  w-32 max-w-64 '>
                           <span className=' font-normal text-sm  '>{item.id}</span>
@@ -84,8 +93,29 @@ const ListDelegate: NextPage<any> = () => {
                         <td className='text-center font-normal text-sm w-32    '>
                           <span className=' font-normal text-sm  '>{item.delegation}</span>
                         </td>
-                        <td className='text-center font-normal text-sm w-64    '>
+                        <td className='text-center font-normal text-sm w-32    '>
                           <span className=' font-normal text-sm  '>{item.code} </span>
+                        </td>
+
+                        {/* <td className='text-center font-normal text-sm w-16      '>
+                          <Link
+                            href={"update-delegate"}
+                            className=' bg-primary-500   p-2 border z-50  px-2   border-slate-400 rounded-md   text-white	'
+                          >
+                            Xoá
+                          </Link>
+                        </td> */}
+
+                        <td className='text-center font-normal text-sm         '>
+                          <Link
+                            href={{
+                              pathname: "update-delegate",
+                              query: { id: item.id },
+                            }}
+                            className=' bg-primary-500     border z-50    border-slate-400 rounded-md   text-white	'
+                          >
+                            Cập nhật thông tin
+                          </Link>
                         </td>
                       </tr>
                     ))}

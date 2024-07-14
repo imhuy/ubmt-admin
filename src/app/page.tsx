@@ -47,10 +47,10 @@ export default function Home() {
 
           if (img) {
             link.href = img;
-            // alert(link.href);
+            alert(link.href);
           } else {
+            alert("Đang tải ảnh.");
             link.href = dataUrl;
-            // alert(link.href);
           }
 
           link.download = `${id}.png`;
@@ -100,7 +100,7 @@ export default function Home() {
 
     console.log("idididididid", id);
     if (id == "" || id == undefined) {
-      // redirect("https://mttqhanoi.org.vn/");
+      redirect("https://mttqhanoi.org.vn/");
     }
     const fetchData = async (id: string) => {
       if (typeof window !== "undefined") {
@@ -110,6 +110,7 @@ export default function Home() {
       }
       try {
         const response = await axios.get(`https://mattranhanoi.com/api/user/get-delegation?code=${id}`);
+        console.log("responseresponseresponse", response.data);
         const { data } = response.data;
         setData(data);
       } catch (error) {

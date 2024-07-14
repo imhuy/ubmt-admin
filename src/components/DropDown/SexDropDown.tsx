@@ -20,7 +20,7 @@ export interface ItemType {
   code: string;
 }
 
-const SelectCategory: React.FC<DropdownProps> = ({ onItemSelected }) => {
+const SexDropDown: React.FC<DropdownProps> = ({ onItemSelected }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [name, setName] = useState("");
 
@@ -32,24 +32,17 @@ const SelectCategory: React.FC<DropdownProps> = ({ onItemSelected }) => {
     setIsOpen(false);
     onItemSelected(item);
     setName(item.name);
+    console.log("toStringtoStringtoStringtoString", item);
   };
 
   const data = [
     {
-      id: 2,
-      name: "Thông tin hội nghị",
+      id: "Ông",
+      name: "Nữ",
     },
     {
-      id: 3,
-      name: "Chương trình đại hội",
-    },
-    {
-      id: 1,
-      name: "Tin tức",
-    },
-    {
-      id: 5,
-      name: "Thông báo",
+      id: "Bà",
+      name: "Nam",
     },
   ];
 
@@ -61,8 +54,7 @@ const SelectCategory: React.FC<DropdownProps> = ({ onItemSelected }) => {
           type='button'
           className='inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
         >
-          <p className=' w-36'> {name || "Chọn danh mục"} </p>
-
+          {name || "Chọn giới tính"}
           <svg
             className='-mr-1 ml-2 h-5 w-5'
             xmlns='http://www.w3.org/2000/svg'
@@ -98,4 +90,4 @@ const SelectCategory: React.FC<DropdownProps> = ({ onItemSelected }) => {
   );
 };
 
-export default SelectCategory;
+export default SexDropDown;

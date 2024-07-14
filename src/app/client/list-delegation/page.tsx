@@ -61,7 +61,7 @@ const ListDelegate: NextPage<any> = () => {
               }}
             >
               <p className=' bg-primary-500 font-extrabold text-lg border z-50  px-8 py-2 border-slate-400 rounded-md flex items-center justify-center text-white	'>
-                Đăng bài
+                Thêm đoàn
               </p>
             </button>
           </div>

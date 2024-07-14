@@ -11,6 +11,7 @@ export interface LoginResponseType extends BaseResponse {
 
 export interface AccountDetailResponse {
   id: string;
+  code: string;
   username: string;
   full_name: string;
   phone_number: string;

@@ -185,7 +185,7 @@ const Header: FC<IHeader> = ({ title }) => {
                 <button className='py-2 px-4  border  text-sm  font-workSansSemiBold border-[#00e3b4]   '>Login</button>
               </a>
             </div>
-            <div className='max-lg:mx-0'>
+            {/* <div className='max-lg:mx-0'>
               <a href='/client/register'>
                 <button
                   // onClick={onGoSignup}
@@ -194,7 +194,7 @@ const Header: FC<IHeader> = ({ title }) => {
                   Sign up
                 </button>
               </a>
-            </div>
+            </div> */}
           </div>
         )}
       </div>
