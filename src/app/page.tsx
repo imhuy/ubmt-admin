@@ -198,7 +198,7 @@ export default function Home() {
             <img
               src={data?.avatar}
               alt='Sample Image'
-              className='w-[98px] h-[147px]  absolute top-[287px] left-[35px] '
+              className='w-[98px] h-[147px]  absolute top-[287px] left-[35.5px] '
             />
           ) : (
             <img
