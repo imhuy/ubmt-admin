@@ -139,7 +139,8 @@ export default function Home() {
         </div>
         <div className='flex flex-col '>
           <span className=' uppercase text-center  text-red-600 font-workSansBold mt-4'>Chào mừng đại biểu</span>
-          <div className='flex shadow-lg rounded-lg justify-around   py-10 my-8  items-center    h-40'>
+          <span className='  font-bold text-xl text-center font-workSansBold mt-2'>{data?.full_name}</span>
+          <div className='flex shadow-lg rounded-lg justify-around      items-center    h-40'>
             <div className='w-[30%]  '>
               <SVG
                 text={id ? id : "Không tìm thấy mã đại biểu"}
@@ -155,23 +156,33 @@ export default function Home() {
             </div>
 
             <div className='flex flex-col   items-start gap-y-1'>
-              <span className='  font-bold text-xl text-center'>{data?.full_name}</span>
               <div className='flex items-center'>
-                <div className=' mx-2 w-2 h-2 bg-black' />
+                <div className='flex'>
+                  <div className=' mx-2 w-2 h-2 bg-black' />
+                </div>
                 <span className=' font-light'>
                   Mã đại biểu: <span className=' font-workSansBold'>{data?.code}</span>
                 </span>
               </div>
 
               <div className='flex items-center'>
-                <div className=' mx-2 w-2 h-2 bg-black' />
+                <div className='flex'>
+                  <div className=' mx-2 w-2 h-2 bg-black' />
+                </div>
+
+                {/* <span className=' font-light'>
+    <span className='font-workSansBold'>{data?.delegation}</span>
+  </span> */}
+
                 <span className=' font-light'>
-                  <span className='font-workSansBold'>{data?.delegation}</span>
+                  Đoàn: <span className=' font-workSansBold'>{data?.delegation} </span>
                 </span>
               </div>
 
               <div className='flex items-center'>
-                <div className=' mx-2 w-2 h-2 bg-black' />
+                <div className='flex'>
+                  <div className=' mx-2 w-2 h-2 bg-black' />
+                </div>
                 <span className=' font-light'>
                   Chức vụ: <span className='font-workSansBold'>{data?.position}</span>
                 </span>
