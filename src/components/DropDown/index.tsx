@@ -35,7 +35,7 @@ const Dropdown: React.FC<DropdownProps> = ({ onItemSelected }) => {
   });
 
   // Filtered data based on filterText
-  const filteredData = data?.filter((item) => item.name.toLowerCase().includes(filterText.toLowerCase()));
+  const filteredData = data?.filter((item) => item.name?.toLowerCase().includes(filterText?.toLowerCase()));
 
   const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFilterText(e.target.value);

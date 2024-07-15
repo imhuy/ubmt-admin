@@ -44,9 +44,16 @@ const ListDelegate: NextPage<any> = () => {
               <span className=' font-workSansSemiBold  text-2xl'>Danh sách bài viết</span>
             </div>
           </div>
-          {data?.map((item: any, i) => (
-            <div className='flex'>{item.title}</div>
-          ))}
+          <div className='flex'>
+            {data?.map((item: any, i) => (
+              <div className='flex  mx-auto w-[80%]'>
+                <div className='flex flex-col'>
+                  <span className=' font-workSansSemiBold'>{item.title}</span>
+                  <span>{item.short_description}</span>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
       <CopyModal title={title} isOpen={isOpenInfo} closeModal={() => setIsOpenInfo(false)} />
