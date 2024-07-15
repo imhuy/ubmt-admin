@@ -1,25 +1,13 @@
-// components/Dropdown.tsx
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 interface DropdownProps {
   onItemSelected: (item: string) => void;
 }
 
-export interface ItemType {
-  id: number;
-  name: string;
-
-  created_at: string;
-  position: string;
-  delegation: string;
-  amount: number;
-  friend: string;
-  code: string;
-}
-
 const PartyMember: React.FC<DropdownProps> = ({ onItemSelected }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [name, setName] = useState("");
+  const dropdownRef = useRef<HTMLDivElement>(null); // Ref to dropdown div
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -27,9 +15,8 @@ const PartyMember: React.FC<DropdownProps> = ({ onItemSelected }) => {
 
   const handleItemClick = (item: any) => {
     setIsOpen(false);
-    onItemSelected(item);
+    onItemSelected(item.name);
     setName(item.name);
-    console.log("toStringtoStringtoStringtoString", item);
   };
 
   const data = [
@@ -43,8 +30,29 @@ const PartyMember: React.FC<DropdownProps> = ({ onItemSelected }) => {
     },
   ];
 
+  // Effect to handle click outside to close modal
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+
+    // Add event listener when dropdown is open
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      // Clean up event listener when dropdown is closed
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen]);
+
   return (
-    <div className='relative inline-block text-left'>
+    <div className='relative inline-block text-left' ref={dropdownRef}>
       <div>
         <button
           onClick={toggleDropdown}

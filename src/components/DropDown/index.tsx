@@ -1,8 +1,7 @@
-// components/Dropdown.tsx
 import { authApi } from "@/api-client";
 import { AuthContext } from "@/context/useAuthContext";
 import { useQuery } from "@tanstack/react-query";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 
 interface DropdownProps {
   onItemSelected: (item: string) => void;
@@ -11,19 +10,14 @@ interface DropdownProps {
 export interface ItemType {
   id: number;
   name: string;
-
-  created_at: string;
-  position: string;
-  delegation: string;
-  amount: number;
-  friend: string;
-  code: string;
 }
 
 const Dropdown: React.FC<DropdownProps> = ({ onItemSelected }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [name, setName] = useState("");
-  const { authState, accountExtendDetail } = useContext(AuthContext);
+  const [filterText, setFilterText] = useState(""); // State for filtering
+  const { authState } = useContext(AuthContext);
+  const dropdownRef = useRef<HTMLDivElement>(null); // Ref to dropdown div
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -33,7 +27,6 @@ const Dropdown: React.FC<DropdownProps> = ({ onItemSelected }) => {
     setIsOpen(false);
     onItemSelected(item);
     setName(item.name);
-    console.log("itemitemitemitemitemitem", item);
   };
 
   const { isPending, error, data } = useQuery<ItemType[]>({
@@ -41,8 +34,36 @@ const Dropdown: React.FC<DropdownProps> = ({ onItemSelected }) => {
     queryFn: async () => await authApi.listDelegate(),
   });
 
+  // Filtered data based on filterText
+  const filteredData = data?.filter((item) => item.name.toLowerCase().includes(filterText.toLowerCase()));
+
+  const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFilterText(e.target.value);
+  };
+
+  // Effect to handle click outside to close modal
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+
+    // Add event listener when dropdown is open
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      // Clean up event listener when dropdown is closed
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen]);
+
   return (
-    <div className='relative inline-block text-left'>
+    <div className='relative inline-block text-left' ref={dropdownRef}>
       <div>
         <button
           onClick={toggleDropdown}
@@ -66,9 +87,18 @@ const Dropdown: React.FC<DropdownProps> = ({ onItemSelected }) => {
         </button>
       </div>
       {isOpen && (
-        <div className='origin-top-right absolute right-0 mt-2 w-full rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none'>
+        <div className='origin-top-right absolute z-50 max-h-60 overflow-y-auto right-0 mt-2 w-full rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none'>
           <div className='py-1' role='menu' aria-orientation='vertical' aria-labelledby='options-menu'>
-            {data?.map((item, i) => (
+            {/* Filter input */}
+            <input
+              type='text'
+              placeholder='Search...'
+              className='border border-gray-300 rounded-md px-3 py-2 mb-2 w-full'
+              value={filterText}
+              onChange={handleFilterChange}
+            />
+            {/* Render filtered data */}
+            {filteredData?.map((item, i) => (
               <button
                 key={item.id}
                 onClick={() => handleItemClick(item)}
@@ -78,6 +108,10 @@ const Dropdown: React.FC<DropdownProps> = ({ onItemSelected }) => {
                 {item.name}
               </button>
             ))}
+            {/* Show message if no items match filter */}
+            {filteredData && filteredData.length === 0 && (
+              <span className='block px-4 py-2 text-sm text-gray-400'>No matching items</span>
+            )}
           </div>
         </div>
       )}
