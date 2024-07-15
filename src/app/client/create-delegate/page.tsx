@@ -203,7 +203,7 @@ const CustomerForm: React.FC = () => {
           name='date_of_birth'
           value={formData.date_of_birth}
           onChange={handleChange}
-          placeholder='Ngày sinh(Năm-tháng-ngày) vd: 1970-01-20'
+          placeholder='Ngày sinh: vd :20/11/1986'
         />
 
         <input
