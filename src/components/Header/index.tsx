@@ -16,6 +16,7 @@ type SideMenuMobile = {
   href: string;
   isChildren?: boolean;
   isParent?: boolean;
+  active?: boolean;
 };
 
 const Header: FC<IHeader> = ({ title }) => {
@@ -40,52 +41,50 @@ const Header: FC<IHeader> = ({ title }) => {
 
   const sideMenuMobile: SideMenuMobile[] = [
     {
-      label: "Mua tài khoản",
+      href: "post-news",
       icon: <HeartIcon className='h-6 w-6' />,
-      href: "/",
+      label: "Đăng bài",
+      active: false,
     },
 
     {
-      label: "Tài khoản",
-      icon: <FolderIcon className='h-6 w-6' />,
-      href: "",
-      isParent: true,
+      href: "create-delegate",
+      icon: <HeartIcon className='h-6 w-6' />,
+      label: "Tạo và thêm thông tin đại biểu",
+      active: false,
+    },
+
+    {
+      href: "list-delegate",
+      icon: <HeartIcon className='h-6 w-6' />,
+      label: "Danh sách đại biểu",
+      active: false,
+    },
+    // {
+    //   key: "client/update-delegate",
+    //   icon: ProfileIcon,
+    //   label: "Cập nhật thông tin ",
+    //   active: false,
+    // },
+
+    {
+      href: "list-delegation",
+      icon: <HeartIcon className='h-6 w-6' />,
+      label: "Danh sách đoàn đại biểu",
+      active: false,
     },
     {
-      label: "Nạp tiền",
-      href: "/client/recharge",
-      isChildren: true,
-    },
-    {
+      href: "profile",
+      icon: <HeartIcon className='h-6 w-6' />,
       label: "Thông tin cá nhân",
-      href: "/client/profile",
-      isChildren: true,
+      active: false,
     },
+
     {
-      label: "Lịch sử giao dịch",
-      href: "/order/history",
-      isChildren: true,
-    },
-    {
-      label: "Công cụ",
-      icon: <FolderIcon className='h-6 w-6' />,
-      href: "",
-      isParent: true,
-    },
-    {
-      label: "Tut miễn phí",
-      href: "https://2fa.live/",
-      isChildren: true,
-    },
-    {
-      label: "Tạo phôi XMDT",
-      href: "https://2fa.live/",
-      isChildren: true,
-    },
-    {
-      label: "Tool 2fa  ",
-      href: "https://2fa.live/",
-      isChildren: true,
+      href: "tickets",
+      icon: <HeartIcon className='h-6 w-6' />,
+      label: "Ticket hỗ trợ",
+      active: false,
     },
   ];
 
@@ -96,7 +95,7 @@ const Header: FC<IHeader> = ({ title }) => {
         <div className='hidden max-lg:block'>
           <div className='flex gap-2 items-center'>
             <Bars3Icon className='h-6 w-6' color='black' onClick={() => setOpenMenuMobile(true)} />
-            <h1 className=' font-workSansBold  text-center'>BM2FA </h1>
+            <h1 className=' font-workSansBold  text-center'>Menu </h1>
           </div>
           {openMenuMobile && (
             <div className='fixed h-screen  bg-white z-[1000] top-0 left-0 w-full flex flex-col gap-4 px-6 pt-6'>

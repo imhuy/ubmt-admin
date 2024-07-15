@@ -27,13 +27,6 @@ const Avatar: FC<Props> = ({ isShowRole = false }) => {
           </div>
         </div>
       </div>
-
-      {/* <a
-      href="/"
-      className=" font-workSansBold mb-2 text-3xl text-center"
-    >
-      BM2FA.COM{" "}
-    </a> */}
     </a>
   );
 };
