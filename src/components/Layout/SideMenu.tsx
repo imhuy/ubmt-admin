@@ -48,6 +48,13 @@ const SideMenu = () => {
       label: "Danh sách đại biểu",
       active: false,
     },
+
+    {
+      key: "client/list-news",
+      icon: ProfileIcon,
+      label: "Danh sách bài viết",
+      active: false,
+    },
     // {
     //   key: "client/update-delegate",
     //   icon: ProfileIcon,

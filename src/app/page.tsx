@@ -155,9 +155,7 @@ export default function Home() {
             </div>
 
             <div className='flex flex-col   items-start gap-y-1'>
-              <span className='  font-bold text-xl'>
-                {data?.sex ? data.sex : ""} {data?.full_name}
-              </span>
+              <span className='  font-bold text-xl text-center'>{data?.full_name}</span>
               <div className='flex items-center'>
                 <div className=' mx-2 w-2 h-2 bg-black' />
                 <span className=' font-light'>
@@ -213,8 +211,8 @@ export default function Home() {
             />
           </div>
           <div className='flex flex-col self-center justify-start items-center absolute top-[365px] left-[150px]  w-[210px] '>
-            <span className=' text-[#3760AE] uppercase  font-workSansBlack  text-[15px] '>
-              {data?.sex ? data.sex : ""} {data?.full_name}
+            <span className=' text-[#3760AE] uppercase  font-workSansBlack  text-[15px] text-center '>
+              {data?.full_name}
             </span>
             <span className='  uppercase text-[#3760AE]  font-workSansBold  self-center text-center text-[15px]'>
               {data?.delegation}
