@@ -2,6 +2,7 @@
 
 import { authApi, productApi } from "@/api-client";
 import Dropdown from "@/components/DropDown";
+import PartyMember from "@/components/DropDown/PartyMember";
 import SexDropDown from "@/components/DropDown/SexDropDown";
 import { AuthContext } from "@/context/useAuthContext";
 import { ChangeEvent, FormEvent, useContext, useState } from "react";
@@ -86,9 +87,14 @@ const CustomerForm: React.FC = () => {
   };
 
   const [selectedItem, setSelectedItem] = useState<any>("");
+  const [selectedMember, setSelectedMember] = useState<any>("");
   const [delegation, setDelegation] = useState<any>("");
   const handleItemSelected = (item: string) => {
     setSelectedItem(item);
+  };
+
+  const handlePartyMember = (item: string) => {
+    setSelectedMember(item);
   };
   const handleUploadImage = async (files: any) => {
     const formData = new FormData();
@@ -102,15 +108,20 @@ const CustomerForm: React.FC = () => {
 
   const formValidate = () => {
     if (!selectedItem.name) {
-      toast.error("Vui lòng chọn Giới tinh", { autoClose: 4000 });
+      toast.error("Vui lòng chọn giới tính", { autoClose: 4000 });
       return false;
     }
     if (!image) {
       toast.error("Vui lòng chọn ảnh đại diện", { autoClose: 4000 });
       return false;
     }
+
     if (!delegation?.id) {
       toast.error("Vui lòng chọn đoàn đại biểu", { autoClose: 4000 });
+      return false;
+    }
+    if (!selectedMember.name) {
+      toast.error("Vui lòng chọn thông tin đảng viên", { autoClose: 4000 });
       return false;
     }
 
@@ -122,16 +133,17 @@ const CustomerForm: React.FC = () => {
 
     formData.code = `HC${formData.phone.slice(-7)}`;
     formData.password = formData.phone;
-
+    formData.username = formData.phone;
     formData.avatar = image.toString();
-    formData.sex = selectedItem.name;
+    formData.sex = selectedItem.id;
+    formData.is_party_member = selectedMember.id;
     formData.delegation = delegation?.id?.toString();
     console.log("formDataformDataformData", formData);
     let update = await authApi.createUser(formData);
     if (update.code === 0) {
       toast.success("Thêm đại biểu thành công", { autoClose: 4000 });
     } else {
-      toast.error("Xảy ra lỗi vui lòng thử lại", { autoClose: 4000 });
+      toast.error(update.message, { autoClose: 4000 });
     }
     console.log("payloadpayloadpayloadpayload", update);
   };
@@ -191,7 +203,7 @@ const CustomerForm: React.FC = () => {
           name='date_of_birth'
           value={formData.date_of_birth}
           onChange={handleChange}
-          placeholder='Năm sinh'
+          placeholder='Ngày sinh(Năm-tháng-ngày) vd: 1970-01-20'
         />
 
         <input
@@ -202,7 +214,23 @@ const CustomerForm: React.FC = () => {
           onChange={handleChange}
           placeholder='Quê quán'
         />
+        <input
+          required={true}
+          className='border p-2 rounded'
+          name='current_residence'
+          value={formData.current_residence}
+          onChange={handleChange}
+          placeholder='Nơi ở hiện tại'
+        />
 
+        <input
+          required={true}
+          className='border p-2 rounded'
+          name='religion'
+          value={formData.religion}
+          onChange={handleChange}
+          placeholder='Tôn giáo'
+        />
         <input
           required={true}
           className='border p-2 rounded'
@@ -213,7 +241,7 @@ const CustomerForm: React.FC = () => {
         />
 
         <Dropdown onItemSelected={handleSelectDelegation} />
-
+        <PartyMember onItemSelected={handlePartyMember} />
         <input
           required={true}
           className='border p-2 rounded'
@@ -247,7 +275,15 @@ const CustomerForm: React.FC = () => {
           name='degree'
           value={formData.degree}
           onChange={handleChange}
-          placeholder='Bằng cấp'
+          placeholder='Học vị'
+        />
+        <input
+          required={true}
+          className='border p-2 rounded'
+          name='academic_rank'
+          value={formData.academic_rank}
+          onChange={handleChange}
+          placeholder='Học hàm'
         />
 
         <input

@@ -47,9 +47,9 @@ export default function Home() {
 
           if (img) {
             link.href = img;
-            alert(link.href);
+            // alert(link.href);
           } else {
-            alert("Đang tải ảnh.");
+            // alert("Đang tải ảnh.");
             link.href = dataUrl;
           }
 

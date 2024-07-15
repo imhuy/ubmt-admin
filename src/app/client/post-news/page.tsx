@@ -109,6 +109,11 @@ const Profile: NextPage<any> = () => {
       console.log("datadatadatadatadata", data.code);
       if (data.code === 0) {
         toast.success("Đăng bài thành công", { autoClose: 4000 });
+        setTitle("");
+        setContent("");
+        setImage("");
+        setSelectedItem({ id: "" });
+        setDescription("");
       } else {
         toast.error("Xảy ra lỗi vui lòng thử lại", { autoClose: 4000 });
       }

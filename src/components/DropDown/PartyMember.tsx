@@ -17,7 +17,7 @@ export interface ItemType {
   code: string;
 }
 
-const SexDropDown: React.FC<DropdownProps> = ({ onItemSelected }) => {
+const PartyMember: React.FC<DropdownProps> = ({ onItemSelected }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [name, setName] = useState("");
 
@@ -34,12 +34,12 @@ const SexDropDown: React.FC<DropdownProps> = ({ onItemSelected }) => {
 
   const data = [
     {
-      id: "Ông",
-      name: "Nam",
+      id: true,
+      name: "Có",
     },
     {
-      id: "Bà",
-      name: "Nữ",
+      id: false,
+      name: "Không",
     },
   ];
 
@@ -51,7 +51,7 @@ const SexDropDown: React.FC<DropdownProps> = ({ onItemSelected }) => {
           type='button'
           className='inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
         >
-          {name || "Chọn giới tính"}
+          {name || "Đảng viên"}
           <svg
             className='-mr-1 ml-2 h-5 w-5'
             xmlns='http://www.w3.org/2000/svg'
@@ -72,7 +72,7 @@ const SexDropDown: React.FC<DropdownProps> = ({ onItemSelected }) => {
           <div className='py-1' role='menu' aria-orientation='vertical' aria-labelledby='options-menu'>
             {data?.map((item, i) => (
               <button
-                key={item.id}
+                key={i}
                 onClick={() => handleItemClick(item)}
                 className='text-gray-700 block px-4 py-2 text-sm'
                 role='menuitem'
@@ -87,4 +87,4 @@ const SexDropDown: React.FC<DropdownProps> = ({ onItemSelected }) => {
   );
 };
 
-export default SexDropDown;
+export default PartyMember;

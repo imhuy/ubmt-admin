@@ -54,7 +54,7 @@ const ListDelegate: NextPage<any> = () => {
                       <span className='   text-sm '> Họ tên </span>{" "}
                     </th>
 
-                    <th className=' w-32 max-w-64   text-center'>
+                    <th className=' w-64  max-w-96   text-center'>
                       <span className='   text-sm  '>Chức vụ </span>{" "}
                     </th>
                     <th className=' w-32  text-center'>
@@ -87,7 +87,7 @@ const ListDelegate: NextPage<any> = () => {
                           <span className=' font-normal text-sm  '>{item.full_name}</span>
                         </td>
 
-                        <td className='text-center font-normal text-sm  w-32 max-w-64 '>
+                        <td title={item.position} className='text-center font-normal text-sm  truncate  w-64 max-w-96 '>
                           <span className=' font-normal text-sm  '>{item.position}</span>
                         </td>
                         <td className='text-center font-normal text-sm w-32    '>
@@ -106,7 +106,7 @@ const ListDelegate: NextPage<any> = () => {
                           </Link>
                         </td> */}
 
-                        <td className='text-center font-normal text-sm         '>
+                        {/* <td className='text-center font-normal text-sm         '>
                           <Link
                             href={{
                               pathname: "update-delegate",
@@ -116,7 +116,7 @@ const ListDelegate: NextPage<any> = () => {
                           >
                             Cập nhật thông tin
                           </Link>
-                        </td>
+                        </td> */}
                       </tr>
                     ))}
                   </tbody>
