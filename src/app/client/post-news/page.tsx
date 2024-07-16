@@ -18,7 +18,6 @@ const Profile: NextPage<any> = () => {
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const [fileKey, setFileKey] = useState(Date.now());
 
   const quillModules = {
     toolbar: [

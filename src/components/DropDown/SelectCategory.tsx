@@ -34,6 +34,10 @@ const SelectCategory: React.FC<DropdownProps> = ({ onItemSelected }) => {
 
   const data = [
     {
+      id: 1,
+      name: "Tin tức",
+    },
+    {
       id: 2,
       name: "Thông tin hội nghị",
     },
@@ -41,10 +45,7 @@ const SelectCategory: React.FC<DropdownProps> = ({ onItemSelected }) => {
       id: 3,
       name: "Chương trình đại hội",
     },
-    {
-      id: 1,
-      name: "Tin tức",
-    },
+
     {
       id: 5,
       name: "Thông báo",

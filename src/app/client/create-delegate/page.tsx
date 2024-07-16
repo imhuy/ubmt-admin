@@ -4,9 +4,8 @@ import { authApi, productApi } from "@/api-client";
 import Dropdown from "@/components/DropDown";
 import PartyMember from "@/components/DropDown/PartyMember";
 import SexDropDown from "@/components/DropDown/SexDropDown";
-import { AuthContext } from "@/context/useAuthContext";
 import axios from "axios";
-import { ChangeEvent, FormEvent, useContext, useState } from "react";
+import { ChangeEvent, FormEvent, useRef, useState } from "react";
 import { toast } from "react-toastify";
 interface FormData {
   id: any;
@@ -80,7 +79,6 @@ const CustomerForm: React.FC = () => {
     is_delegate: true,
   });
 
-  const { authState, accountExtendDetail } = useContext(AuthContext);
   const [image, setImage] = useState("");
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -94,13 +92,15 @@ const CustomerForm: React.FC = () => {
     setSelectedItem(item);
   };
 
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
   const senDataladiFlow = async (inputData: any) => {
     let data = JSON.stringify({
       email: formData.email,
       full_name: formData.full_name,
       phone: formData.phone,
-      gender: "male",
-      tags: ["5fffb9c981cf1245fa091985", "5fffb9ce81cf1245fa091986", "5fffb9ce81cf1245fa091900"],
+      gender: formData.sex == "Bà" ? "female" : "male",
+      tags: ["668b91ec1c659e0012bdd29c"],
       custom_fields: [
         {
           name: "daihoi_daibieu_namsinh",
@@ -133,12 +133,11 @@ const CustomerForm: React.FC = () => {
       maxBodyLength: Infinity,
       url: "https://api.service.ladiflow.com/1.0/customer/create",
       headers: {
-        "Api-Key": "6285229c1b1be4a1b3c9ad565995539d2f478b019be1b4ae",
+        "Api-Key": "1280044757dc09f18836126588eb6160",
         "Content-Type": "application/json",
       },
       data: data,
     };
-
     let senData = await axios(config);
     return senData;
   };
@@ -190,13 +189,13 @@ const CustomerForm: React.FC = () => {
     formData.sex = selectedItem.id;
     formData.is_party_member = selectedMember.id;
     formData.delegation = delegation?.id?.toString();
-    console.log("formDataformDataformData", delegation);
-    let ladiFlow = await senDataladiFlow(formData);
-    console.log("ladiFlowladiFlowladiFlow", ladiFlow);
 
     let update = await authApi.createUser(formData);
 
     if (update.code === 0) {
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "";
+      }
       senDataladiFlow(formData);
       toast.success("Thêm đại biểu thành công", { autoClose: 4000 });
     } else {
@@ -232,7 +231,12 @@ const CustomerForm: React.FC = () => {
           <SexDropDown onItemSelected={handleItemSelected} />
           <div className=' flex gap-x-2'>
             <p>Ảnh đại diện</p>
-            <input type='file' accept='image/*' onChange={(e) => handleUploadImage(e.target.files as any)} />
+            <input
+              ref={fileInputRef}
+              type='file'
+              accept='image/*'
+              onChange={(e) => handleUploadImage(e.target.files as any)}
+            />
           </div>
         </div>
 

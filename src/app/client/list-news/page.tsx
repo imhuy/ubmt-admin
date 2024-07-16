@@ -2,10 +2,9 @@
 import { authApi } from "@/api-client";
 import Header from "@/components/Header";
 import AppLayout from "@/components/Layout/AppLayout";
-import { AuthContext } from "@/context/useAuthContext";
 import { useQuery } from "@tanstack/react-query";
 import { NextPage } from "next";
-import { useContext, useState } from "react";
+import { useState } from "react";
 export interface ItemType {
   id: number;
   key: string;
@@ -18,15 +17,13 @@ export interface ItemType {
   code: string;
 }
 const ListDelegate: NextPage<any> = () => {
-  const { authState, accountExtendDetail, getAccountExtendDetails } = useContext(AuthContext);
-  const [delegation, setDelegation] = useState<any>("");
+  const [selected, setSelected] = useState<any>(1);
 
   const listPostNew = useQuery<ItemType[]>({
-    queryKey: ["listPostNew", authState?.access_token],
-    queryFn: async () => await authApi.listNews(),
+    queryKey: ["listPostNew", selected],
+    queryFn: async () => await authApi.listNews(selected),
   });
 
-  console.log("listPostNewlistPostNewlistPostNew", listPostNew.data);
   const showConfirmation = async (message: string): Promise<boolean> => {
     return new Promise((resolve) => {
       const userConfirmed = window.confirm(message);
@@ -63,9 +60,57 @@ const ListDelegate: NextPage<any> = () => {
           <div className='w-[95%] overflow-auto scrollmenu justify-center flex flex-col gap-y-8 bg-white  border shadow-md rounded-md '>
             <div className='border-b px-4 py-5 flex items-center gap-2'>
               <span className=' font-workSansSemiBold text-2xl'>Danh sách bài viết</span>
-              {/* <NewDropDown onItemSelected={handleSelectDelegation} /> */}
             </div>
           </div>
+
+          <div className='flex gap-x-4  p-4'>
+            <label className='flex items-center mb-2'>
+              <input
+                type='radio'
+                name='radio'
+                value={1}
+                className='form-radio text-blue-600 h-4 w-4'
+                onChange={(e) => setSelected(e.target.value)}
+                checked={selected == 1}
+              />
+              <span className='ml-2'>Tin tức</span>
+            </label>
+
+            <label className='flex items-center mb-2'>
+              <input
+                type='radio'
+                name='radio'
+                value={5}
+                className='form-radio text-blue-600 h-4 w-4'
+                onChange={(e) => setSelected(e.target.value)}
+                checked={selected == 5}
+              />
+              <span className='ml-2'>Thông báo</span>
+            </label>
+            <label className='flex items-center mb-2'>
+              <input
+                type='radio'
+                name='radio'
+                value={2}
+                className='form-radio text-blue-600 h-4 w-4'
+                onChange={(e) => setSelected(e.target.value)}
+                checked={selected == 2}
+              />
+              <span className='ml-2'>Thông tin hội nghị</span>
+            </label>
+            <label className='flex items-center mb-2'>
+              <input
+                type='radio'
+                name='radio'
+                value={3}
+                className='form-radio text-blue-600 h-4 w-4'
+                onChange={(e) => setSelected(e.target.value)}
+                checked={selected == 3}
+              />
+              <span className='ml-2'>Chương trình đại hội</span>
+            </label>
+          </div>
+
           <div className='flex flex-col  gap-y-4'>
             {listPostNew?.data?.map((item: any, i) => (
               <div key={i} className='flex items-center  justify-between gap-x-6 flex-row mx-auto w-[90%]'>
