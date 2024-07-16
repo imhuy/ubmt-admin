@@ -97,9 +97,7 @@ const CustomerForm: React.FC = () => {
   const senDataladiFlow = async (inputData: any) => {
     let data = JSON.stringify({
       email: formData.email,
-      // first_name: "test",
       full_name: formData.full_name,
-      // dob: "1989-11-03",
       phone: formData.phone,
       gender: "male",
       tags: ["5fffb9c981cf1245fa091985", "5fffb9ce81cf1245fa091986", "5fffb9ce81cf1245fa091900"],
@@ -114,7 +112,7 @@ const CustomerForm: React.FC = () => {
         },
         {
           name: "daihoi_daibieu_doan",
-          value: formData.delegation,
+          value: delegation.name,
         },
         {
           name: "daihoi_daibieu_ma",
@@ -127,23 +125,7 @@ const CustomerForm: React.FC = () => {
       ],
       city: formData.place_of_residence,
       address: formData.current_residence,
-      // address_2: "",
-      // district: "Nam Từ Liêm",
-      // company: "LadiPage",
       job_title: formData.job,
-      // ward: "Mỹ Đình 1",
-      // lang: "vi",
-      // postal_code: 100000,
-      // source: "API",
-      // external_customer_id: "123",
-      // subcribed_at: "2020-12-01",
-      // website: "123",
-      // facebook_url: "123",
-      // twitter_url: "123",
-      // linkedIn_url: "123",
-      // score: 14,
-      // skype: null,
-      // zalo: null,
     });
 
     let config = {
@@ -158,7 +140,7 @@ const CustomerForm: React.FC = () => {
     };
 
     let senData = await axios(config);
-    console.log("senData", data);
+    return senData;
   };
 
   const handlePartyMember = (item: any) => {
@@ -208,7 +190,10 @@ const CustomerForm: React.FC = () => {
     formData.sex = selectedItem.id;
     formData.is_party_member = selectedMember.id;
     formData.delegation = delegation?.id?.toString();
-    console.log("formDataformDataformData", formData);
+    console.log("formDataformDataformData", delegation);
+    let ladiFlow = await senDataladiFlow(formData);
+    console.log("ladiFlowladiFlowladiFlow", ladiFlow);
+
     let update = await authApi.createUser(formData);
 
     if (update.code === 0) {

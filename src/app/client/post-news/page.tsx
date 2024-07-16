@@ -4,7 +4,7 @@ import AppLayout from "@/components/Layout/AppLayout";
 
 import { NextPage } from "next";
 import dynamic from "next/dynamic";
-import { FormEvent, useContext, useState } from "react";
+import { FormEvent, useContext, useState, useRef, useEffect } from "react";
 import "react-quill/dist/quill.snow.css";
 import { productApi } from "@/api-client";
 import { AuthContext } from "@/context/useAuthContext";
@@ -17,8 +17,8 @@ const Profile: NextPage<any> = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
-
-  const { authState, accountExtendDetail } = useContext(AuthContext);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [fileKey, setFileKey] = useState(Date.now());
 
   const quillModules = {
     toolbar: [
@@ -106,14 +106,16 @@ const Profile: NextPage<any> = () => {
     console.log("postFormpostFormpostForm", postForm);
     try {
       const data = await productApi.postNews(postForm);
-      console.log("datadatadatadatadata", data.code);
       if (data.code === 0) {
-        toast.success("Đăng bài thành công", { autoClose: 4000 });
         setTitle("");
         setContent("");
-        setImage("");
-        setSelectedItem({ id: "" });
         setDescription("");
+        setImage("");
+        setSelectedItem(null);
+        if (fileInputRef.current) {
+          fileInputRef.current.value = "";
+        }
+        toast.success("Đăng bài thành công", { autoClose: 4000 });
       } else {
         toast.error("Xảy ra lỗi vui lòng thử lại", { autoClose: 4000 });
       }
@@ -121,6 +123,7 @@ const Profile: NextPage<any> = () => {
       console.log(error);
     }
   };
+
   const handleUploadImage = async (files: any) => {
     const formData = new FormData();
     formData.append("images", files[0]);
@@ -141,6 +144,7 @@ const Profile: NextPage<any> = () => {
             <div className='flex flex-col justify-between   '>
               <p className=' font-workSansMedium text-lg'>Tiêu đề</p>
               <input
+                value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 className='w-[80%] border h-12 rounded-md px-2 mt-2'
                 placeholder={"Tiêu đề bài viết"}
@@ -150,6 +154,7 @@ const Profile: NextPage<any> = () => {
             <div className='flex flex-col justify-between  mt-4  '>
               <p className=' font-workSansMedium text-lg'>Mô tả bài viết</p>
               <input
+                value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 className='w-[80%] border h-12 rounded-md px-2 mt-2'
                 placeholder={"Mô tả bài viết"}
@@ -158,7 +163,12 @@ const Profile: NextPage<any> = () => {
 
             <div className='flex gap-x-8 mt-6 mb-2'>
               <SelectCategory onItemSelected={handleItemSelected} />
-              <input type='file' accept='image/*' onChange={(e) => handleUploadImage(e.target.files as any)} />
+              <input
+                ref={fileInputRef}
+                type='file'
+                accept='image/*'
+                onChange={(e) => handleUploadImage(e.target.files as any)}
+              />
             </div>
 
             <button

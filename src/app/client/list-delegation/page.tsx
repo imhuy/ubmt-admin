@@ -23,8 +23,8 @@ const ListDelegate: NextPage<any> = () => {
   const [title, setTitle] = useState("");
   const { authState, accountExtendDetail, getAccountExtendDetails } = useContext(AuthContext);
   const [delegation, setDelegation] = useState("");
-  const listDelegate = useQuery<ItemType[]>({
-    queryKey: ["getListDelegate", authState?.access_token],
+  const listDelegation = useQuery<ItemType[]>({
+    queryKey: ["getListDelegation", authState?.access_token],
     queryFn: async () => await authApi.listDelegate(),
   });
 
@@ -40,10 +40,10 @@ const ListDelegate: NextPage<any> = () => {
     if (userConfirmed) {
       try {
         let data = await authApi.deleteDelegationById(id);
-        await listDelegate.refetch();
+        await listDelegation.refetch();
 
         console.log("Đã xóa thành công");
-        await listDelegate.refetch();
+        // await listDelegate.refetch();
       } catch (error) {
         console.error("Lỗi khi xóa:", error);
       }
@@ -55,7 +55,7 @@ const ListDelegate: NextPage<any> = () => {
     console.log("delegationdelegationdelegationdelegation", delegation);
     if (delegation) {
       let data = await authApi.addDelegation(delegation);
-      await listDelegate.refetch();
+      await listDelegation.refetch();
     }
   };
   return (
@@ -109,25 +109,25 @@ const ListDelegate: NextPage<any> = () => {
                     </th>
                   </tr>
                 </thead>
-                {!listDelegate.isPending && listDelegate.data && (
+                {!listDelegation.isPending && listDelegation.data && (
                   <tbody>
-                    {listDelegate.data?.map((item, i: number) => (
+                    {listDelegation.data?.map((item, i: number) => (
                       <tr
                         key={i}
-                        className={`flex  gap-x-6 py-5  px-5 border-b     ${i % 2 == 0 ? "bg-slate-100" : ""}`}
+                        className={`flex  gap-x-6 py-2  px-5 border-b     ${i % 2 == 0 ? "bg-slate-100" : ""}`}
                       >
-                        <td className='text-center font-normal text-sm  w-32 max-w-64 '>
+                        <td className='text-center font-normal text-sm  mt-2  w-32 max-w-64 '>
                           <span className=' font-normal text-sm  '>{item.id}</span>
                         </td>
 
-                        <td className='text-center font-normal text-sm w-64    '>
+                        <td className='text-center font-normal text-sm mt-2 w-64    '>
                           <span className=' font-normal text-sm  '>{item.name} </span>
                         </td>
 
-                        <td className='text-center font-normal text-sm w-64    '>
+                        <td className='text-center  flex  justify-end font-normal text-sm w-64    '>
                           <button
                             onClick={() => deleteItem(item.id)}
-                            className=' bg-primary-500   p-2 border z-50  px-2   border-slate-400 rounded-md   text-white	'
+                            className=' bg-primary-500  py-1 border z-50  px-2   border-slate-400 rounded-md   text-white	'
                           >
                             Xoá
                           </button>

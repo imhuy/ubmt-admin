@@ -124,6 +124,13 @@ class ApiAuth extends ApiClientBase {
     });
     return res.data;
   }
+
+  public async deleteUserById(id: number): Promise<any> {
+    const res = await this.instance.delete(`/api/user/delete/${id}`, {
+      headers: {},
+    });
+    return res.data;
+  }
   public async listDelegate(): Promise<any> {
     const res = await this.instance.get("/api/delegate/list", {});
     return res.data;

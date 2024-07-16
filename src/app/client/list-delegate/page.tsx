@@ -24,7 +24,7 @@ const ListDelegate: NextPage<any> = () => {
   const [title, setTitle] = useState("");
   const { authState, accountExtendDetail, getAccountExtendDetails } = useContext(AuthContext);
 
-  const { isPending, error, data } = useQuery<ItemType[]>({
+  const listDelegate = useQuery<ItemType[]>({
     queryKey: ["getListDelegate", authState?.access_token],
     queryFn: async () => await authApi.listDelegateUser(),
   });
@@ -40,6 +40,9 @@ const ListDelegate: NextPage<any> = () => {
     const userConfirmed = await showConfirmation(`Bạn có chắc chắn muốn xóa đại biểu Id ${id}? `);
     if (userConfirmed) {
       try {
+        let data = await authApi.deleteUserById(id);
+        // console.log(object);
+        await listDelegate.refetch();
         console.log("Đã xóa thành công");
       } catch (error) {
         console.error("Lỗi khi xóa:", error);
@@ -90,9 +93,9 @@ const ListDelegate: NextPage<any> = () => {
                     </th>
                   </tr>
                 </thead>
-                {!isPending && data && (
+                {!listDelegate?.isPending && listDelegate?.data && (
                   <tbody>
-                    {data?.map((item, i: number) => (
+                    {listDelegate?.data?.map((item, i: number) => (
                       <tr
                         key={i}
                         className={`flex  gap-x-6 py-5  px-5 border-b   items-center   ${
@@ -116,14 +119,14 @@ const ListDelegate: NextPage<any> = () => {
                           <span className=' font-normal text-sm  '>{item.code} </span>
                         </td>
 
-                        {/* <td className='text-center flex font-normal text-sm w-16      '>
+                        <td className='text-center flex font-normal text-sm w-16      '>
                           <button
                             onClick={() => deleteItem(item.id)}
-                            className=' bg-primary-500   p-2 border z-50  px-2   border-slate-400 rounded-md   text-white	'
+                            className=' bg-primary-500   p-1 border z-50  px-2   border-slate-400 rounded-md   text-white	'
                           >
                             Xoá
                           </button>
-                        </td> */}
+                        </td>
 
                         {/* <td className='text-center font-normal text-sm         '>
                           <Link

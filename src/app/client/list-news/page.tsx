@@ -78,7 +78,7 @@ const ListDelegate: NextPage<any> = () => {
                 <div className='flex'>
                   <button
                     onClick={() => deleteItem(item.id)}
-                    className=' bg-primary-500 h-1/2 items-center  py-2  border z-50  px-3   border-slate-400 rounded-md   text-white	'
+                    className=' bg-primary-500 h-1/2 items-center  py-1  border z-50  px-3   border-slate-400 rounded-md   text-white	'
                   >
                     Xoá
                   </button>

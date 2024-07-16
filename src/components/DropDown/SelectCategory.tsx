@@ -1,28 +1,13 @@
-// components/Dropdown.tsx
-import { authApi } from "@/api-client";
-import { AuthContext } from "@/context/useAuthContext";
-import { useQuery } from "@tanstack/react-query";
-import { useContext, useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 interface DropdownProps {
   onItemSelected: (item: string) => void;
 }
 
-export interface ItemType {
-  id: number;
-  name: string;
-
-  created_at: string;
-  position: string;
-  delegation: string;
-  amount: number;
-  friend: string;
-  code: string;
-}
-
 const SelectCategory: React.FC<DropdownProps> = ({ onItemSelected }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [name, setName] = useState("");
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -33,6 +18,19 @@ const SelectCategory: React.FC<DropdownProps> = ({ onItemSelected }) => {
     onItemSelected(item);
     setName(item.name);
   };
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      setIsOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const data = [
     {
@@ -54,15 +52,14 @@ const SelectCategory: React.FC<DropdownProps> = ({ onItemSelected }) => {
   ];
 
   return (
-    <div className='relative inline-block text-left'>
+    <div className='relative inline-block text-left' ref={dropdownRef}>
       <div>
         <button
           onClick={toggleDropdown}
           type='button'
           className='inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
         >
-          <p className=' w-36'> {name || "Chọn danh mục"} </p>
-
+          <p className='w-36'>{name || "Chọn danh mục"}</p>
           <svg
             className='-mr-1 ml-2 h-5 w-5'
             xmlns='http://www.w3.org/2000/svg'
@@ -81,7 +78,7 @@ const SelectCategory: React.FC<DropdownProps> = ({ onItemSelected }) => {
       {isOpen && (
         <div className='origin-top-right absolute right-0 mt-2 w-full rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none'>
           <div className='py-1' role='menu' aria-orientation='vertical' aria-labelledby='options-menu'>
-            {data?.map((item, i) => (
+            {data.map((item) => (
               <button
                 key={item.id}
                 onClick={() => handleItemClick(item)}
