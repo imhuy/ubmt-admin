@@ -28,6 +28,29 @@ const ListDelegate: NextPage<any> = () => {
     queryFn: async () => await authApi.listDelegate(),
   });
 
+  const showConfirmation = async (message: string): Promise<boolean> => {
+    return new Promise((resolve) => {
+      const userConfirmed = window.confirm(message);
+      resolve(userConfirmed);
+    });
+  };
+
+  const deleteItem = async (id: number) => {
+    const userConfirmed = await showConfirmation("Bạn có chắc chắn muốn xóa không?");
+    if (userConfirmed) {
+      try {
+        let data = await authApi.deleteDelegationById(id);
+        await listDelegate.refetch();
+
+        console.log("Đã xóa thành công");
+        await listDelegate.refetch();
+      } catch (error) {
+        console.error("Lỗi khi xóa:", error);
+      }
+    } else {
+      console.log("Người dùng đã hủy");
+    }
+  };
   const handleSubmit = async () => {
     console.log("delegationdelegationdelegationdelegation", delegation);
     if (delegation) {
@@ -80,6 +103,10 @@ const ListDelegate: NextPage<any> = () => {
                     <th className=' w-64  text-center'>
                       <span className='   text-sm  '>Tên đoàn đại biểu</span>{" "}
                     </th>
+
+                    <th className=' w-32  text-center'>
+                      <span className='   text-sm  '></span>{" "}
+                    </th>
                   </tr>
                 </thead>
                 {!listDelegate.isPending && listDelegate.data && (
@@ -96,6 +123,15 @@ const ListDelegate: NextPage<any> = () => {
                         <td className='text-center font-normal text-sm w-64    '>
                           <span className=' font-normal text-sm  '>{item.name} </span>
                         </td>
+
+                        <td className='text-center font-normal text-sm w-64    '>
+                          <button
+                            onClick={() => deleteItem(item.id)}
+                            className=' bg-primary-500   p-2 border z-50  px-2   border-slate-400 rounded-md   text-white	'
+                          >
+                            Xoá
+                          </button>
+                        </td>
                       </tr>
                     ))}
                   </tbody>
@@ -105,7 +141,7 @@ const ListDelegate: NextPage<any> = () => {
           </div>
         </div>
       </div>
-      <CopyModal title={title} isOpen={isOpenInfo} closeModal={() => setIsOpenInfo(false)} />
+      {/* <CopyModal title={title} isOpen={isOpenInfo} closeModal={() => setIsOpenInfo(false)} /> */}
     </AppLayout>
   );
 };

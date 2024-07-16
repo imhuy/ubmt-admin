@@ -2,16 +2,25 @@ import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { FC, Fragment, useState } from "react";
 import Spinner from "../Spinner";
+import { authApi } from "@/api-client";
 
 interface IChangePasswordModal {
   isOpen: boolean;
   closeModal: () => void;
-  title: string;
+  deletePost: () => void;
+  data: any;
 }
 
-const InfoModal: FC<IChangePasswordModal> = ({ isOpen, closeModal, title }) => {
+const InfoModal: FC<IChangePasswordModal> = ({ isOpen, closeModal, deletePost, data }) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
+  const deletePostbyId = async (id: number) => {
+    console.log("deleetete", id);
+    let data = await authApi.deletePostById(id);
+
+    console.log("datadatadatadatadata", data);
+    closeModal;
+  };
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog as='div' className='relative z-10' onClose={closeModal}>
@@ -39,9 +48,9 @@ const InfoModal: FC<IChangePasswordModal> = ({ isOpen, closeModal, title }) => {
               leaveTo='opacity-0 scale-95'
             >
               <Dialog.Panel className='w-full max-w-xl  rounded-sm transform overflow-hidden rounded-ms bg-white p-6 text-left align-middle shadow-xl transition-all'>
-                <Dialog.Title as='h3' className='text-2xl font-workSansBold leading-6 text-success-500'>
+                <Dialog.Title as='h3' className='text-2xl font-workSansBold leading-6  text-red-500'>
                   <div>
-                    <p>Thông tin chi tiết</p>
+                    <p>Chắc chắn xoá</p>
                     <button
                       className='h-10 w-10   absolute top-3 right-2 flex justify-center items-center hover:text-success-500 hover:border-success-500 duration-100 transition-all'
                       onClick={closeModal}
@@ -51,12 +60,21 @@ const InfoModal: FC<IChangePasswordModal> = ({ isOpen, closeModal, title }) => {
                   </div>
                 </Dialog.Title>
                 <div className='mt-8 flex flex-col gap-y-6'>
-                  <p className=' text-base'>{`Đã sao chép ${title} thành công!`}</p>
+                  <p className=' text-base'>{` ${data.title}`}</p>
                 </div>
 
                 <div className='mt-4 flex justify-center'>
                   <button
                     onClick={closeModal}
+                    type='submit'
+                    className='inline-flex ml-3 justify-center items-center rounded-md border border-transparent bg-success-500 hover:bg-success-600 px-4 py-2   font-medium text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2'
+                    disabled={isLoading}
+                  >
+                    {isLoading ? <Spinner /> : <p>Huỷ</p>}
+                  </button>
+
+                  <button
+                    onClick={() => deletePostbyId(data.id)}
                     type='submit'
                     className='inline-flex ml-3 justify-center items-center rounded-md border border-transparent bg-success-500 hover:bg-success-600 px-4 py-2   font-medium text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2'
                     disabled={isLoading}

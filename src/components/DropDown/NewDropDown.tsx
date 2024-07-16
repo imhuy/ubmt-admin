@@ -1,10 +1,10 @@
 import { useState, useRef, useEffect } from "react";
 
 interface DropdownProps {
-  onItemSelected: (item: { id: number; name: string }) => void;
+  onItemSelected: (item: string) => void;
 }
 
-const PartyMember: React.FC<DropdownProps> = ({ onItemSelected }) => {
+const NewDropDown: React.FC<DropdownProps> = ({ onItemSelected }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [name, setName] = useState("");
   const dropdownRef = useRef<HTMLDivElement>(null); // Ref to dropdown div
@@ -15,7 +15,7 @@ const PartyMember: React.FC<DropdownProps> = ({ onItemSelected }) => {
 
   const handleItemClick = (item: any) => {
     setIsOpen(false);
-    onItemSelected(item);
+    onItemSelected(item.name);
     setName(item.name);
   };
 
@@ -95,4 +95,4 @@ const PartyMember: React.FC<DropdownProps> = ({ onItemSelected }) => {
   );
 };
 
-export default PartyMember;
+export default NewDropDown;

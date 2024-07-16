@@ -1,6 +1,7 @@
 import { AxiosResponse } from "axios";
 import ApiClientBase from "../ApiClientBase";
 import { AccountDetailResponse, LoginParamsType, LoginResponseType, RegisterParamsType } from "../types/AuthType";
+import { AnyARecord } from "dns";
 
 class ApiAuth extends ApiClientBase {
   constructor() {
@@ -110,6 +111,19 @@ class ApiAuth extends ApiClientBase {
     return res.data;
   }
 
+  public async deletePostById(id: number): Promise<any> {
+    const res = await this.instance.delete(`/api/posts/delete/${id}`, {
+      headers: {},
+    });
+    return res.data;
+  }
+
+  public async deleteDelegationById(id: number): Promise<any> {
+    const res = await this.instance.delete(`/api/delegate/delete/${id}`, {
+      headers: {},
+    });
+    return res.data;
+  }
   public async listDelegate(): Promise<any> {
     const res = await this.instance.get("/api/delegate/list", {});
     return res.data;

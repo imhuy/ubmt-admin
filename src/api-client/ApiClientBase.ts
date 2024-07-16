@@ -67,6 +67,10 @@ class ApiClientBase {
     const response = await this.instance.post<T>(url, data, config);
     return response.data;
   }
+  public async delete<T>(url: string, config?: AxiosRequestConfig): Promise<T> {
+    const response = await this.instance.delete<T>(url, config);
+    return response.data;
+  }
 }
 
 export default ApiClientBase;

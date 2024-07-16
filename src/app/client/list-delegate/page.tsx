@@ -29,6 +29,25 @@ const ListDelegate: NextPage<any> = () => {
     queryFn: async () => await authApi.listDelegateUser(),
   });
 
+  const showConfirmation = async (message: string): Promise<boolean> => {
+    return new Promise((resolve) => {
+      const userConfirmed = window.confirm(message);
+      resolve(userConfirmed);
+    });
+  };
+
+  const deleteItem = async (id: number) => {
+    const userConfirmed = await showConfirmation(`Bạn có chắc chắn muốn xóa đại biểu Id ${id}? `);
+    if (userConfirmed) {
+      try {
+        console.log("Đã xóa thành công");
+      } catch (error) {
+        console.error("Lỗi khi xóa:", error);
+      }
+    } else {
+      console.log("Người dùng đã hủy");
+    }
+  };
   return (
     <AppLayout>
       <div className='w-full flex flex-col'>
@@ -97,13 +116,13 @@ const ListDelegate: NextPage<any> = () => {
                           <span className=' font-normal text-sm  '>{item.code} </span>
                         </td>
 
-                        {/* <td className='text-center font-normal text-sm w-16      '>
-                          <Link
-                            href={"update-delegate"}
+                        {/* <td className='text-center flex font-normal text-sm w-16      '>
+                          <button
+                            onClick={() => deleteItem(item.id)}
                             className=' bg-primary-500   p-2 border z-50  px-2   border-slate-400 rounded-md   text-white	'
                           >
                             Xoá
-                          </Link>
+                          </button>
                         </td> */}
 
                         {/* <td className='text-center font-normal text-sm         '>
@@ -126,7 +145,7 @@ const ListDelegate: NextPage<any> = () => {
           </div>
         </div>
       </div>
-      <CopyModal title={title} isOpen={isOpenInfo} closeModal={() => setIsOpenInfo(false)} />
+      {/* <CopyModal title={title} isOpen={isOpenInfo} closeModal={() => setIsOpenInfo(false)} /> */}
     </AppLayout>
   );
 };

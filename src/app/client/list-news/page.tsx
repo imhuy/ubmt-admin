@@ -2,11 +2,9 @@
 import { authApi } from "@/api-client";
 import Header from "@/components/Header";
 import AppLayout from "@/components/Layout/AppLayout";
-import CopyModal from "@/components/Modal/CopyModal";
 import { AuthContext } from "@/context/useAuthContext";
 import { useQuery } from "@tanstack/react-query";
 import { NextPage } from "next";
-import Link from "next/link";
 import { useContext, useState } from "react";
 export interface ItemType {
   id: number;
@@ -20,15 +18,38 @@ export interface ItemType {
   code: string;
 }
 const ListDelegate: NextPage<any> = () => {
-  const [isOpenInfo, setIsOpenInfo] = useState(false);
-  const [title, setTitle] = useState("");
   const { authState, accountExtendDetail, getAccountExtendDetails } = useContext(AuthContext);
+  const [delegation, setDelegation] = useState<any>("");
 
-  const { isPending, error, data } = useQuery<ItemType[]>({
-    queryKey: ["getListDelegate", authState?.access_token],
+  const listPostNew = useQuery<ItemType[]>({
+    queryKey: ["listPostNew", authState?.access_token],
     queryFn: async () => await authApi.listNews(),
   });
-  console.log("datadatadatadatadata", data);
+
+  console.log("listPostNewlistPostNewlistPostNew", listPostNew.data);
+  const showConfirmation = async (message: string): Promise<boolean> => {
+    return new Promise((resolve) => {
+      const userConfirmed = window.confirm(message);
+      resolve(userConfirmed);
+    });
+  };
+
+  const deleteItem = async (id: number) => {
+    const userConfirmed = await showConfirmation(`Bạn có chắc chắn muốn xóa bài viết này? `);
+    if (userConfirmed) {
+      try {
+        let data = await authApi.deletePostById(id);
+        await listPostNew.refetch();
+
+        console.log("Đã xóa thành công", data);
+      } catch (error) {
+        console.error("Lỗi khi xóa:", error);
+      }
+    } else {
+      console.log("Người dùng đã hủy");
+    }
+  };
+
   return (
     <AppLayout>
       <div className='w-full flex flex-col'>
@@ -40,23 +61,33 @@ const ListDelegate: NextPage<any> = () => {
           <div className='w-[95%] justify-center flex flex-col  gap-y-2  bg-white  border shadow-md rounded-md '></div>
 
           <div className='w-[95%] overflow-auto scrollmenu justify-center flex flex-col gap-y-8 bg-white  border shadow-md rounded-md '>
-            <div className='border-b px-4 py-5'>
-              <span className=' font-workSansSemiBold  text-2xl'>Danh sách bài viết</span>
+            <div className='border-b px-4 py-5 flex items-center gap-2'>
+              <span className=' font-workSansSemiBold text-2xl'>Danh sách bài viết</span>
+              {/* <NewDropDown onItemSelected={handleSelectDelegation} /> */}
             </div>
           </div>
           <div className='flex flex-col  gap-y-4'>
-            {data?.map((item: any, i) => (
-              <div key={i} className='flex  flex-col mx-auto w-[80%]'>
+            {listPostNew?.data?.map((item: any, i) => (
+              <div key={i} className='flex items-center  justify-between gap-x-6 flex-row mx-auto w-[90%]'>
+                {/* <span>{item.id}</span> */}
                 <div className='flex flex-col'>
                   <span className=' font-workSansSemiBold'>{item.title}</span>
                   <span>{item.short_description}</span>
+                </div>
+
+                <div className='flex'>
+                  <button
+                    onClick={() => deleteItem(item.id)}
+                    className=' bg-primary-500 h-1/2 items-center  py-2  border z-50  px-3   border-slate-400 rounded-md   text-white	'
+                  >
+                    Xoá
+                  </button>
                 </div>
               </div>
             ))}
           </div>
         </div>
       </div>
-      <CopyModal title={title} isOpen={isOpenInfo} closeModal={() => setIsOpenInfo(false)} />
     </AppLayout>
   );
 };

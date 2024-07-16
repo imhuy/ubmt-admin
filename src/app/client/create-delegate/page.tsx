@@ -5,6 +5,7 @@ import Dropdown from "@/components/DropDown";
 import PartyMember from "@/components/DropDown/PartyMember";
 import SexDropDown from "@/components/DropDown/SexDropDown";
 import { AuthContext } from "@/context/useAuthContext";
+import axios from "axios";
 import { ChangeEvent, FormEvent, useContext, useState } from "react";
 import { toast } from "react-toastify";
 interface FormData {
@@ -93,7 +94,74 @@ const CustomerForm: React.FC = () => {
     setSelectedItem(item);
   };
 
-  const handlePartyMember = (item: string) => {
+  const senDataladiFlow = async (inputData: any) => {
+    let data = JSON.stringify({
+      email: formData.email,
+      // first_name: "test",
+      full_name: formData.full_name,
+      // dob: "1989-11-03",
+      phone: formData.phone,
+      gender: "male",
+      tags: ["5fffb9c981cf1245fa091985", "5fffb9ce81cf1245fa091986", "5fffb9ce81cf1245fa091900"],
+      custom_fields: [
+        {
+          name: "daihoi_daibieu_namsinh",
+          value: formData.date_of_birth,
+        },
+        {
+          name: "daihoi_daibieu_quequan",
+          value: formData.place_of_residence,
+        },
+        {
+          name: "daihoi_daibieu_doan",
+          value: formData.delegation,
+        },
+        {
+          name: "daihoi_daibieu_ma",
+          value: formData.code,
+        },
+        {
+          name: "daihoi_daibieu_chucvu",
+          value: formData.position,
+        },
+      ],
+      city: formData.place_of_residence,
+      address: formData.current_residence,
+      // address_2: "",
+      // district: "Nam Từ Liêm",
+      // company: "LadiPage",
+      job_title: formData.job,
+      // ward: "Mỹ Đình 1",
+      // lang: "vi",
+      // postal_code: 100000,
+      // source: "API",
+      // external_customer_id: "123",
+      // subcribed_at: "2020-12-01",
+      // website: "123",
+      // facebook_url: "123",
+      // twitter_url: "123",
+      // linkedIn_url: "123",
+      // score: 14,
+      // skype: null,
+      // zalo: null,
+    });
+
+    let config = {
+      method: "post",
+      maxBodyLength: Infinity,
+      url: "https://api.service.ladiflow.com/1.0/customer/create",
+      headers: {
+        "Api-Key": "6285229c1b1be4a1b3c9ad565995539d2f478b019be1b4ae",
+        "Content-Type": "application/json",
+      },
+      data: data,
+    };
+
+    let senData = await axios(config);
+    console.log("senData", data);
+  };
+
+  const handlePartyMember = (item: any) => {
     setSelectedMember(item);
   };
   const handleUploadImage = async (files: any) => {
@@ -107,6 +175,8 @@ const CustomerForm: React.FC = () => {
   };
 
   const formValidate = () => {
+    console.log(selectedMember);
+
     if (!selectedItem.name) {
       toast.error("Vui lòng chọn giới tính", { autoClose: 4000 });
       return false;
@@ -140,7 +210,9 @@ const CustomerForm: React.FC = () => {
     formData.delegation = delegation?.id?.toString();
     console.log("formDataformDataformData", formData);
     let update = await authApi.createUser(formData);
+
     if (update.code === 0) {
+      senDataladiFlow(formData);
       toast.success("Thêm đại biểu thành công", { autoClose: 4000 });
     } else {
       toast.error(update.message, { autoClose: 4000 });

@@ -59,7 +59,19 @@ const CustomerForm: React.FC = () => {
     e.preventDefault();
 
     const payload = {
-      ...formData,
+      email: "test@gmail.com",
+      first_name: "test",
+      full_name: "test",
+      dob: "1989-11-03",
+      phone: null,
+      gender: "male",
+      city: "Hà Nội",
+      address: "68 Nguyễn Cơ Thạch",
+      address_2: "",
+      district: "Nam Từ Liêm",
+      company: "LadiPage",
+      job_title: "Coder",
+      ward: "Mỹ Đình 1",
       custom_fields: [
         {
           name: "daihoi_daibieu_namsinh",
@@ -83,6 +95,8 @@ const CustomerForm: React.FC = () => {
         },
       ],
     };
+
+    console.log("payloadpayloadpayloadpayload", payload);
   };
 
   return (
