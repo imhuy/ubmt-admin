@@ -88,6 +88,7 @@ const CustomerForm: React.FC = () => {
   const [selectedItem, setSelectedItem] = useState<any>("");
   const [selectedMember, setSelectedMember] = useState<any>("");
   const [delegation, setDelegation] = useState<any>("");
+  const [selected, setSelected] = useState<any>(1);
   const handleItemSelected = (item: string) => {
     setSelectedItem(item);
   };
@@ -229,6 +230,30 @@ const CustomerForm: React.FC = () => {
 
         <div className='flex gap-x-8 mt-2 mb-2'>
           <SexDropDown onItemSelected={handleItemSelected} />
+          {/* <div className='flex gap-x-4  p-4'>
+            <label className='flex items-center mb-2'>
+              <input
+                type='radio'
+                name='radio'
+                value={5}
+                className='form-radio text-blue-600 h-4 w-4'
+                onChange={(e) => setSelected(e.target.value)}
+                // checked={selected == 5}
+              />
+              <span className='ml-2'>Nam</span>
+            </label>
+            <label className='flex items-center mb-2'>
+              <input
+                type='radio'
+                name='radio'
+                value={2}
+                className='form-radio text-blue-600 h-4 w-4'
+                onChange={(e) => setSelected(e.target.value)}
+                // checked={selected == 2}
+              />
+              <span className='ml-2'>Nữ</span>
+            </label>
+          </div> */}
           <div className=' flex gap-x-2'>
             <p>Ảnh đại diện</p>
             <input

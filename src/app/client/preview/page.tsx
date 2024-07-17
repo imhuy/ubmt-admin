@@ -39,23 +39,23 @@ export default function Home() {
     return (
       <>
         {!listHistory.isLoading && (
-          <div className='flex flex-col bg-white  h-full w-[400px]   '>
-            <div className='  grid grid-cols-7  bg-[#1E6FA2] text-white items-center  pb-5 px-4 text  '>
+          <div className='flex flex-col   h-full w-[400px]   '>
+            <div className='  grid grid-cols-7  bg-[#0984e3] text-white items-center  pb-5 px-4 text  '>
               <img src='/icon.svg' alt='Sample Image' className=' col-span-1  max-w-[50px] mt-4   ' />
               <span className='  mt-5 col-span-6  text-center text-sm  font-workSansBold  '>
                 UỶ BAN MTTQ VIỆT NAM THÀNH PHỐ HÀ NỘI
               </span>
             </div>
-            <div className='flex flex-col '>
+            {/* <div className='flex flex-col '>
               <span className=' uppercase text-center  text-red-600 font-workSansBold  bg-white mt-4'>
                 Chào mừng đại biểu
               </span>
               <span className='  font-bold text-xl text-center font-workSansBold my-6'>
                 {listHistory.data[0]?.full_name}
               </span>
-            </div>
+            </div> */}
 
-            <div className=' w-[400px] h-[600px] flex items-center flex-col  relative' id='capture'>
+            <div className=' w-[400px] h-[600px]  mt-10 flex items-center flex-col  relative' id='capture'>
               <img src='/anhnen.jpg' alt='Sample Image' className=' w-[400px] h-[600px]  rounded-[10px]' />
 
               {listHistory.data[0]?.avatar ? (
