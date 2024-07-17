@@ -180,7 +180,7 @@ const Profile: NextPage<any> = () => {
                 Đăng bài
               </p>
             </button>
-            {/* <span>{content}</span> */}
+            <span>{content}</span>
             <div className='flex  flex-col h-screen '>
               <QuillEditor
                 value={content}

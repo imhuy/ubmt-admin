@@ -111,6 +111,11 @@ class ApiAuth extends ApiClientBase {
     return res.data;
   }
 
+  public async CheckinHistory(): Promise<any> {
+    const res = await this.instance.get(`api/delegate/get-checkin`, {});
+    return res.data;
+  }
+
   public async deletePostById(id: number): Promise<any> {
     const res = await this.instance.delete(`/api/posts/delete/${id}`, {
       headers: {},
@@ -138,7 +143,8 @@ class ApiAuth extends ApiClientBase {
 
   public async addDelegation(name: string): Promise<any> {
     const res = await this.instance.post("/api/delegate/add", { name: name });
-    return res.data;
+
+    return res;
   }
 
   public async changePassword(access_token: string, currentPassword: string, newPassword: string): Promise<any> {

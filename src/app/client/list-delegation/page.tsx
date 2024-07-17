@@ -7,6 +7,7 @@ import { AuthContext } from "@/context/useAuthContext";
 import { useQuery } from "@tanstack/react-query";
 import { NextPage } from "next";
 import { useContext, useState } from "react";
+import { toast } from "react-toastify";
 export interface ItemType {
   id: number;
   key: string;
@@ -55,6 +56,10 @@ const ListDelegate: NextPage<any> = () => {
     console.log("delegationdelegationdelegationdelegation", delegation);
     if (delegation) {
       let data = await authApi.addDelegation(delegation);
+      console.log("datadatadatadatadata", data);
+      if (data.code === 0) {
+        toast.success("Thêm đoàn thành công", { autoClose: 4000 });
+      }
       await listDelegation.refetch();
     }
   };

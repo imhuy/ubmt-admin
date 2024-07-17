@@ -19,7 +19,7 @@ const poppins = Poppins({
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const pathName = usePathname();
-
+  console.log("pathNamepathNamepathNamepathName", pathName);
   return (
     <html lang='en' dir='' className={poppins.className}>
       <body className=' '>
@@ -27,7 +27,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <QueryClientProvider client={queryClient}>
             {children}
 
-            {pathName == "/" || pathName == "/chinh-sach-bao-mat" ? null : <SideMenu />}
+            {pathName == "/" || pathName == "/chinh-sach-bao-mat" || pathName == "/client/preview" ? null : (
+              <SideMenu />
+            )}
             {/* <SideMenu /> */}
             <ToastContainer
               position='top-right'

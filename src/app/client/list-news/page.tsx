@@ -98,7 +98,7 @@ const ListDelegate: NextPage<any> = () => {
               />
               <span className='ml-2'>Thông tin hội nghị</span>
             </label>
-            <label className='flex items-center mb-2'>
+            {/* <label className='flex items-center mb-2'>
               <input
                 type='radio'
                 name='radio'
@@ -108,7 +108,7 @@ const ListDelegate: NextPage<any> = () => {
                 checked={selected == 3}
               />
               <span className='ml-2'>Chương trình đại hội</span>
-            </label>
+            </label> */}
           </div>
 
           <div className='flex flex-col  gap-y-4'>
