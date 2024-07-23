@@ -76,9 +76,16 @@ const SideMenu = () => {
     },
 
     {
-      key: "client/tickets",
+      key: "client/push-notification",
       icon: ProfileIcon,
-      label: "Ticket hỗ trợ",
+      label: "Gửi thông báo",
+      active: false,
+    },
+
+    {
+      key: "client/upload-document",
+      icon: ProfileIcon,
+      label: "Upload tài liệu",
       active: false,
     },
   ]);

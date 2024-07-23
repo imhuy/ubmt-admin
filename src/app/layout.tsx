@@ -19,7 +19,7 @@ const poppins = Poppins({
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const pathName = usePathname();
-  console.log("pathNamepathNamepathNamepathName", pathName);
+
   return (
     <html lang='en' dir='' className={poppins.className}>
       <body className=' '>

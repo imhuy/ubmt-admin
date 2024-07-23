@@ -150,6 +150,7 @@ const CustomerForm: React.FC = () => {
     const formData = new FormData();
     formData.append("images", files[0]);
     const data = await productApi.uploadAvatar(formData);
+    console.log("datadatadatadata", data);
     setImage(data[0]);
   };
   const handleSelectDelegation = (item: string) => {
@@ -323,7 +324,7 @@ const CustomerForm: React.FC = () => {
           name='qualification'
           value={formData.qualification}
           onChange={handleChange}
-          placeholder='Trình độ chuyên môn'
+          placeholder='Học vấn'
         />
 
         <Dropdown onItemSelected={handleSelectDelegation} />

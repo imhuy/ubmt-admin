@@ -74,10 +74,10 @@ export default function Home() {
 
               <div className='flex flex-col self-center justify-start items-center absolute top-[365px] left-[150px]  w-[210px] '>
                 <span className=' text-[#3760AE] uppercase  font-workSansBlack  text-[15px] text-center '>
-                  {listHistory.data[0].full_name}
+                  {listHistory.data[0]?.full_name}
                 </span>
                 <span className='  uppercase text-[#3760AE]  font-workSansBold  self-center text-center text-[15px]'>
-                  {listHistory.data[0].delegation}
+                  {listHistory.data[0]?.delegation}
                 </span>
               </div>
 

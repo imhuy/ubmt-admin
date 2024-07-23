@@ -29,6 +29,14 @@ class ApiProduct extends ApiClientBase {
     return res.data;
   }
 
+  public async uploadFile(productData: FormData): Promise<BaseResponse | any> {
+    const res = await this.instance.post(`/api/common/upload-images?type=3`, productData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    return res.data;
+  }
   public async uploadAvatar(productData: FormData): Promise<BaseResponse | any> {
     const res = await this.instance.post(`/api/common/upload-images?type=1`, productData, {
       headers: {
@@ -45,6 +53,13 @@ class ApiProduct extends ApiClientBase {
 
   public async postNews(productData: FormData): Promise<BaseResponse | any> {
     const res = await this.instance.post(`/api/posts/add`, productData, {
+      headers: {},
+    });
+    return res;
+  }
+
+  public async postDocs(productData: FormData): Promise<BaseResponse | any> {
+    const res = await this.instance.post(`/api/delegate/add-document`, productData, {
       headers: {},
     });
     return res;
