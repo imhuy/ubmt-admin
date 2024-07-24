@@ -5,7 +5,7 @@ import AppLayout from "@/components/Layout/AppLayout";
 import { AuthContext } from "@/context/useAuthContext";
 import { useQuery } from "@tanstack/react-query";
 import { NextPage } from "next";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 export interface ItemType {
   id: number;
   key: string;
@@ -18,8 +18,6 @@ export interface ItemType {
   code: string;
 }
 const ListDelegate: NextPage<any> = () => {
-  const [isOpenInfo, setIsOpenInfo] = useState(false);
-  const [title, setTitle] = useState("");
   const { authState, accountExtendDetail, getAccountExtendDetails } = useContext(AuthContext);
 
   const listDelegate = useQuery<ItemType[]>({
@@ -70,11 +68,11 @@ const ListDelegate: NextPage<any> = () => {
                     <th className='  w-32 max-w-64 text-center'>
                       <span className='  text-sm '>Id </span>{" "}
                     </th>
-                    <th className='   w-52 max-w-64 text-center'>
+                    <th className='  w-48 max-w-64 text-center'>
                       <span className='   text-sm '> Họ tên </span>{" "}
                     </th>
 
-                    <th className=' w-72 max-w-96   text-center'>
+                    <th className=' w-64  max-w-96   text-center'>
                       <span className='   text-sm  '>Chức vụ </span>{" "}
                     </th>
                     <th className=' w-32  text-center'>
@@ -101,15 +99,15 @@ const ListDelegate: NextPage<any> = () => {
                         }`}
                       >
                         <td className='text-center font-normal text-sm  w-32 max-w-64 '>
-                          <span className=' font-normal text-sm  '>{i + 1}</span>
+                          <span className=' font-normal text-sm  '>{item.id}</span>
                         </td>
-                        <td className='text-center font-normal text-sm  whitespace-normal  w-52 max-w-64 '>
+                        <td className='text-center font-normal text-sm  whitespace-normal   w-48 max-w-64 '>
                           <span className=' font-normal text-sm  '>{item.full_name}</span>
                         </td>
 
                         <td
                           title={item.position}
-                          className='text-center font-normal text-sm  whitespace-normal w-72  max-w-96 '
+                          className='text-center font-normal text-sm   whitespace-normal   w-64 max-w-64 '
                         >
                           <span className=' font-normal text-sm  '>{item.position}</span>
                         </td>
@@ -120,26 +118,14 @@ const ListDelegate: NextPage<any> = () => {
                           <span className=' font-normal text-sm  '>{item.code} </span>
                         </td>
 
-                        <td className='text-center flex font-normal text-sm w-16 '>
+                        <td className='text-center flex font-normal text-sm w-16      '>
                           <button
                             onClick={() => deleteItem(item.id)}
                             className=' bg-primary-500   p-1 border z-50  px-2   border-slate-400 rounded-md   text-white	'
                           >
-                            Xoá
+                            Hiển thị lên màn hình lớn
                           </button>
                         </td>
-
-                        {/* <td className='text-center font-normal text-sm         '>
-                          <Link
-                            href={{
-                              pathname: "update-delegate",
-                              query: { id: item.id },
-                            }}
-                            className=' bg-primary-500     border z-50    border-slate-400 rounded-md   text-white	'
-                          >
-                            Cập nhật thông tin
-                          </Link>
-                        </td> */}
                       </tr>
                     ))}
                   </tbody>
@@ -149,7 +135,6 @@ const ListDelegate: NextPage<any> = () => {
           </div>
         </div>
       </div>
-      {/* <CopyModal title={title} isOpen={isOpenInfo} closeModal={() => setIsOpenInfo(false)} /> */}
     </AppLayout>
   );
 };

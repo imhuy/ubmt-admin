@@ -174,3 +174,40 @@ div.scrollmenu a {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.custom-position {
+  position: absolute;
+  top: 19%;
+  left: 6%;
+  width: 28%;
+  height: 49%;
+}
+.customText-position {
+  width: 50%;
+  position: absolute;
+  top: 45%;
+  left: 42%;
+}
+
+.delegate-position {
+  width: 50%;
+  position: absolute;
+  top: 39%;
+  left: 42%;
+}
+.delegation-position {
+  width: 50%;
+  position: absolute;
+  top: 55%;
+  left: 43%;
+}
+.textbase-position {
+  width: 60%;
+  position: absolute;
+  top: 65%;
+  left: 37%;
+}
+
+.fix-height {
+  height: 10vh !important;
+}

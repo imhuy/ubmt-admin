@@ -50,6 +50,13 @@ const SideMenu = () => {
     },
 
     {
+      key: "client/checkin",
+      icon: ProfileIcon,
+      label: "Checkin",
+      active: false,
+    },
+
+    {
       key: "client/list-news",
       icon: ProfileIcon,
       label: "Danh sách bài viết",
