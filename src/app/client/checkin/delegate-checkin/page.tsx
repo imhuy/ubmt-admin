@@ -49,7 +49,7 @@ export default function Home() {
                 </span>
 
                 <span className='textbase-position text-[#2857A5] text-center  font-workSansBlack  text-3xl  uppercase'>
-                  ĐẠI BIỂU CHÍNH THỨC DỰ ĐẠI HỘI ĐẠI BIỂU MTTO VIỆT NAM THÀNH PHỐ HÀ NỘI, LẦN THỨ XVIII, NHIỆM KỲ
+                  ĐẠI BIỂU CHÍNH THỨC DỰ ĐẠI HỘI ĐẠI BIỂU MTTQ VIỆT NAM THÀNH PHỐ HÀ NỘI, LẦN THỨ XVIII, NHIỆM KỲ
                   2024-2029
                 </span>
 
