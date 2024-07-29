@@ -116,6 +116,16 @@ class ApiAuth extends ApiClientBase {
     return res.data;
   }
 
+  public async preViewShow(): Promise<any> {
+    const res = await this.instance.get(`api/delegate/preview/get`, {});
+    return res.data;
+  }
+
+  public async getDelegateByCode(id: string): Promise<any> {
+    const res = await this.instance.get(`api/user/get-delegation?code=${id}`, {});
+    return res.data;
+  }
+
   public async deletePostById(id: number): Promise<any> {
     const res = await this.instance.delete(`/api/posts/delete/${id}`, {
       headers: {},
@@ -130,6 +140,12 @@ class ApiAuth extends ApiClientBase {
     return res.data;
   }
 
+  public async addPreViewData(id: number, type: number): Promise<any> {
+    const res = await this.instance.post("/api/delegate/preview/add", { id: id, type: type });
+
+    return res;
+  }
+
   public async deleteUserById(id: number): Promise<any> {
     const res = await this.instance.delete(`/api/user/delete/${id}`, {
       headers: {},
@@ -141,8 +157,8 @@ class ApiAuth extends ApiClientBase {
     return res.data;
   }
 
-  public async addDelegation(name: string): Promise<any> {
-    const res = await this.instance.post("/api/delegate/add", { name: name });
+  public async addDelegation(name: string, image?: number): Promise<any> {
+    const res = await this.instance.post("/api/delegate/add", { name: name, image: image });
 
     return res;
   }

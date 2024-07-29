@@ -5,6 +5,7 @@ import AppLayout from "@/components/Layout/AppLayout";
 import { AuthContext } from "@/context/useAuthContext";
 import { useQuery } from "@tanstack/react-query";
 import { NextPage } from "next";
+import Link from "next/link";
 import { useContext, useState } from "react";
 export interface ItemType {
   id: number;
@@ -34,8 +35,10 @@ const ListDelegate: NextPage<any> = () => {
     });
   };
 
-  const deleteItem = async (id: number) => {
-    const userConfirmed = await showConfirmation(`Bạn có chắc chắn muốn xóa đại biểu Id ${id}? `);
+  const editdelegate = async (id: number) => {};
+
+  const deleteItem = async (id: number, name: string) => {
+    const userConfirmed = await showConfirmation(`Bạn có chắc chắn muốn xóa đại biểu ${name}? `);
     if (userConfirmed) {
       try {
         let data = await authApi.deleteUserById(id);
@@ -67,7 +70,7 @@ const ListDelegate: NextPage<any> = () => {
               <table>
                 <thead>
                   <tr className='flex gap-x-6 px-5 mb-5 mt-2 font-workSansBold  '>
-                    <th className='  w-32 max-w-64 text-center'>
+                    <th className='  w-4 max-w-8 text-center'>
                       <span className='  text-sm '>Id </span>{" "}
                     </th>
                     <th className='   w-52 max-w-64 text-center'>
@@ -100,7 +103,7 @@ const ListDelegate: NextPage<any> = () => {
                           i % 2 == 0 ? "bg-slate-100" : ""
                         }`}
                       >
-                        <td className='text-center font-normal text-sm  w-32 max-w-64 '>
+                        <td className='text-center font-normal text-sm  w-4 max-w-8 '>
                           <span className=' font-normal text-sm  '>{i + 1}</span>
                         </td>
                         <td className='text-center font-normal text-sm  whitespace-normal  w-52 max-w-64 '>
@@ -120,9 +123,19 @@ const ListDelegate: NextPage<any> = () => {
                           <span className=' font-normal text-sm  '>{item.code} </span>
                         </td>
 
-                        <td className='text-center flex font-normal text-sm w-16 '>
+                        <td className='text-center flex font-normal text-sm w-16 gap-x-4 '>
+                          {/* <Link
+                            href={{
+                              pathname: "update-delegate",
+                              query: { code: item.code },
+                            }}
+                            // onClick={() => deleteItem(item.id, item.full_name)}
+                            className=' bg-primary-500   p-1 border z-50  px-2   border-slate-400 rounded-md   text-white	'
+                          >
+                            Sửa
+                          </Link> */}
                           <button
-                            onClick={() => deleteItem(item.id)}
+                            onClick={() => deleteItem(item.id, item.full_name)}
                             className=' bg-primary-500   p-1 border z-50  px-2   border-slate-400 rounded-md   text-white	'
                           >
                             Xoá

@@ -21,7 +21,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const pathName = usePathname();
 
   return (
-    <html lang='en' dir='' className={poppins.className}>
+    <html lang='en' dir=''>
       <body className=' '>
         <ContextConsumer>
           <QueryClientProvider client={queryClient}>

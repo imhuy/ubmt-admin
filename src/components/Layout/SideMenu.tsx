@@ -50,7 +50,7 @@ const SideMenu = () => {
     },
 
     {
-      key: "client/checkin",
+      key: "client/checkin/select",
       icon: ProfileIcon,
       label: "Checkin",
       active: false,
@@ -97,14 +97,7 @@ const SideMenu = () => {
     },
   ]);
 
-  const [listMenu4] = useState<MenuItemType[]>([
-    {
-      key: "client/contact",
-      icon: ContactIcon,
-      label: "Liên hệ",
-      active: false,
-    },
-  ]);
+  const [listMenu4] = useState<MenuItemType[]>([]);
 
   const _checkActiveTab = (item: MenuItemType, index?: number) => {
     if (`${pathname}` === `/${item.key}`) return true;

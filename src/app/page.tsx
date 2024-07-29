@@ -99,7 +99,6 @@ export default function Home() {
     const [data, setData] = useState<any>(null);
     const { SVG } = useQRCode();
 
-    console.log("idididididid", id);
     if (id == "" || id == undefined) {
       redirect("https://mttqhanoi.org.vn/");
     }
@@ -142,7 +141,7 @@ export default function Home() {
           <span className=' uppercase text-center  text-red-600 font-workSansBold mt-4'>Chào mừng đại biểu</span>
           <span className='  font-bold text-xl text-center font-workSansBold mt-2'>{data?.full_name}</span>
           <div className='flex shadow-lg rounded-lg justify-around      items-center    h-40'>
-            <div className='w-[30%]  '>
+            <div className='w-[30%] ml-2  '>
               <SVG
                 text={id ? id : "Không tìm thấy mã đại biểu"}
                 options={{
@@ -255,12 +254,12 @@ export default function Home() {
             />
           )}
 
-          <div className='flex flex-col self-center justify-start items-center absolute top-[365px] left-[150px]  w-[210px] '>
-            <span className=' text-[#3760AE] uppercase  font-workSansBlack  text-[15px] text-center '>
-              {/* {data?.full_name} */}
+          <div className='flex flex-col self-center justify-start items-center   absolute top-[420px] left-[100px]  w-[210px] '>
+            <span className=' text-[#0050A2] uppercase    font-utmHelvetIns  font-thin  text-[15px] text-center '>
+              {data?.full_name}
             </span>
-            <span className='  uppercase text-[#3760AE]  font-workSansBold  self-center text-center text-[15px]'>
-              {/* {data?.delegation} */}
+            <span className='  uppercase text-[#0050A2]   font-utmHelvetIns  font-thin     self-center text-center text-[15px]'>
+              {data?.delegation}
             </span>
           </div>
 

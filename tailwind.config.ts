@@ -50,16 +50,13 @@ const config: Config = {
         workSansSemiBold: "WorkSans-SemiBold",
         workSansBold: "WorkSans-Bold",
         workSansBlack: "WorkSans-Black",
+        utmHelvetIns: "UTM-HelvetIns",
       },
       screens: {
         // xs: { max: "575px" },
       },
     },
   },
-  plugins: [
-    require("@tailwindcss/typography"),
-    require("@tailwindcss/forms"),
-    require("@tailwindcss/aspect-ratio"),
-  ],
+  plugins: [require("@tailwindcss/typography"), require("@tailwindcss/forms"), require("@tailwindcss/aspect-ratio")],
 };
 export default config;

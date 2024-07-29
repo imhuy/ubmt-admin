@@ -42,6 +42,11 @@
     font-family: "WorkSans-Black";
     src: url("/fonts/WorkSans-Black.ttf");
   }
+
+  @font-face {
+    font-family: "UTM-HelvetIns";
+    src: url("/fonts/UTM-HelvetIns.ttf");
+  }
 }
 
 body,
@@ -190,10 +195,10 @@ div.scrollmenu a {
 }
 
 .delegate-position {
-  width: 50%;
+  width: 60%;
   position: absolute;
   top: 39%;
-  left: 42%;
+  right: 5%;
 }
 .delegation-position {
   width: 50%;

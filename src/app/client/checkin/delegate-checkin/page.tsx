@@ -3,7 +3,6 @@ import { authApi } from "@/api-client";
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useState } from "react";
-import { toast } from "react-toastify";
 
 export default function Home() {
   function MainView() {
@@ -16,15 +15,10 @@ export default function Home() {
       queryFn: async () => await authApi.CheckinHistory(),
     });
 
-    if (!listHistory.isLoading) {
-      console.log("listPostNewlistPostNewlistPostNew", listHistory.data[0]);
-      // setData(listHistory.data[0]);
-    }
-
     useEffect(() => {
       const intervalId = setInterval(() => {
         getData(intervalId);
-      }, 3000);
+      }, 1000);
       getData(intervalId);
       return () => clearInterval(intervalId);
     }, []);

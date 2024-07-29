@@ -1,12 +1,12 @@
 "use client";
-import { authApi } from "@/api-client";
+import { authApi, productApi } from "@/api-client";
 import Header from "@/components/Header";
 import AppLayout from "@/components/Layout/AppLayout";
 import CopyModal from "@/components/Modal/CopyModal";
 import { AuthContext } from "@/context/useAuthContext";
 import { useQuery } from "@tanstack/react-query";
 import { NextPage } from "next";
-import { useContext, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { toast } from "react-toastify";
 export interface ItemType {
   id: number;
@@ -24,11 +24,21 @@ const ListDelegate: NextPage<any> = () => {
   const [title, setTitle] = useState("");
   const { authState, accountExtendDetail, getAccountExtendDetails } = useContext(AuthContext);
   const [delegation, setDelegation] = useState("");
+  const [image, setImage] = useState<number>();
   const listDelegation = useQuery<ItemType[]>({
     queryKey: ["getListDelegation", authState?.access_token],
     queryFn: async () => await authApi.listDelegate(),
   });
 
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleUploadImage = async (files: any) => {
+    const formData = new FormData();
+    formData.append("images", files[0]);
+    const data = await productApi.uploadProduct(formData);
+    console.log("datadatadatadata", data);
+    setImage(data[0]);
+  };
   const showConfirmation = async (message: string): Promise<boolean> => {
     return new Promise((resolve) => {
       const userConfirmed = window.confirm(message);
@@ -36,6 +46,7 @@ const ListDelegate: NextPage<any> = () => {
     });
   };
 
+  console.log("listDelegationlistDelegation", listDelegation.data);
   const deleteItem = async (id: number) => {
     const userConfirmed = await showConfirmation("Bạn có chắc chắn muốn xóa không?");
     if (userConfirmed) {
@@ -53,10 +64,9 @@ const ListDelegate: NextPage<any> = () => {
     }
   };
   const handleSubmit = async () => {
-    console.log("delegationdelegationdelegationdelegation", delegation);
     if (delegation) {
-      let data = await authApi.addDelegation(delegation);
-      console.log("datadatadatadatadata", data);
+      let data = await authApi.addDelegation(delegation, image);
+
       if (data.code === 0) {
         toast.success("Thêm đoàn thành công", { autoClose: 4000 });
       }
@@ -72,7 +82,7 @@ const ListDelegate: NextPage<any> = () => {
         </div>
         <div className='w-full flex flex-col mb-10 items-center gap-y-6'>
           <div className='w-[95%] justify-center flex flex-col  gap-y-8  bg-white  border shadow-md rounded-md '></div>
-          <div className='grid grid-cols-2  w-1/2 gap-4'>
+          <div className='grid grid-cols-3  items-center w-1/2 gap-4'>
             <input
               //   type='number'
               required={true}
@@ -82,6 +92,15 @@ const ListDelegate: NextPage<any> = () => {
               onChange={(e) => setDelegation(e.target.value)}
               placeholder='Tên đoàn đại biểu muốn thêm'
             />
+
+            <div className=' flex gap-x-2'>
+              <input
+                ref={fileInputRef}
+                type='file'
+                accept='image/*'
+                onChange={(e) => handleUploadImage(e.target.files as any)}
+              />
+            </div>
             <button
               className='      w-full '
               onClick={() => {
@@ -112,6 +131,9 @@ const ListDelegate: NextPage<any> = () => {
                     <th className=' w-32  text-center'>
                       <span className='   text-sm  '></span>{" "}
                     </th>
+                    <th className=' w-32  text-center'>
+                      <span className='   text-sm  '></span>{" "}
+                    </th>
                   </tr>
                 </thead>
                 {!listDelegation.isPending && listDelegation.data && (
@@ -129,7 +151,7 @@ const ListDelegate: NextPage<any> = () => {
                           <span className=' font-normal text-sm  '>{item.name} </span>
                         </td>
 
-                        <td className='text-center  flex  justify-end font-normal text-sm w-64    '>
+                        <td className='text-center  flex  gap-x-6 justify-end font-normal text-sm w-64    '>
                           <button
                             onClick={() => deleteItem(item.id)}
                             className=' bg-primary-500  py-1 border z-50  px-2   border-slate-400 rounded-md   text-white	'
