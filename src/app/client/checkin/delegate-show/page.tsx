@@ -44,14 +44,16 @@ export default function Home() {
                 <img src='/anhnen.jpg' alt='Background Image' className='w-full   h-[100lvh]    ' />
 
                 <div className='delegate-position text-center  flex- flex-col    '>
-                  <p className='  mb-8  text-[#2857A5]  font-workSansBold  text-4xl    uppercase'>Chào mừng đại biểu</p>{" "}
-                  <p className='mb-4  text-red-600  text-center  font-workSansBlack text-4xl md:text-5xl lg:text-6xl xl:text-6xl uppercase'>
+                  <p className='  mb-8  text-[#2857A5]  font-utmHelvetIns  text-4xl font-utmHelvetIn   uppercase'>
+                    Chào mừng đại biểu
+                  </p>{" "}
+                  <p className='mb-4  text-red-600  text-center font-utmHelvetIns text-4xl md:text-5xl lg:text-6xl xl:text-6xl uppercase'>
                     {data.user?.full_name}
                   </p>
-                  <p className='  mb-8   text-[#2857A5] text-center  italic font-workSansBold  text-3xl  uppercase'>
+                  <p className='  mb-8   text-[#2857A5] text-center font-utmHelvetIns  italic  text-3xl  uppercase'>
                     {data.user.position}
                   </p>
-                  <p className='  text-[#2857A5] text-center  font-workSansBlack  text-3xl  uppercase'>
+                  <p className='  text-[#2857A5] text-center font-utmHelvetIns  text-3xl  uppercase'>
                     ĐẠI BIỂU CHÍNH THỨC DỰ ĐẠI HỘI ĐẠI BIỂU MTTQ VIỆT NAM THÀNH PHỐ HÀ NỘI, LẦN THỨ XVIII, NHIỆM KỲ
                     2024-2029
                   </p>
