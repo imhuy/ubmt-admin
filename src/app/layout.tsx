@@ -27,7 +27,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <QueryClientProvider client={queryClient}>
             {children}
 
-            {pathName == "/" || pathName == "/chinh-sach-bao-mat" || pathName == "/client/checkin" ? null : (
+            {pathName == "/" ||
+            pathName == "/chinh-sach-bao-mat" ||
+            pathName == "/client/checkin" ||
+            pathName == "/client/waitting" ? null : (
               <SideMenu />
             )}
             {/* <SideMenu /> */}

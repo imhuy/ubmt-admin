@@ -142,7 +142,7 @@ const ListDelegate: NextPage<any> = () => {
                           </button>
                         </td>
 
-                        {/* <td className='text-center font-normal text-sm         '>
+                        <td className='text-center font-normal text-sm         '>
                           <Link
                             href={{
                               pathname: "update-delegate",
@@ -152,7 +152,7 @@ const ListDelegate: NextPage<any> = () => {
                           >
                             Cập nhật thông tin
                           </Link>
-                        </td> */}
+                        </td>
                       </tr>
                     ))}
                   </tbody>

@@ -45,14 +45,24 @@ class ApiClientBase {
   };
 
   private handleResponse = (res: AxiosResponse) => {
+    console.log("interceptorresponse11111", res.data.message);
+    if (
+      res.data?.message == "Phiên đăng nhập của bạn đã hết hạn" ||
+      res.data?.message == "Vui lòng đăng nhập để sử dụng tính năng này"
+    ) {
+      localStorage.removeItem("UBMTToken");
+      window.location.href = "/client/login";
+    }
+
     return res.data;
   };
 
   protected handleError = (err: any) => {
+    console.log("interceptor error", err);
     if (err?.response) {
       if (err?.response?.status == 401) {
         localStorage.removeItem("UBMTToken");
-        window.location.href = "/login";
+        window.location.href = "client/login";
       }
     }
     return Promise.reject(err);

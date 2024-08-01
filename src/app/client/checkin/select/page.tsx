@@ -97,6 +97,10 @@ const ListDelegate: NextPage<any> = () => {
               <a href='/client/checkin/delegate-show' target='blank'>
                 <span className=' text-blue-500 font-workSansSemiBold'>Mở màn hình</span>
               </a>
+
+              <a href='/client/checkin/watting' target='blank'>
+                <span className=' text-blue-500 font-workSansSemiBold'>Màn hình chờ</span>
+              </a>
             </div>
             <div className='scrollmenu'>
               {tab == 0 ? (

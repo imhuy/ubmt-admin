@@ -164,21 +164,17 @@ export default function Home() {
                   Mã đại biểu: <span className=' font-workSansBold'>{data?.code}</span>
                 </span>
               </div>
+              {data?.delegation && (
+                <div className='flex items-center'>
+                  <div className='flex'>
+                    <div className=' mx-2 w-2 h-2 bg-black' />
+                  </div>
 
-              <div className='flex items-center'>
-                <div className='flex'>
-                  <div className=' mx-2 w-2 h-2 bg-black' />
+                  <span className=' font-light'>
+                    Đoàn: <span className=' font-workSansBold'>{data?.delegation} </span>
+                  </span>
                 </div>
-
-                {/* <span className=' font-light'>
-    <span className='font-workSansBold'>{data?.delegation}</span>
-  </span> */}
-
-                <span className=' font-light'>
-                  Đoàn: <span className=' font-workSansBold'>{data?.delegation} </span>
-                </span>
-              </div>
-
+              )}
               <div className='flex items-center'>
                 <div className='flex'>
                   <div className=' mx-2 w-2 h-2 bg-black' />
