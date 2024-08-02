@@ -21,8 +21,6 @@ export interface ItemType {
   avatar: string;
 }
 const ListDelegate: NextPage<any> = () => {
-  const [isOpenInfo, setIsOpenInfo] = useState(false);
-  const [title, setTitle] = useState("");
   const { authState, accountExtendDetail, getAccountExtendDetails } = useContext(AuthContext);
 
   const listDelegate = useQuery<ItemType[]>({
@@ -54,6 +52,7 @@ const ListDelegate: NextPage<any> = () => {
       console.log("Người dùng đã hủy");
     }
   };
+
   return (
     <AppLayout>
       <div className='w-full flex flex-col'>
@@ -104,7 +103,7 @@ const ListDelegate: NextPage<any> = () => {
                   <tbody>
                     {listDelegate?.data?.map((item, i: number) => (
                       <tr
-                        key={i}
+                        key={item.code}
                         className={`flex  gap-x-6 py-5  px-5 border-b   items-center   ${
                           i % 2 == 0 ? "bg-slate-100" : ""
                         }`}
