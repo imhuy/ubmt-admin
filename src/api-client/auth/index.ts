@@ -85,13 +85,11 @@ class ApiAuth extends ApiClientBase {
     return res.data;
   }
 
-  public async upDateUserInfo(access_token: string, formData: any): Promise<AccountDetailResponse> {
+  public async upDateUserInfo(formData: any): Promise<any> {
     const res = await this.instance.post("/api/user/", formData, {
-      headers: {
-        Authorization: "Bearer " + access_token,
-      },
+      headers: {},
     });
-    return res.data;
+    return res;
   }
 
   public async createUser(formData: any): Promise<any> {

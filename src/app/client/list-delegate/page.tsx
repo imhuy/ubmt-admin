@@ -5,6 +5,7 @@ import AppLayout from "@/components/Layout/AppLayout";
 import { AuthContext } from "@/context/useAuthContext";
 import { useQuery } from "@tanstack/react-query";
 import { NextPage } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { useContext, useState } from "react";
 export interface ItemType {
@@ -17,6 +18,7 @@ export interface ItemType {
   amount: number;
   friend: string;
   code: string;
+  avatar: string;
 }
 const ListDelegate: NextPage<any> = () => {
   const [isOpenInfo, setIsOpenInfo] = useState(false);
@@ -86,6 +88,10 @@ const ListDelegate: NextPage<any> = () => {
                     <th className=' w-32  text-center'>
                       <span className='   text-sm  '>Mã đại biểu</span>{" "}
                     </th>
+
+                    <th className=' w-32  text-center'>
+                      <span className='   text-sm  '>Ảnh</span>{" "}
+                    </th>
                     {/* <th className=' w-16  text-center'>
                       <span className='   text-sm  '> </span>{" "}
                     </th> */}
@@ -116,42 +122,34 @@ const ListDelegate: NextPage<any> = () => {
                         >
                           <span className=' font-normal text-sm  '>{item.position}</span>
                         </td>
-                        <td className='text-center font-normal text-sm w-32    '>
+                        <td className='text-center font-normal text-sm w-32  whitespace-normal  '>
                           <span className=' font-normal text-sm  '>{item.delegation}</span>
                         </td>
                         <td className='text-center font-normal text-sm w-32    '>
                           <span className=' font-normal text-sm  '>{item.code} </span>
                         </td>
 
-                        <td className='text-center flex font-normal text-sm w-16 gap-x-4 '>
-                          {/* <Link
+                        <td className='text-center font-normal text-sm max-w-24    '>
+                          <Image alt='' width={48} height={72} src={item.avatar} className=' font-normal text-sm    ' />
+                        </td>
+
+                        <td className='text-center flex font-normal text-sm w-32 gap-x-4 '>
+                          <Link
                             href={{
                               pathname: "update-delegate",
                               query: { code: item.code },
                             }}
                             // onClick={() => deleteItem(item.id, item.full_name)}
-                            className=' bg-primary-500   p-1 border z-50  px-2   border-slate-400 rounded-md   text-white	'
+                            className=' bg-primary-500  w-16   p-1 border z-50  px-2   border-slate-400 rounded-md   text-white	'
                           >
                             Sửa
-                          </Link> */}
+                          </Link>
                           <button
                             onClick={() => deleteItem(item.id, item.full_name)}
-                            className=' bg-primary-500   p-1 border z-50  px-2   border-slate-400 rounded-md   text-white	'
+                            className=' bg-primary-500 w-16    p-1 border z-50  px-2   border-slate-400 rounded-md   text-white	'
                           >
                             Xoá
                           </button>
-                        </td>
-
-                        <td className='text-center font-normal text-sm         '>
-                          <Link
-                            href={{
-                              pathname: "update-delegate",
-                              query: { id: item.id },
-                            }}
-                            className=' bg-primary-500     border z-50    border-slate-400 rounded-md   text-white	'
-                          >
-                            Cập nhật thông tin
-                          </Link>
                         </td>
                       </tr>
                     ))}

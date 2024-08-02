@@ -46,7 +46,6 @@ const ListDelegate: NextPage<any> = () => {
     });
   };
 
-  console.log("listDelegationlistDelegation", listDelegation.data);
   const deleteItem = async (id: number) => {
     const userConfirmed = await showConfirmation("Bạn có chắc chắn muốn xóa không?");
     if (userConfirmed) {

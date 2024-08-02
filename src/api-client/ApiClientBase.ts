@@ -45,7 +45,6 @@ class ApiClientBase {
   };
 
   private handleResponse = (res: AxiosResponse) => {
-    console.log("interceptorresponse11111", res.data.message);
     if (
       res.data?.message == "Phiên đăng nhập của bạn đã hết hạn" ||
       res.data?.message == "Vui lòng đăng nhập để sử dụng tính năng này"
