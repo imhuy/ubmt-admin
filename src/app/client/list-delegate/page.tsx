@@ -129,7 +129,7 @@ const ListDelegate: NextPage<any> = () => {
                         </td>
 
                         <td className='text-center font-normal text-sm max-w-24    '>
-                          <Image alt='' width={48} height={72} src={item.avatar} className=' font-normal text-sm    ' />
+                          <img alt='' width={48} height={72} src={item.avatar} className=' font-normal text-sm    ' />
                         </td>
 
                         <td className='text-center flex font-normal text-sm w-32 gap-x-4 '>
