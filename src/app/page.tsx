@@ -322,9 +322,10 @@ export default function Home() {
           <div className='px-4 py-3  uppercase  bg-[#1E6FA2] mt-2 flex flex-col  text-center self-center text-white  font-bold    '>
             <img src='/icon.svg' alt='Sample Image' className='w-[98px] self-center  ' />
 
-            <span className='  mt-5 px-8  font-workSansBold '>
-              BAN TỔ CHỨC ĐẠI HỘI ĐẠI BIỂU MẶT TRẬN TỔ QUỐC VIỆT NAM THÀNH PHỐ HÀ NỘI LẦN THỨ XVIII NHIỆM KỲ 2024 - 2029
+            <span className='  mt-5  px-1 font-workSansBold '>
+              BAN TỔ CHỨC ĐẠI HỘI ĐẠI BIỂU MẶT TRẬN TỔ QUỐC VIỆT NAM THÀNH PHỐ HÀ NỘI
             </span>
+            <span className='     font-workSansBold '>LẦN THỨ XVIII NHIỆM KỲ 2024 - 2029</span>
           </div>
 
           <div className='px-4 py-3  uppercase  bg-[#1E6FA2]  mt-[2px] flex flex-col  text-center self-center w-full h-[20px] text-white  font-bold    '></div>
