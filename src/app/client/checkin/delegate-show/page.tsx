@@ -48,7 +48,7 @@ export default function Home() {
                   <p className='mb-4  text-red-600  text-center font-utmHelvetIns text-4xl md:text-5xl lg:text-6xl xl:text-6xl uppercase'>
                     {data.user?.full_name}
                   </p>
-                  <p className='  mb-8   text-[#2857A5] text-center font-utmHelvetIns  italic  text-3xl  uppercase'>
+                  <p className='  mb-8   text-[#2857A5] text-center font-utmHelvetIns  italic  text-3xl  max-md:text-xl uppercase'>
                     {data.user.position}
                   </p>
                 </div>

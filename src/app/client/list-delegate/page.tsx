@@ -149,6 +149,17 @@ const ListDelegate: NextPage<any> = () => {
                           >
                             Xoá
                           </button>
+
+                          <Link
+                            href={{
+                              pathname: `https://daihoi.mttqhanoi.org.vn`,
+                              query: { id: item.code },
+                            }}
+                            target='_blank'
+                            className=' bg-primary-500  w-16   p-1 border z-50  px-2   border-slate-400 rounded-md   text-white	'
+                          >
+                            Xem
+                          </Link>
                         </td>
                       </tr>
                     ))}
