@@ -140,7 +140,7 @@ export default function Home() {
         <div className='flex flex-col '>
           <span className=' uppercase text-center  text-red-600 font-workSansBold mt-4'>Chào mừng đại biểu</span>
           <span className='  font-bold text-xl text-center font-workSansBold mt-2'>{data?.full_name}</span>
-          <div className='flex shadow-lg rounded-lg justify-around      items-center    h-40'>
+          <div className='flex shadow-lg rounded-lg justify-around      items-center    min-h-40 py-4'>
             <div className='w-[30%] ml-2  '>
               <SVG
                 text={id ? id : "Không tìm thấy mã đại biểu"}
