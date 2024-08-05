@@ -292,7 +292,7 @@ export default function Home() {
 
           <div className='absolute w-[70px] h-[70]  top-[323px] left-[78px]'>
             <SVG
-              text={id ? id : "Không tìm thấy mã đại biểu"}
+              text={"https://chatbot.zalo.me/ref/4541578065285117921?id=tai-lieu-dai-hoi"}
               options={{
                 margin: 2,
                 width: 78,
