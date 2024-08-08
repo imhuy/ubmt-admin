@@ -105,7 +105,6 @@ export default function Home() {
     const fetchData = async (id: string) => {
       if (typeof window !== "undefined") {
         const hostname = window.location.hostname;
-
         console.log("hostnamehostnamehostnamehostname", hostname);
       }
       try {
@@ -164,7 +163,7 @@ export default function Home() {
                   Mã đại biểu: <span className=' font-workSansBold'>{data?.code}</span>
                 </span>
               </div>
-              {data?.delegation && (
+              {/* {data?.delegation && (
                 <div className='flex items-center'>
                   <div className='flex'>
                     <div className=' mx-2 w-2 h-2 bg-black' />
@@ -174,7 +173,7 @@ export default function Home() {
                     Đoàn: <span className=' font-workSansBold'>{data?.delegation} </span>
                   </span>
                 </div>
-              )}
+              )} */}
               <div className='flex items-center'>
                 <div className='flex'>
                   <div className=' mx-2 w-2 h-2 bg-black' />
@@ -234,19 +233,19 @@ export default function Home() {
         </div> */}
 
         <div className=' w-[400px] h-[600px] flex items-center mt-4 flex-col  relative' id='captureId'>
-          <img src='/bg.jpg' alt='Sample Image' className=' w-[400px] h-[600px]  rounded-[10px]' />
+          <img src='/imgCardBg.jpg' alt='Sample Image' className=' w-[400px] h-[600px]  rounded-[10px]' />
 
           {data?.avatar ? (
             <img
               src={data?.avatar}
               alt='Sample Image'
-              className='w-[98px] h-[147px]  absolute top-[260px] left-[151px] '
+              className='w-[98px] h-[147px]  absolute  top-[263px] left-[152px] '
             />
           ) : (
             <img
               src='/avatar.jpg'
               alt='Sample Image'
-              className='w-[98px] h-[147px]  absolute top-[260px] left-[151px] '
+              className='w-[98px] h-[147px]  absolute top-[263px] ] left-[152px] '
             />
           )}
 
@@ -255,7 +254,7 @@ export default function Home() {
               {data?.full_name}
             </span>
             <span className='  uppercase text-[#0050A2]   font-utmHelvetIns  font-thin     self-center text-center text-[15px]'>
-              {data?.delegation}
+              {data?.position}
             </span>
           </div>
 
@@ -274,14 +273,14 @@ export default function Home() {
         </button>
 
         <div className=' w-[400px] h-[600px] flex items-center flex-col  relative' id='captureQr'>
-          <img src='/bgQr.jpg' alt='Sample Image' className=' w-[400px] h-[600px]  rounded-[10px]' />
+          <img src='/imgCardBgS.jpg' alt='Sample Image' className=' w-[400px] h-[600px]  rounded-[10px]' />
 
-          <div className='absolute w-[70px] h-[70]  top-[320px] left-[253px]'>
+          <div className='absolute w-[70px] h-[70]  top-[280px] left-[224px]'>
             <SVG
               text={id ? id : "Không tìm thấy mã đại biểu"}
               options={{
                 margin: 2,
-                width: 80,
+                width: 136,
                 color: {
                   dark: "#D32A2C",
                   light: "#FFFFFF00",
@@ -290,12 +289,12 @@ export default function Home() {
             />
           </div>
 
-          <div className='absolute w-[70px] h-[70]  top-[323px] left-[78px]'>
+          <div className='absolute w-[70px] h-[70]  top-[284px] left-[52px]'>
             <SVG
               text={"https://chatbot.zalo.me/ref/4541578065285117921?id=tai-lieu-dai-hoi"}
               options={{
                 margin: 2,
-                width: 78,
+                width: 128,
                 color: {
                   dark: "#D32A2C",
                   light: "#FFFFFF00",

@@ -5,7 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Poppins } from "next/font/google";
 
 import { Slide, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+// import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
 import { usePathname } from "next/navigation";
 // import { useRouter } from "next/router";

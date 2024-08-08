@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+@import "~react-toastify/dist/ReactToastify.min.css";
 @layer base {
   @font-face {
     font-family: "WorkSans-ExtraLight";
@@ -184,8 +184,8 @@ div.scrollmenu a {
   position: absolute;
   top: 19%;
   left: 6%;
-  width: 28%;
-  height: 49%;
+  /* width: 28%;
+  height: 49%; */
 }
 .customText-position {
   width: 50%;
