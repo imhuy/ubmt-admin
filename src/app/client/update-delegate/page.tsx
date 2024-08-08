@@ -17,7 +17,7 @@ const CustomerForm: React.FC = () => {
       email: "",
       full_name: "",
       status: 0,
-      avatar: "",
+      // avatar: "",
       role_id: 1,
       date_of_birth: "",
       number_card: "",
@@ -119,7 +119,8 @@ const CustomerForm: React.FC = () => {
       // formData.code = `HC${formData.phone.slice(-7)}`;
       formData.password = formData.phone;
       formData.username = formData.phone;
-      formData.avatar = image.toString();
+      // formData.avatar = image.toString();
+      formData.avatar = "";
       formData.sex = selectedItem.id;
       formData.is_party_member = selectedMember.id;
       formData.delegation = delegation?.id?.toString();

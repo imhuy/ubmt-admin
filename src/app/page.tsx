@@ -123,6 +123,10 @@ export default function Home() {
       }
     }, [id]);
 
+    function createMarkup(text: string) {
+      return { __html: text };
+    }
+
     return (
       <div className='flex flex-col  h-full w-[400px]   '>
         <div className='  grid grid-cols-7  bg-[#1E6FA2] text-white items-center  pb-5 px-4 text  '>
@@ -249,12 +253,13 @@ export default function Home() {
             />
           )}
 
-          <div className='flex flex-col self-center justify-start items-center   absolute top-[430px] left-[75px]  w-[250px] '>
+          <div className='flex flex-col self-center justify-start items-center   absolute top-[430px] left-[5px]  w-full '>
             <span className=' text-[#0050A2] uppercase    font-utmHelvetIns  font-thin  text-[16px] text-center '>
               {data?.full_name}
             </span>
             <span className='  uppercase text-[#0050A2]  font-utmHelvetIns  font-thin     self-center text-center text-[16px]'>
-              {data?.position}
+              {/* {data?.position} */}
+              <div dangerouslySetInnerHTML={createMarkup(data?.position)} />
             </span>
           </div>
 
@@ -273,14 +278,14 @@ export default function Home() {
         </button>
 
         <div className=' w-[400px] h-[600px] flex items-center flex-col  relative' id='captureQr'>
-          <img src='/imgCardBgS.jpg' alt='Sample Image' className=' w-[400px] h-[600px]  rounded-[10px]' />
+          <img src='/bgNew.jpg' alt='Sample Image' className=' w-[400px] h-[600px]  rounded-[10px]' />
 
-          <div className='absolute w-[70px] h-[70]  top-[280px] left-[224px]'>
+          <div className='absolute w-[70px] h-[70]  top-[309px] left-[248px]'>
             <SVG
               text={id ? id : "Không tìm thấy mã đại biểu"}
               options={{
                 margin: 2,
-                width: 136,
+                width: 85,
                 color: {
                   dark: "#D32A2C",
                   light: "#FFFFFF00",
@@ -289,12 +294,12 @@ export default function Home() {
             />
           </div>
 
-          <div className='absolute w-[70px] h-[70]  top-[284px] left-[52px]'>
+          <div className='absolute w-[70px] h-[70]  top-[309px] left-[74px]'>
             <SVG
               text={"https://chatbot.zalo.me/ref/4541578065285117921?id=tai-lieu-dai-hoi"}
               options={{
                 margin: 2,
-                width: 128,
+                width: 85,
                 color: {
                   dark: "#D32A2C",
                   light: "#FFFFFF00",

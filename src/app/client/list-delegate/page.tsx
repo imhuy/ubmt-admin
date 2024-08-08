@@ -152,7 +152,8 @@ const ListDelegate: NextPage<any> = () => {
 
                           <Link
                             href={{
-                              pathname: `https://daihoi.mttqhanoi.org.vn`,
+                              // pathname: `https://daihoi.mttqhanoi.org.vn`,
+                              pathname: `http://localhost:3000`,
                               query: { id: item.code },
                             }}
                             target='_blank'
