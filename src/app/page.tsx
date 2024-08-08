@@ -237,7 +237,7 @@ export default function Home() {
         </div> */}
 
         <div className=' w-[400px] h-[600px] flex items-center mt-4 flex-col  relative' id='captureId'>
-          <img src='/imgCardBg.jpg' alt='Sample Image' className=' w-[400px] h-[600px]  rounded-[10px]' />
+          <img src='/bgnews.jpg' alt='Sample Image' className=' w-[400px] h-[600px]  rounded-[10px]' />
 
           {data?.avatar ? (
             <img
@@ -257,7 +257,7 @@ export default function Home() {
             <span className=' text-[#0050A2] uppercase    font-utmHelvetIns  font-thin  text-[16px] text-center '>
               {data?.full_name}
             </span>
-            <span className='  uppercase text-[#0050A2]  font-utmHelvetIns  font-thin     self-center text-center text-[16px]'>
+            <span className='  uppercase text-[#0050A2]   font-utmHelvetIns  font-thin     self-center text-center text-[16px]'>
               {/* {data?.position} */}
               <div dangerouslySetInnerHTML={createMarkup(data?.position)} />
             </span>
