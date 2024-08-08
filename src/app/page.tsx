@@ -239,21 +239,21 @@ export default function Home() {
             <img
               src={data?.avatar}
               alt='Sample Image'
-              className='w-[98px] h-[147px]  absolute  top-[263px] left-[152px] '
+              className='w-[104px] h-[150px]  absolute  top-[261px] left-[149px] '
             />
           ) : (
             <img
               src='/avatar.jpg'
               alt='Sample Image'
-              className='w-[98px] h-[147px]  absolute top-[263px] ] left-[152px] '
+              className='w-[104px] h-[150px]  absolute  top-[261px] left-[149px] '
             />
           )}
 
-          <div className='flex flex-col self-center justify-start items-center   absolute top-[420px] left-[100px]  w-[210px] '>
-            <span className=' text-[#0050A2] uppercase    font-utmHelvetIns  font-thin  text-[15px] text-center '>
+          <div className='flex flex-col self-center justify-start items-center   absolute top-[430px] left-[75px]  w-[250px] '>
+            <span className=' text-[#0050A2] uppercase    font-utmHelvetIns  font-thin  text-[16px] text-center '>
               {data?.full_name}
             </span>
-            <span className='  uppercase text-[#0050A2]   font-utmHelvetIns  font-thin     self-center text-center text-[15px]'>
+            <span className='  uppercase text-[#0050A2]  font-utmHelvetIns  font-thin     self-center text-center text-[16px]'>
               {data?.position}
             </span>
           </div>
