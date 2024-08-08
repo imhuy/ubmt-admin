@@ -105,10 +105,10 @@ const CustomerForm: React.FC = () => {
     const formValidate = () => {
       console.log(selectedMember);
 
-      if (!image) {
-        toast.error("Vui lòng chọn ảnh đại diện", { autoClose: 4000 });
-        return false;
-      }
+      // if (!image) {
+      //   toast.error("Vui lòng chọn ảnh đại diện", { autoClose: 4000 });
+      //   return false;
+      // }
 
       return true;
     };
