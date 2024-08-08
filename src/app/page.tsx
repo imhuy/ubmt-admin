@@ -256,6 +256,7 @@ export default function Home() {
           <div className='flex flex-col self-center justify-start items-center   absolute top-[430px] left-[5px]  w-full '>
             <span className=' text-[#0050A2] uppercase    font-utmHelvetIns  font-thin  text-[18px] text-center '>
               {data?.full_name}
+              {/* <div dangerouslySetInnerHTML={createMarkup(data?.full_name)} /> */}
             </span>
             <span className='  uppercase text-[#0050A2]   font-utmHelvetIns  font-thin     self-center text-center text-[16px]'>
               {/* {data?.position} */}
