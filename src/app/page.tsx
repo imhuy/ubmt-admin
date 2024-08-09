@@ -281,7 +281,7 @@ export default function Home() {
               text={id ? id : "Không tìm thấy mã đại biểu"}
               options={{
                 margin: 2,
-                width: 87,
+                width: 85,
                 color: {
                   dark: "#D32A2C",
                   light: "#FFFFFF00",
@@ -295,7 +295,7 @@ export default function Home() {
               text={"https://chatbot.zalo.me/ref/4541578065285117921?id=tai-lieu-dai-hoi"}
               options={{
                 margin: 2,
-                width: 84,
+                width: 85,
                 color: {
                   dark: "#D32A2C",
                   light: "#FFFFFF00",
