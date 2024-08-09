@@ -7,6 +7,7 @@ import { productApi } from "@/api-client";
 const axios = require("axios");
 
 export default function Home() {
+  const [loading, setLoading] = useState(false);
   var base64ToBlob = function (base64: any) {
     const byteCharacters = atob(base64.split(",")[1]);
     const byteArrays = [];
@@ -27,7 +28,7 @@ export default function Home() {
     return blob;
   };
   const takeScreenshot = (id: string, avatar: string, name: string, stt: string, idElement: string) => {
-    console.log("idElementidElementidElement", id);
+    setLoading(true);
     const style = document.createElement("style");
     document.head.appendChild(style);
     style.sheet?.insertRule("body > div:last-child img { display: inline-block; }");
@@ -46,36 +47,48 @@ export default function Home() {
           img.onload = () => {
             // Tạo một canvas mới với kích thước cố định 800x1200
             const fixedCanvas = document.createElement("canvas");
-            fixedCanvas.width = 800;
-            fixedCanvas.height = 1200;
+            fixedCanvas.width = 1200;
+            fixedCanvas.height = 1800;
             const ctx = fixedCanvas.getContext("2d");
-
+            window.postMessage({ type: "FROM_PAGE", text: "Hello from the webpage!" }, "*");
             if (ctx) {
               // Vẽ nội dung của canvas ban đầu lên canvas mới với kích thước cố định
-              ctx.drawImage(img, 0, 0, 800, 1200);
+              ctx.drawImage(img, 0, 0, 1200, 1800);
 
               const imgData = fixedCanvas.toDataURL("image/png");
               const link: any = document.createElement("a");
+              link.href = imgData;
+              if (idElement === "captureId") {
+                link.download = `${stt}.${name}.png`;
+              }
+              if (idElement === "captureQr") {
+                link.download = `${stt}.${name}.Qr.jpg`;
+              }
 
-              productApi.uploadImageBase64({ type: 4, image: imgData }).then((dataUrl) => {
-                if (imgData) {
-                  link.href = imgData;
-                } else {
-                  link.href = dataUrl;
-                }
-                if (idElement === "captureId") {
-                  link.download = `${stt}.${name}.jpg`;
-                }
-                if (idElement === "captureQr") {
-                  link.download = `${stt}.${name}.Qr.jpg`;
-                }
+              document.body.appendChild(link);
+              link.click();
+              link.remove();
 
-                document.body.appendChild(link);
-                link.click();
-                link.remove();
+              style.remove();
+              // productApi.uploadImageBase64({ type: 4, image: imgData }).then((dataUrl) => {
+              //   if (imgData) {
+              //     link.href = imgData;
+              //   } else {
+              //     link.href = dataUrl;
+              //   }
+              //   if (idElement === "captureId") {
+              //     link.download = `${stt}.${name}.png`;
+              //   }
+              //   if (idElement === "captureQr") {
+              //     link.download = `${stt}.${name}.Qr.jpg`;
+              //   }
 
-                style.remove();
-              });
+              //   document.body.appendChild(link);
+              //   link.click();
+              //   link.remove();
+
+              //   style.remove();
+              // });
             }
           };
         })
@@ -128,12 +141,6 @@ export default function Home() {
           <img src='/icon.svg' alt='Sample Image' className=' col-span-1  max-w-[50px] mt-4   ' />
 
           <span className='  mt-5 col-span-6  text-sm  font-workSansBold  '>UỶ BAN MTTQ VIỆT NAM THÀNH PHỐ HÀ NỘI</span>
-          {/* <button
-            onClick={() => takeScreenshot(id, data.avatar)}
-            className='  mt-5  col-span-2 text-center  font-workSansBold p-2 rounded-lg  uppercase  bg-white text-xs  text-red-600  '
-          >
-            Tải thẻ đại biểu
-          </button> */}
         </div>
         <div className='flex flex-col '>
           <span className=' uppercase text-center  text-red-600 font-workSansBold mt-4'>Chào mừng đại biểu</span>
@@ -253,7 +260,7 @@ export default function Home() {
               {data?.full_name}
               {/* <div dangerouslySetInnerHTML={createMarkup(data?.full_name)} /> */}
             </span>
-            <span className='  uppercase text-[#0050A2]   font-utmHelvetIns  font-thin     self-center text-center text-[16px]'>
+            <span className='  uppercase text-[#0050A2] leading-[22px]   font-utmHelvetIns  font-thin     self-center text-center text-[16px]'>
               {/* {data?.position} */}
               <div dangerouslySetInnerHTML={createMarkup(data?.position)} />
             </span>
