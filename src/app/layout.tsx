@@ -33,7 +33,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             pathName == "/client/waitting" ? null : (
               <SideMenu />
             )}
-            {/* <SideMenu /> */}
+
             <ToastContainer
               position='top-right'
               theme='dark'

@@ -198,7 +198,7 @@ const CustomerForm: React.FC = () => {
       if (fileInputRef.current) {
         fileInputRef.current.value = "";
       }
-      senDataladiFlow(formData);
+      // senDataladiFlow(formData);
       toast.success("Thêm đại biểu thành công", { autoClose: 4000 });
     } else {
       toast.error(update.message, { autoClose: 4000 });
@@ -276,7 +276,7 @@ const CustomerForm: React.FC = () => {
         />
 
         <input
-          required={true}
+          // required={true}
           className='border p-2 rounded'
           name='email'
           value={formData.email}
@@ -294,7 +294,7 @@ const CustomerForm: React.FC = () => {
         />
 
         <input
-          required={true}
+          // required={true}
           className='border p-2 rounded'
           name='place_of_residence'
           value={formData.place_of_residence}
@@ -302,7 +302,7 @@ const CustomerForm: React.FC = () => {
           placeholder='Quê quán'
         />
         <input
-          required={true}
+          // required={true}
           className='border p-2 rounded'
           name='current_residence'
           value={formData.current_residence}
@@ -330,7 +330,7 @@ const CustomerForm: React.FC = () => {
         <Dropdown onItemSelected={handleSelectDelegation} />
         <PartyMember onItemSelected={handlePartyMember} />
         <input
-          required={true}
+          // required={true}
           className='border p-2 rounded'
           name='job'
           value={formData.job}
@@ -348,7 +348,7 @@ const CustomerForm: React.FC = () => {
         />
 
         <input
-          required={true}
+          // required={true}
           className='border p-2 rounded'
           name='nationality'
           value={formData.nationality}
@@ -357,7 +357,7 @@ const CustomerForm: React.FC = () => {
         />
 
         <input
-          required={true}
+          // required={true}
           className='border p-2 rounded'
           name='degree'
           value={formData.degree}
@@ -365,7 +365,7 @@ const CustomerForm: React.FC = () => {
           placeholder='Học vị'
         />
         <input
-          required={true}
+          // required={true}
           className='border p-2 rounded'
           name='academic_rank'
           value={formData.academic_rank}

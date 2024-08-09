@@ -105,10 +105,10 @@ const CustomerForm: React.FC = () => {
     const formValidate = () => {
       console.log(selectedMember);
 
-      // if (!image) {
-      //   toast.error("Vui lòng chọn ảnh đại diện", { autoClose: 4000 });
-      //   return false;
-      // }
+      if (!image) {
+        toast.error("Vui lòng chọn ảnh đại diện", { autoClose: 4000 });
+        return false;
+      }
 
       return true;
     };
@@ -119,8 +119,8 @@ const CustomerForm: React.FC = () => {
       // formData.code = `HC${formData.phone.slice(-7)}`;
       formData.password = formData.phone;
       formData.username = formData.phone;
-      // formData.avatar = image.toString();
-      formData.avatar = "";
+      formData.avatar = image.toString();
+      // formData.avatar = "";
       formData.sex = selectedItem.id;
       formData.is_party_member = selectedMember.id;
       formData.delegation = delegation?.id?.toString();

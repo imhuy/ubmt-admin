@@ -33,6 +33,7 @@ export default function Home() {
     style.sheet?.insertRule("body > div:last-child img { display: inline-block; }");
     const element = document.getElementById(idElement);
 
+    console.log("avataravataravataravatar", avatar);
     if (element) {
       html2canvas(element, {
         useCORS: false,

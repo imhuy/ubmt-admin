@@ -109,7 +109,7 @@ const ListDelegate: NextPage<any> = () => {
                         }`}
                       >
                         <td className='text-center font-normal text-sm  w-4 max-w-8 '>
-                          <span className=' font-normal text-sm  '>{i < 158 ? i + 1 : i + 2}</span>
+                          <span className=' font-normal text-sm  '>{i + 1}</span>
                         </td>
                         <td className='text-center font-normal text-sm  whitespace-normal  w-52 max-w-64 '>
                           <span className=' font-normal text-sm  '>{item.full_name}</span>
