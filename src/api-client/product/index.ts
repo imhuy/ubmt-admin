@@ -64,6 +64,13 @@ class ApiProduct extends ApiClientBase {
     });
     return res;
   }
+
+  public async updateDocs(productData: FormData): Promise<BaseResponse | any> {
+    const res = await this.instance.post(`/api/delegate/document/update`, productData, {
+      headers: {},
+    });
+    return res;
+  }
   public async buyHistory(access_token: string): Promise<BaseResponse | any> {
     const res = await this.instance.get(`/api/products/buy-history`, {
       headers: {

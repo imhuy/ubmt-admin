@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import AppLayout from "@/components/Layout/AppLayout";
 import { useQuery } from "@tanstack/react-query";
 import { NextPage } from "next";
+import Link from "next/link";
 import { useState } from "react";
 export interface ItemType {
   id: number;
@@ -66,13 +67,23 @@ const ListDocs: NextPage<any> = () => {
           <div className='flex flex-col  gap-y-4'>
             {ListDocs?.data?.map((item: any, i) => (
               <div key={i} className='flex items-center  justify-between gap-x-6 flex-row mx-auto w-[90%]'>
-                {/* <span>{item.id}</span> */}
+                <span>{item.id}.</span>
                 <div className='flex flex-col'>
                   <span className=' font-workSansSemiBold'>{item.name}</span>
                   <span>{item.detail}</span>
                 </div>
 
                 <div className='flex'>
+                  <Link
+                    href={{
+                      pathname: "list-docs/update",
+                      query: { id: item.id },
+                    }}
+                    // onClick={() => deleteItem(item.id, item.full_name)}
+                    className=' bg-primary-500  w-12  mr-2  p-1 border z-50  px-2   border-slate-400 rounded-md   text-white	'
+                  >
+                    Sửa
+                  </Link>
                   <button
                     onClick={() => deleteItem(item.id)}
                     className=' bg-primary-500 h-1/2 items-center  py-1  border z-50  px-3   border-slate-400 rounded-md   text-white	'
