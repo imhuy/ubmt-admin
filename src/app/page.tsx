@@ -40,6 +40,7 @@ export default function Home() {
         proxy: `${avatar ? avatar : "https://daihoi.mttqhanoi.org.vn/avatar.jpg"}`,
         allowTaint: true,
         logging: true,
+        scale: 8,
       })
         .then(async (canvas) => {
           const img = new Image();
@@ -50,7 +51,6 @@ export default function Home() {
             fixedCanvas.width = 1200;
             fixedCanvas.height = 1800;
             const ctx = fixedCanvas.getContext("2d");
-            window.postMessage({ type: "FROM_PAGE", text: "Hello from the webpage!" }, "*");
             if (ctx) {
               // Vẽ nội dung của canvas ban đầu lên canvas mới với kích thước cố định
               ctx.drawImage(img, 0, 0, 1200, 1800);
@@ -151,7 +151,6 @@ export default function Home() {
                 text={id ? id : "Không tìm thấy mã đại biểu"}
                 options={{
                   width: 120,
-
                   color: {
                     dark: "#010599FF",
                     light: "#ffffff",
@@ -245,19 +244,20 @@ export default function Home() {
             <img
               src={data?.avatar}
               alt='Sample Image'
-              className='w-[104px] h-[150px]  absolute  top-[295px] left-[148px] '
+              className='w-[104px] h-[152px]  absolute  top-[293px] left-[148px] '
             />
           ) : (
             <img
               src='/avatar.jpg'
               alt='Sample Image'
-              className='w-[104px] h-[150px]  absolute  top-[295px] left-[148px] '
+              className='w-[104px] h-[152px]  absolute  top-[293px] left-[148px] '
             />
           )}
 
           <div className='flex flex-col self-center justify-start items-center   absolute top-[455px] left-[0px]  w-full '>
             <span className=' text-[#0050A2] uppercase    font-utmHelvetIns  font-thin  text-[18px] text-center '>
-              {data?.full_name}
+              {/* {data?.full_name} */}
+              <div dangerouslySetInnerHTML={createMarkup(data?.full_name)} />
               {/* <div dangerouslySetInnerHTML={createMarkup(data?.full_name)} /> */}
             </span>
             <span className='  uppercase text-[#0050A2] leading-[22px]   font-utmHelvetIns  font-thin     self-center text-center text-[16px]'>
