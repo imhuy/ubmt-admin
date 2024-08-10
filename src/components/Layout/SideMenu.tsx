@@ -75,6 +75,13 @@ const SideMenu = () => {
       label: "Danh sách đoàn đại biểu",
       active: false,
     },
+
+    {
+      key: "client/list-docs",
+      icon: ProfileIcon,
+      label: "Danh sách tài liệu",
+      active: false,
+    },
     {
       key: "client/profile",
       icon: ProfileIcon,
