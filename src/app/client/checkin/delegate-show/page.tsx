@@ -49,7 +49,7 @@ export default function Home() {
                     {data.user?.full_name}
                   </p>
                   <p className='  mb-8   text-[#2857A5] text-center font-utmHelvetIns  italic  text-3xl  max-md:text-xl uppercase'>
-                    {data.user.position}
+                    {data.user.position.replace("<br/>", "")}
                   </p>
                 </div>
 
