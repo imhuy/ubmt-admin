@@ -63,54 +63,6 @@ const ListDocs: NextPage<any> = () => {
             </div>
           </div>
 
-          <div className='flex gap-x-4  p-4'>
-            <label className='flex items-center mb-2'>
-              <input
-                type='radio'
-                name='radio'
-                value={1}
-                className='form-radio text-blue-600 h-4 w-4'
-                onChange={(e) => setSelected(e.target.value)}
-                checked={selected == 1}
-              />
-              <span className='ml-2'>Tin tức</span>
-            </label>
-
-            <label className='flex items-center mb-2'>
-              <input
-                type='radio'
-                name='radio'
-                value={5}
-                className='form-radio text-blue-600 h-4 w-4'
-                onChange={(e) => setSelected(e.target.value)}
-                checked={selected == 5}
-              />
-              <span className='ml-2'>Thông báo</span>
-            </label>
-            <label className='flex items-center mb-2'>
-              <input
-                type='radio'
-                name='radio'
-                value={2}
-                className='form-radio text-blue-600 h-4 w-4'
-                onChange={(e) => setSelected(e.target.value)}
-                checked={selected == 2}
-              />
-              <span className='ml-2'>Thông tin hội nghị</span>
-            </label>
-            <label className='flex items-center mb-2'>
-              <input
-                type='radio'
-                name='radio'
-                value={3}
-                className='form-radio text-blue-600 h-4 w-4'
-                onChange={(e) => setSelected(e.target.value)}
-                checked={selected == 3}
-              />
-              <span className='ml-2'>Chương trình đại hội</span>
-            </label>
-          </div>
-
           <div className='flex flex-col  gap-y-4'>
             {ListDocs?.data?.map((item: any, i) => (
               <div key={i} className='flex items-center  justify-between gap-x-6 flex-row mx-auto w-[90%]'>
