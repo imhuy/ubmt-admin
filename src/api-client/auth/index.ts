@@ -109,6 +109,11 @@ class ApiAuth extends ApiClientBase {
     return res.data;
   }
 
+  public async listDocs(): Promise<any> {
+    const res = await this.instance.get(`api/delegate/get-document`, {});
+    return res.data;
+  }
+
   public async CheckinHistory(): Promise<any> {
     const res = await this.instance.get(`api/delegate/get-checkin`, {});
     return res.data;
@@ -131,6 +136,12 @@ class ApiAuth extends ApiClientBase {
     return res.data;
   }
 
+  public async deleteDocsbyId(id: number): Promise<any> {
+    const res = await this.instance.delete(`/api/delegate/document/delete/${id}`, {
+      headers: {},
+    });
+    return res.data;
+  }
   public async deleteDelegationById(id: number): Promise<any> {
     const res = await this.instance.delete(`/api/delegate/delete/${id}`, {
       headers: {},
