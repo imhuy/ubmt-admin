@@ -2,8 +2,7 @@
 import { authApi } from "@/api-client";
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
-import { Suspense, useEffect, useState } from "react";
-import { toast } from "react-toastify";
+import { Suspense, useEffect } from "react";
 
 export interface ItemType {
   user: any;
@@ -39,23 +38,7 @@ export default function Home() {
           <div className='   '>
             <body className='    bg-[#FFE18A]'>
               <div className='relative w-full   '>
-                <img src='/bgmttq.jpg' alt='Background Image' className='w-full   h-[100lvh]    ' />
-
-                <div className='delegate-position text-center  flex- flex-col    '>
-                  <p className='  mb-8  text-[#2857A5]  font-utmHelvetIns  text-4xl font-utmHelvetIn   uppercase'></p>
-                  <p className='mb-4  text-red-600  text-center font-utmHelvetIns text-4xl md:text-5xl lg:text-6xl xl:text-6xl uppercase'>
-                    {data.user?.full_name}
-                  </p>
-                  <p className='  mb-8   text-[#2857A5] text-center font-utmHelvetIns  italic  text-3xl  max-md:text-xl uppercase'>
-                    {data.user.position.replace("<br/>", "")}
-                  </p>
-                </div>
-
-                {data.user?.avatar ? (
-                  <img src={data.user?.avatar} alt='Black Image' className='rounded-full custom-position' />
-                ) : (
-                  <img src='/avatar.jpg' alt='Black Image' className='rounded-full custom-position' />
-                )}
+                <img src='/preview.png' alt='Background Image' className='w-full   h-[100lvh]    ' />
               </div>
             </body>
           </div>

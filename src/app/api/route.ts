@@ -1,9 +1,6 @@
-// app/api/proxy/route.ts
-
 import httpProxy from "http-proxy";
 import { NextRequest, NextResponse } from "next/server";
 
-// Create a proxy server
 const proxy = httpProxy.createProxyServer();
 
 export async function GET(req: NextRequest, res: NextResponse): Promise<NextResponse> {

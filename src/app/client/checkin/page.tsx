@@ -11,7 +11,7 @@ export default function Home() {
     const [id] = searchParams.getAll("id") || "";
 
     const listHistory = useQuery({
-      queryKey: ["checkinHistory"],
+      queryKey: ["checkinHistoryShow"],
       queryFn: async () => await authApi.CheckinHistory(),
     });
 
