@@ -15,7 +15,8 @@ export default function Home() {
       queryFn: async () => await authApi.CheckinHistory(),
     });
 
-    const lastItem = listHistory?.data?.length - 3;
+    console.log("listHistorylistHistorylistHistory", listHistory.data);
+    const lastItem = listHistory?.data?.length - 1;
 
     if (lastItem > 0) {
       console.log("lastItemlastItemlastItem", lastItem);
@@ -47,10 +48,10 @@ export default function Home() {
                 <div className='delegate-position text-center  flex- flex-col    '>
                   <p className='  mb-4  text-[#2857A5]  font-workSansBold  text-4xl  uppercase'>Chào mừng đại biểu</p>
                   <p className='mb-4  text-red-600  text-center  font-workSansBlack text-4xl md:text-5xl lg:text-6xl xl:text-6xl uppercase'>
-                    {listHistory.data[lastItem]?.full_name}
+                    {listHistory.data[0]?.full_name}
                   </p>
                   <p className='  mb-8   text-[#2857A5] text-center  italic font-workSansBold  text-3xl  uppercase'>
-                    {listHistory.data[lastItem]?.position.replace("<br/>", " ")}
+                    {listHistory.data[0]?.position.replace("<br/>", " ")}
                   </p>
                   <p className='  text-[#2857A5] text-center  font-workSansBlack  text-3xl  uppercase'>
                     ĐẠI BIỂU CHÍNH THỨC DỰ ĐẠI HỘI ĐẠI BIỂU MTTQ VIỆT NAM THÀNH PHỐ HÀ NỘI, LẦN THỨ XVIII, NHIỆM KỲ
@@ -58,12 +59,8 @@ export default function Home() {
                   </p>
                 </div>
 
-                {listHistory.data[lastItem]?.avatar ? (
-                  <img
-                    src={listHistory.data[lastItem]?.avatar}
-                    alt='Black Image'
-                    className='rounded-full custom-position'
-                  />
+                {listHistory.data[0]?.avatar ? (
+                  <img src={listHistory.data[0]?.avatar} alt='Black Image' className='rounded-full custom-position' />
                 ) : (
                   <img src='/avatar.jpg' alt='Black Image' className='rounded-full custom-position' />
                 )}
