@@ -55,11 +55,11 @@ export default function Home() {
               // Tạo một canvas mới với kích thước cố định 800x1200
               const fixedCanvas = document.createElement("canvas");
               fixedCanvas.width = 2400;
-              fixedCanvas.height = 1200;
+              fixedCanvas.height = 1350;
               const ctx = fixedCanvas.getContext("2d");
               if (ctx) {
                 // Vẽ nội dung của canvas ban đầu lên canvas mới với kích thước cố định
-                ctx.drawImage(img, 0, 0, 2400, 1200);
+                ctx.drawImage(img, 0, 0, 2400, 1350);
 
                 const imgData = fixedCanvas.toDataURL("image/png");
                 const link: any = document.createElement("a");
@@ -117,7 +117,7 @@ export default function Home() {
               >
                 Tải ảnh đại biểu
               </button>
-              <div className='relative w-full   ' id='captureId'>
+              <div className='relative w-full' id='captureId'>
                 <img src='/bgmttq.jpg' alt='Background Image' className='w-full   h-[100lvh]' />
 
                 <div className='delegate-position text-center  flex- flex-col    '>
@@ -131,7 +131,11 @@ export default function Home() {
                 </div>
 
                 {data.user?.avatar ? (
-                  <img src={data.user?.avatar} alt='Black Image' className='rounded-full custom-position' />
+                  <img
+                    src={data.user?.avatar}
+                    alt='Black Image'
+                    className='rounded-full border-blue-400  border-b-2 custom-position'
+                  />
                 ) : (
                   <img src='/avatar.jpg' alt='Black Image' className='rounded-full custom-position' />
                 )}

@@ -19,7 +19,7 @@ const poppins = Poppins({
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const pathName = usePathname();
-
+  console.log("pathNamepathNamepathName", pathName);
   return (
     <html lang='en' dir=''>
       <body className=' '>
@@ -30,6 +30,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             {pathName == "/" ||
             pathName == "/chinh-sach-bao-mat" ||
             pathName == "/client/checkin" ||
+            pathName == "/client/checkin/select/new-select" ||
             pathName == "/client/waitting" ? null : (
               <SideMenu />
             )}
