@@ -141,12 +141,13 @@ const Profile: NextPage<any> = () => {
 
       handleSubmit(element);
     }
+    sendPush();
   };
 
   const sendPush = async () => {
     let data = JSON.stringify({
       message: {
-        topic: "news",
+        topic: "test",
         android: {
           priority: "high",
         },
@@ -167,7 +168,7 @@ const Profile: NextPage<any> = () => {
       url: "https://fcm.googleapis.com/v1/projects/pushnotifi-52af9/messages:send",
       headers: {
         Authorization:
-          "Bearer ya29.c.c0ASRK0GYRK5i7UmuJ_nveaucVxNfNPs7ov8YM7xwBQxBet3ZZaI3gZeomTPyQ-nICheEZmtAOAb26RQO3mjAMN0Utu2pEdEviHWtJdKXCmz3nNGeDjFaQ0BQCu2OoSsPxeOyOO4ULaAjAhMiHjln62ppFZwSYzjv1tmEsoaCe0n8sxuKwi3FpbXEcVNzjx9Lvyou_VaAI9XfodyH42SlsUtw-ShjhbC3WXe38S08Kh4yFyogvjE60ZE7BTV2v4meA4SIRnOWj3147gMu47MgU7HVDGDQvFqDlN3iPKXSKcCvKo5FKP7_wF_d7mW6j5wFa_CJMxbgGiCUDQGj4Q5RNYsZSqnl9QLhlaO2cd46uJu7TfuZ7y2512gsdL385P7YWdd_a6ww932b-j7s5iFrbfl2X8e3dQif7IFu6xeQBOZ6cIMe51a2ezR164nqauRybz3B6Ug8ZYyjcnSs_vYg0OYkw_XXbql5BMw7V7u7sy600xI_zdZWqpXnrjsccuaIp5fkeeak90Oi9omFmd5iFsel83aIx6Y1dpI3W2y1poZWBlq7sRRqpluudWI2R1QkzwYIMJ2oevQjubO_xwRaBbFQidxzi225dyBwwp3-I4Mqb9FYQWeWwe4iadeodejrmm2MvJZuu2-vFVuSjk9FyFzZdwXQ0Y6x4bZ83qW5U8ledpwufQi7d6fVmvOqFtvfjYa757yzIm_X3xnqMIr9R-gUiiw-b9rVWy7w8tJhjF392MO9zg5ooaZVBgRplyc5Owpoxp728qFsV_qMOBF6vr9sM9koSa0mr0ocBsvYap6QYszhcY23jnikMqYs4BB-OqMMy-kwOrwvpgYV-m6Q1uIUXVd6O32mif8b5Vp9z0Rt5UmhzOj26rtx6Uc1qSR4_yVolYon-qpuzM2pz-iWF1tFzswyZRRftF05prq31qryk4l3OmiBaUln6jJYMth6VanJx42toqzssXOMSSWU40Izhet6O-Bu6YW875vnywJpYj944vIjr0V8",
+          "Bearer ya29.c.c0ASRK0Ga_mS-oOAJdJEcR7Wcthzis2BLHejPk3MQtl_QDfcyyYH8LDJLDk3p4Dy84SBOIxGQQUr0bMoJ-4Et8oPDBgdc5Q_f89sJ_vN9uDEyUXVGaB2GlFKXj8Qn5NtbkE6hrA5JhoVuv2UmXvcs8DySjODnniwGPqfmv3HySzYrS1Iv2gKlyzz2wxxcQdrci-Ky-or7ZkjMbMnME2FSxzspos0-wjLrzWAsEiq7XJuecdoWIw5izPaeTISqRdrzBFtHJQ8b-1l7UTKfofsZNL7GrqT-W8zQsgFCEZQp2T059q0WJV1YvoHDpfBnEXRxaB2ZkZzyLQx42iLYj64wDCJdbr9dwIvXwaikU7Uy_c3SUKcNz6qSB9CUT384AbojUIxYIvrvwUr2qwc8vJ2Vs-stXsrb5S0_2Un9fWtOw_-I_etlm64dn1v-olSm6Z5wJiik-d-04mhF0euWiM64W1zYYeU7U25cp2uwtubVwQFZf5MyzORhS32ofxfOsFl4Speyr9m2Q1vyWt2zwl07OmkJgswkaUlmowR_M4QSMuh_n7rJ8mfbtysMWRwwwdMmr8FiiJcRwFp80Ssp7cj54h6-9a53hmUIh7Z4Oqd0XsVWXQM4bmUmnard-useyW9R_YRt89SaRX7cZexXZ5kfV5OQMmOxYy5nYBbF_qgbntw29_JdQt85cJpkXJxVZ9awbp7n542Rc2-Uu2y4ioMYwYfMo-gRe49FdsJymngXRo2Ov5FeBpvtSuguiIwkgYtxz7v1z8Qz-a8MtuR-ykYrdx2aeomOOdlctqO4oi9QBySlFv-lkZUUrrOguQSrn_rusXmdBuy_351YFht-SRVFvoFepxRBjJvlYMX1Z8qk6-fhxbM_puawo12p8VQUr5lRtn1MlwaMQusfUgX2Jm5_n66oi611fgFB60edzR2queYUw-sb23ZBYgVXB7FuB-f5VjYMQjnywv_FWdpll1imwjaz1nZMQr0BBf2q8B-mulVZIepW_izfqyt4",
         "Content-Type": "application/json",
       },
       data: data,

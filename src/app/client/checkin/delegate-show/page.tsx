@@ -36,7 +36,7 @@ export default function Home() {
     return (
       <>
         {!isPending && data?.user && (
-          <div className='   '>
+          <div className=''>
             <body className='    bg-[#FFE18A]'>
               <div className='relative w-full   '>
                 <img src='/bgmttq.jpg' alt='Background Image' className='w-full   h-[100lvh]    ' />

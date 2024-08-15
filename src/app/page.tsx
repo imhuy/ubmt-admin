@@ -4,6 +4,7 @@ import { redirect, useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useState } from "react";
 import { useQRCode } from "next-qrcode";
 import { productApi } from "@/api-client";
+import { position } from "html2canvas/dist/types/css/property-descriptors/position";
 const axios = require("axios");
 
 export default function Home() {
@@ -124,6 +125,20 @@ export default function Home() {
       }
     };
 
+    const listVip = [
+      { code: "HC3416779", position: "Thành ủy viên, Phó Chủ tịch UBND thành phố Hà Nội" },
+      { code: "HC3305091", position: "Thành ủy viên, Phó Chủ tịch UBND thành phố Hà Nội" },
+    ];
+
+    const renderVip = (code: string) => {
+      switch (code) {
+        case "HC3416779":
+          return <span className='font-workSansBold'>{data?.position.replace("<br/>", "")}</span>;
+
+        default:
+          break;
+      }
+    };
     useEffect(() => {
       if (id) {
         fetchData(id);
@@ -183,7 +198,8 @@ export default function Home() {
                   <div className=' mx-2 w-2 h-2 bg-black' />
                 </div>
                 <span className=' font-light'>
-                  Chức vụ: <span className='font-workSansBold'>{data?.position.replace("<br/>", "")}</span>
+                  {data?.code == "HC3416779" || data?.code == "HC3305091" ? "Vip" : "Chức vụ"}: Chức vụ:{" "}
+                  <span className='font-workSansBold'>{data?.position.replace("<br/>", "")}</span>
                 </span>
               </div>
             </div>
