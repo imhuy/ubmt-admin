@@ -6,6 +6,7 @@ const proxy = httpProxy.createProxyServer();
 export async function GET(req: NextRequest, res: NextResponse): Promise<NextResponse> {
   const url = new URL(req.url);
   const targetUrl = url.searchParams.get("url");
+  console.log("urlurlurlurlurl", url);
 
   if (!targetUrl) {
     return NextResponse.json({ error: "Missing url parameter" }, { status: 400 });

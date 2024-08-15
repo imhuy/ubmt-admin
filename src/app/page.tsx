@@ -37,10 +37,10 @@ export default function Home() {
     if (element) {
       html2canvas(element, {
         useCORS: false,
-        proxy: `${avatar ? avatar : "https://daihoi.mttqhanoi.org.vn/avatar.jpg"}`,
+        proxy: `${avatar}`,
         allowTaint: true,
         logging: true,
-        scale: 8,
+        // scale: 8,
       })
         .then(async (canvas) => {
           const img = new Image();
@@ -113,7 +113,6 @@ export default function Home() {
     const fetchData = async (id: string) => {
       if (typeof window !== "undefined") {
         const hostname = window.location.hostname;
-        console.log("hostnamehostnamehostnamehostname", hostname);
       }
       try {
         const response = await axios.get(`https://mattranhanoi.com/api/user/get-delegation?code=${id}`);
