@@ -125,10 +125,7 @@ export default function Home() {
       }
     };
 
-    const listVip = [
-      { code: "HC3416779", position: "Thành ủy viên, Phó Chủ tịch UBND thành phố Hà Nội" },
-      { code: "HC3305091", position: "Thành ủy viên, Phó Chủ tịch UBND thành phố Hà Nội" },
-    ];
+    const listVip = ["HC3416779", "HC3305091", "HC3563039", "HC2334675", "HC3250018"];
 
     const renderVip = (code: string) => {
       switch (code) {
@@ -295,37 +292,43 @@ export default function Home() {
           Tải thẻ đại biểu
         </button>
 
-        <div className=' w-[400px] h-[600px] flex items-center flex-col  relative' id='captureQr'>
-          <img src='/the2.jpg' alt='Sample Image' className=' w-[400px] h-[600px]  rounded-[10px]' />
+        {!listVip.includes(id) ? (
+          <div className=' w-[400px] h-[600px] flex items-center flex-col  relative' id='captureQr'>
+            <img src='/the2.jpg' alt='Sample Image' className=' w-[400px] h-[600px]  rounded-[10px]' />
 
-          <div className='absolute w-[70px] h-[70]  top-[320px] left-[248.5px]'>
-            <SVG
-              text={id ? id : "Không tìm thấy mã đại biểu"}
-              options={{
-                margin: 2,
-                width: 85,
-                color: {
-                  dark: "#D32A2C",
-                  light: "#FFFFFF00",
-                },
-              }}
-            />
-          </div>
+            <div className='absolute w-[70px] h-[70]  top-[320px] left-[248.5px]'>
+              <SVG
+                text={id ? id : "Không tìm thấy mã đại biểu"}
+                options={{
+                  margin: 2,
+                  width: 85,
+                  color: {
+                    dark: "#D32A2C",
+                    light: "#FFFFFF00",
+                  },
+                }}
+              />
+            </div>
 
-          <div className='absolute w-[70px] h-[70]  top-[320px] left-[74px]'>
-            <SVG
-              text={"https://chatbot.zalo.me/ref/4541578065285117921?id=tai-lieu-dai-hoi"}
-              options={{
-                margin: 2,
-                width: 85,
-                color: {
-                  dark: "#D32A2C",
-                  light: "#FFFFFF00",
-                },
-              }}
-            />
+            <div className='absolute w-[70px] h-[70]  top-[320px] left-[74px]'>
+              <SVG
+                text={"https://chatbot.zalo.me/ref/4541578065285117921?id=tai-lieu-dai-hoi"}
+                options={{
+                  margin: 2,
+                  width: 85,
+                  color: {
+                    dark: "#D32A2C",
+                    light: "#FFFFFF00",
+                  },
+                }}
+              />
+            </div>
           </div>
-        </div>
+        ) : (
+          <div className=' w-[400px] h-[600px] flex items-center flex-col  relative' id='captureQr'>
+            <img src='/imgvip.png' alt='Sample Image' className=' w-[400px] h-[600px]  rounded-[10px]' />
+          </div>
+        )}
 
         <button
           className='px-4 py-3  uppercase  bg-[#1E6FA2] rounded-md mt-2  text-center self-center text-white  font-workSansBold  w-full  '

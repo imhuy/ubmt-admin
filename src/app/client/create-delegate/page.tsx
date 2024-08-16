@@ -319,7 +319,7 @@ const CustomerForm: React.FC = () => {
           placeholder='Tôn giáo'
         />
         <input
-          required={true}
+          // required={true}
           className='border p-2 rounded'
           name='qualification'
           value={formData.qualification}
@@ -374,7 +374,7 @@ const CustomerForm: React.FC = () => {
         />
 
         <input
-          required={true}
+          // required={true}
           className='border p-2 rounded'
           name='political_theory'
           value={formData.political_theory}

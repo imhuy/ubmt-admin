@@ -49,11 +49,11 @@ export default function Home() {
             // Tạo một canvas mới với kích thước cố định 800x1200
             const fixedCanvas = document.createElement("canvas");
             fixedCanvas.width = 2400;
-            fixedCanvas.height = 1350;
+            fixedCanvas.height = 1400;
             const ctx = fixedCanvas.getContext("2d");
             if (ctx) {
               // Vẽ nội dung của canvas ban đầu lên canvas mới với kích thước cố định
-              ctx.drawImage(img, 0, 0, 2400, 1350);
+              ctx.drawImage(img, 0, 0, 2400, 1400);
 
               const imgData = fixedCanvas.toDataURL("image/png");
               const link: any = document.createElement("a");
