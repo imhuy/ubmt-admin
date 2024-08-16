@@ -200,6 +200,12 @@ div.scrollmenu a {
   top: 42%;
   right: 5%;
 }
+.delegate-position2 {
+  width: 60%;
+  position: absolute;
+  top: 45%;
+  right: 5%;
+}
 .delegation-position {
   width: 50%;
   position: absolute;

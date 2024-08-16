@@ -49,21 +49,16 @@ export default function Home() {
             // Tạo một canvas mới với kích thước cố định 800x1200
             const fixedCanvas = document.createElement("canvas");
             fixedCanvas.width = 2400;
-            fixedCanvas.height = 1400;
+            fixedCanvas.height = 1425;
             const ctx = fixedCanvas.getContext("2d");
             if (ctx) {
               // Vẽ nội dung của canvas ban đầu lên canvas mới với kích thước cố định
-              ctx.drawImage(img, 0, 0, 2400, 1400);
+              ctx.drawImage(img, 0, 0, 2400, 1425);
 
               const imgData = fixedCanvas.toDataURL("image/png");
               const link: any = document.createElement("a");
               link.href = imgData;
-              if (idElement === "captureId") {
-                link.download = `${stt}.${name}.png`;
-              }
-              if (idElement === "captureQr") {
-                link.download = `${stt}.${name}.Qr.jpg`;
-              }
+              link.download = `${id}.png`;
 
               document.body.appendChild(link);
               link.click();
@@ -142,12 +137,12 @@ export default function Home() {
           <div className='relative w-full' id='captureId'>
             <img src='/bgmttq.jpg' alt='Background Image' className='w-full   h-[100lvh]' />
 
-            <div className='delegate-position text-center  flex- flex-col    '>
-              <p className='  mb-8  text-[#2857A5]  font-utmHelvetIns  text-4xl font-utmHelvetIn   uppercase'></p>
+            <div className='delegate-position2 text-center   min-h-44   items-center flex  justify-center flex-col    '>
+              <p className='  text-[#2857A5]  font-utmHelvetIns  text-4xl font-utmHelvetIn   uppercase'></p>
               <p className='mb-4  text-red-600  text-center font-utmHelvetIns text-4xl md:text-5xl lg:text-6xl xl:text-6xl uppercase'>
                 {data?.full_name}
               </p>
-              <p className='  mb-8   text-[#2857A5] text-center font-utmHelvetIns  italic  text-3xl  max-md:text-xl uppercase'>
+              <p className='    text-[#2857A5] text-center font-utmHelvetIns  italic  text-3xl  max-md:text-xl uppercase'>
                 {data?.position}
               </p>
             </div>

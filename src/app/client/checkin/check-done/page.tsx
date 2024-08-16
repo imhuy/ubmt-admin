@@ -36,28 +36,27 @@ export default function Home() {
           <div className='   '>
             <body className='    bg-[#FFE18A]'>
               <div className='relative w-full   '>
-                <img src='/anhnen.jpg' alt='Background Image' className='w-full   h-[100lvh]    ' />
-
-                <span className='delegate-position text-[#2857A5] text-center   font-workSansBold  text-4xl  uppercase'>
-                  Chào mừng đại biểu
-                </span>
-                <span className='customText-position text-red-600  text-center  font-workSansBlack text-4xl md:text-5xl lg:text-6xl xl:text-6xl uppercase'>
-                  {/* {listHistory.data[0]?.full_name} */}
-                </span>
-                <span className='delegation-position text-[#2857A5] text-center  italic font-workSansBold  text-3xl  uppercase'>
-                  {/* {listHistory.data[0]?.position} */}
-                </span>
+                {!listHistory.isPending && listHistory.data[0]?.code && (
+                  <img
+                    src={`https://mattranhanoi.com/api/common/images/delegate/${listHistory.data[0]?.code}.png`}
+                    alt='Background Image'
+                    className='w-full   h-[100lvh]    '
+                  />
+                )}
+                {/* <span className='customText-position text-red-600  text-center  font-workSansBlack text-4xl md:text-5xl lg:text-6xl xl:text-6xl uppercase'>
+                  {listHistory.data[0]?.code}
+                </span> */}
 
                 {/* <span className='textbase-position text-[#2857A5] text-center  font-workSansBlack  text-3xl  uppercase'>
                   ĐẠI BIỂU CHÍNH THỨC DỰ ĐẠI HỘI ĐẠI BIỂU MTTQ VIỆT NAM THÀNH PHỐ HÀ NỘI, LẦN THỨ XVIII, NHIỆM KỲ
                   2024-2029
                 </span> */}
 
-                {listHistory.data[0]?.avatar ? (
+                {/* {listHistory.data[0]?.avatar ? (
                   <img src={listHistory.data[0]?.avatar} alt='Black Image' className='rounded-full custom-position' />
                 ) : (
                   <img src='/avatar.jpg' alt='Black Image' className='rounded-full custom-position' />
-                )}
+                )} */}
               </div>
             </body>
           </div>
