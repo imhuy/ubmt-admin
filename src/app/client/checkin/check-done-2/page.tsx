@@ -34,11 +34,11 @@ export default function Home() {
       <>
         {!listHistory.isLoading && (
           <div className='   '>
-            <body className='bg-[#FFE18A]'>
+            <body className='    bg-[#FFE18A]'>
               <div className='relative w-full   '>
                 {!listHistory.isPending && listHistory.data[0]?.code && (
                   <img
-                    src={`https://mattranhanoi.com/api/common/images/horizontal/${listHistory.data[0]?.code}.png`}
+                    src={`https://mattranhanoi.com/api/common/images/delegate/${listHistory.data[0]?.code}.png`}
                     alt='Background Image'
                     className='w-full   h-[100lvh]    '
                   />

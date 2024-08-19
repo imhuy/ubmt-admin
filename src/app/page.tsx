@@ -41,7 +41,7 @@ export default function Home() {
         proxy: `${avatar}`,
         allowTaint: true,
         logging: true,
-        // scale: 8,
+        scale: 8,
       })
         .then(async (canvas) => {
           const img = new Image();

@@ -160,6 +160,17 @@ const ListDelegate: NextPage<any> = () => {
                           >
                             Xem
                           </Link>
+
+                          <Link
+                            href={{
+                              pathname: `/client/checkin/select-download-2`,
+                              query: { id: item.code, stt: i + 1 },
+                            }}
+                            target='_blank'
+                            className=' bg-primary-500  w-16   p-1 border z-50  px-2   border-slate-400 rounded-md   text-white	'
+                          >
+                            Tải
+                          </Link>
                         </td>
                       </tr>
                     ))}

@@ -222,10 +222,3 @@ div.scrollmenu a {
 .fix-height {
   height: 10vh !important;
 }
-
-.bgSelect {
-  background-image: url("/bg_withtext_logo.png");
-  background-size: cover; /* hoặc contain tùy theo nhu cầu */
-  background-repeat: no-repeat;
-  background-position: center;
-}

@@ -30,7 +30,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             pathName == "/chinh-sach-bao-mat" ||
             pathName == "/client/checkin" ||
             pathName == "/client/checkin/select-download" ||
+            pathName == "/client/checkin/select-download-2" ||
             pathName == "/client/checkin/select/new-select" ||
+            pathName == "/client/checkin/select-new" ||
+            pathName == "/client/checkin/select-new-2" ||
             pathName == "/client/waitting" ? null : (
               <SideMenu />
             )}
