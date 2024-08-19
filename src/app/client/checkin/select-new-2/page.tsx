@@ -66,9 +66,11 @@ export default function Home() {
       <>
         <div className=' w-full  h-[100lvh]   bg-[#FFE18A]'>
           <div className='relative w-full    '>
-            <img src='/bgSelect.png' alt='Background Image' className='w-full   h-[100lvh]    ' />
+            <img src='/bgSelect.png' alt='Background Image' className='w-full h-[100lvh] hidden md:block' />
 
-            <div className='absolute w-[60%] inset-0 text-center flex flex-col transform  top-[30%] left-[20%]'>
+            <img src='/bgMobile.png' alt='Background Image' className='w-full  object-scale-down   md:hidden' />
+
+            <div className='absolute w-[60%] inset-0 text-center flex flex-col transform  max-md:top-[20%] top-[30%] left-[20%]'>
               <div className=' w-full   justify-between flex max-md:flex-col max-md:gap-y-4 gap-x-4'>
                 <div className=' flex flex-col  justify-center items-center gap-y-4 bg-white rounded-md px-2 py-6'>
                   <img src='/user.png' color='white' className='  text-white fill-white w-6 h-6' alt='' />
@@ -82,21 +84,21 @@ export default function Home() {
                   <img src='/user.png' color='white' className='  text-white fill-white w-6 h-6' alt='' />
                   <div className='flex flex-col px-6 '>
                     <span className=' text-gray-400  text-sm'>Đại biểu là nữ</span>
-                    <span className=' font-workSansBlack text-2xl'>363</span>
+                    <span className=' font-workSansBlack text-2xl'>148</span>
                   </div>
                 </div>
                 <div className=' flex flex-col  justify-center items-center gap-y-4 bg-white rounded-md px-2 py-6'>
                   <img src='/user.png' color='white' className='  text-white fill-white w-6 h-6' alt='' />
                   <div className='flex flex-col px-6 '>
                     <span className=' text-gray-400  text-sm'>Đại biểu tôn giáo</span>
-                    <span className=' font-workSansBlack text-2xl'>363</span>
+                    <span className=' font-workSansBlack text-2xl'>33</span>
                   </div>
                 </div>
                 <div className=' flex flex-col  justify-center items-center gap-y-4 bg-white rounded-md px-2 py-6'>
                   <img src='/user.png' color='white' className='  text-white fill-white w-6 h-6' alt='' />
                   <div className='flex flex-col   '>
                     <span className=' text-gray-400  text-sm'>Đại biểu là người ngoài đảng</span>
-                    <span className=' font-workSansBlack text-2xl'>363</span>
+                    <span className=' font-workSansBlack text-2xl'>90</span>
                   </div>
                 </div>
 
@@ -109,18 +111,25 @@ export default function Home() {
                     <span className=' text-white font-workSansBold'>Tra cứu thông tin đại biểu</span>
                   </div>
                 </a>
+
+                <a
+                  href='/client/checkin/select-new'
+                  className=' flex flex-col  min-w-24  justify-center items-center gap-y-4 bg-[#487eb0] rounded-md px-2 py-6'
+                >
+                  <span className=' text-white font-workSansBold'>Dấu ấn 2019-2024</span>
+                </a>
               </div>
               {/* charts */}
               <div className=' w-full mt-4 max-md:flex-col max-md:gap-y-4 justify-between bg-white flex '>
-                <div className='w-1/4 flex flex-col  gap-y-4 py-8'>
+                <div className='w-1/4    max-md:w-full  flex flex-col  gap-y-4 py-8'>
                   <PieChart type={1} />
                   <span className=' font-workSansBold'>Cấu hình thành phần</span>
                 </div>
-                <div className='w-1/4 flex flex-col gap-y-4 py-8'>
+                <div className='w-1/4 max-md:w-full flex flex-col gap-y-4 py-8'>
                   <PieChart type={2} />
                   <span className=' font-workSansBold'>Trình độ chuyên môn</span>
                 </div>
-                <div className='w-1/4 flex flex-col gap-y-4 py-8'>
+                <div className='w-1/4  max-md:w-full  flex flex-col gap-y-4 py-8'>
                   <PieChart type={3} />
                   <span className=' font-workSansBold'>Trình độ lý luận chính trị</span>
                 </div>

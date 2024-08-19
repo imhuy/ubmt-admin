@@ -75,23 +75,18 @@ export default function Home() {
           <div className='relative w-full    '>
             <img src='/bgSelect.png' alt='Background Image' className='w-full   h-[100lvh]    ' />
 
-            <div className='absolute w-[60%] inset-0 text-center flex flex-col transform  top-[30%] left-[30%]'>
-              <p className='  mb-8  text-[#2857A5]  font-utmHelvetIns  text-4xl font-utmHelvetIn   uppercase'></p>
-              {/* <p className='mb-4  text-red-600  text-center font-utmHelvetIns text-4xl md:text-5xl lg:text-6xl xl:text-6xl uppercase'>
-                      {data.user?.full_name}
-                    </p> */}
-
+            <div className='absolute w-[100%]  px-4  inset-0 text-center flex flex-col transform items-center  top-[30%] left-[0%]'>
               <DelegateDropDown onItemSelected={handleSelectDelegation} />
+
+              <a
+                href='/client/checkin/select-new-2'
+                className='absolute bottom-[5%]  flex flex-col justify-center items-center  '
+              >
+                <img src='/home.png' color='white' className='    w-8 h-8' alt='' />
+
+                <span className='  text-[#2857A5] font-workSansBold'>Quay về trang chủ </span>
+              </a>
             </div>
-
-            <a
-              href='/client/checkin/select-new-2'
-              className=' absolute bottom-10 flex flex-col justify-center items-center left-1/2'
-            >
-              <img src='/home.png' color='white' className='    w-8 h-8' alt='' />
-
-              <span className='  text-[#2857A5] font-workSansBold'>Quay về trang chủ </span>
-            </a>
           </div>
         </div>
       </>

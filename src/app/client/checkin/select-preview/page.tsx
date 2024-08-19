@@ -2,11 +2,13 @@
 import { authApi } from "@/api-client";
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
-import { Suspense, useEffect } from "react";
+import { Suspense, useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 export interface ItemType {
   user: any;
   delegate: any;
+  code: string;
 }
 export default function Home() {
   function MainView() {
@@ -35,10 +37,16 @@ export default function Home() {
     return (
       <>
         {!isPending && data?.user && (
-          <div className='   '>
+          <div className=''>
             <body className='    bg-[#FFE18A]'>
               <div className='relative w-full   '>
-                <img src='/preview.png' alt='Background Image' className='w-full   h-[100lvh]    ' />
+                {data.user.code && (
+                  <img
+                    src={`https://mattranhanoi.com/api/common/images/horizontal/${data.user.code}.png`}
+                    alt='Background Image'
+                    className='w-full   h-[100lvh]    '
+                  />
+                )}
               </div>
             </body>
           </div>

@@ -10,7 +10,7 @@ const data1 = {
   datasets: [
     {
       label: "Số đại biểu",
-      data: [12, 19, 3, 5, 2],
+      data: [33, 148, 17, 90],
       backgroundColor: [
         "rgba(255, 99, 132, 0.8)",
         "rgba(54, 162, 235, 0.8)",
@@ -35,7 +35,7 @@ const data2 = {
   datasets: [
     {
       label: "Số đại biểu",
-      data: [12, 19, 3],
+      data: [164, 152, 9],
       backgroundColor: ["rgba(255, 206, 86, 0.8)", "rgba(75, 192, 192, 0.8)", "rgba(153, 102, 255, 0.8)"],
       borderColor: ["rgba(255, 206, 86, 1)", "rgba(75, 192, 192, 1)", "rgba(153, 102, 255, 1)"],
       borderWidth: 1,
@@ -48,7 +48,7 @@ const data3 = {
   datasets: [
     {
       label: "Số đại biểu",
-      data: [3, 5, 2],
+      data: [191, 74, 19],
       backgroundColor: ["rgba(255, 99, 132, 0.8)", "rgba(54, 162, 235, 0.8)", "rgba(255, 206, 86, 0.8)"],
       borderColor: ["rgba(255, 99, 132, 1)", "rgba(54, 162, 235, 1)", "rgba(255, 206, 86, 1)"],
       borderWidth: 1,

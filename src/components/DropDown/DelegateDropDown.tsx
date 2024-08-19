@@ -77,7 +77,7 @@ const DelegateDropDown: React.FC<DropdownProps> = ({ onItemSelected }) => {
   }, [isOpen]);
 
   return (
-    <div className='relative  w-[80%] justify-center     inline-block text-left' ref={dropdownRef}>
+    <div className='relative  w-[60%]    max-md:w-full justify-center     inline-block text-left' ref={dropdownRef}>
       <div>
         <input
           type='text'
@@ -89,7 +89,7 @@ const DelegateDropDown: React.FC<DropdownProps> = ({ onItemSelected }) => {
         />
       </div>
       {isOpen && (
-        <div className='origin-top-right w-[100%] absolute z-50 max-h-96 overflow-y-auto     mt-2  rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none'>
+        <div className='origin-top-right  w-[100%] absolute z-50 max-h-96 overflow-y-auto     mt-2  rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none'>
           <div className='py-1' role='menu' aria-orientation='vertical' aria-labelledby='options-menu'>
             {/* Filter input */}
             {/* <input
@@ -110,7 +110,7 @@ const DelegateDropDown: React.FC<DropdownProps> = ({ onItemSelected }) => {
                 <div className=' flex flex-row  justify-center w-full   gap-x-4  items-center'>
                   <img src={item.avatar} alt='Avatar' className='w-16    inline-block' />
                   <div className='flex flex-row  justify-between  items-center w-full'>
-                    <div className=' w-[80%] flex flex-col text-start'>
+                    <div className=' w-[70%] flex flex-col text-start'>
                       <span className=' font-workSansBold'> {item.full_name} </span>
                       <span className=' '> {item.position} </span>
                       <span className=' '>
@@ -118,7 +118,7 @@ const DelegateDropDown: React.FC<DropdownProps> = ({ onItemSelected }) => {
                       </span>
                     </div>
                     <button onClick={() => addPreview(item.id, 0)}>
-                      <span className='  bg-[#5f27cd]    py-8 text-white px-2'>Hiển thị màn hình</span>
+                      <span className='  bg-[#5f27cd]    py-8 text-white px-2'>Hiển thị</span>
                     </button>
                   </div>
                 </div>
