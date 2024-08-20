@@ -24,7 +24,7 @@ export default function Home() {
     useEffect(() => {
       const intervalId = setInterval(() => {
         getData(intervalId);
-      }, 1000);
+      }, 1500);
       getData(intervalId);
       return () => clearInterval(intervalId);
     }, []);

@@ -70,8 +70,8 @@ export default function Home() {
 
             <img src='/bgMobile.png' alt='Background Image' className='w-full  object-scale-down   md:hidden' />
 
-            <div className='absolute w-[60%] inset-0 text-center flex flex-col transform  max-md:top-[20%] top-[30%] left-[20%]'>
-              <div className=' w-full   justify-between flex max-md:flex-col max-md:gap-y-4 gap-x-4'>
+            <div className='absolute w-[60%] inset-0 text-center  flex-col transform  max-md:top-[20%] top-[30%] left-[20%]'>
+              <div className=' w-full   justify-between flex flex-col  gap-y-4 gap-x-4'>
                 <div className=' flex flex-col  justify-center items-center gap-y-4 bg-white rounded-md px-2 py-6'>
                   <img src='/user.png' color='white' className='  text-white fill-white w-6 h-6' alt='' />
                   <div className='flex flex-col px-6 '>
@@ -107,29 +107,30 @@ export default function Home() {
                   className=' flex flex-col  justify-center items-center gap-y-4 bg-[#487eb0] rounded-md px-2 py-6'
                 >
                   <div className='flex items-center  px-6 '>
-                    <img src='/search.png' color='white' className=' filter invert brightness-0 w-6 h-6' alt='' />
+                    <img src='/search.png' color='white' className=' filter invert brightness-0 w-4 h-4' alt='' />
                     <span className=' text-white font-workSansBold'>Tra cứu thông tin đại biểu</span>
                   </div>
                 </a>
 
                 <a
-                  href='/client/checkin/select-new'
+                  href='/client/checkin/an'
                   className=' flex flex-col  min-w-24  justify-center items-center gap-y-4 bg-[#487eb0] rounded-md px-2 py-6'
                 >
                   <span className=' text-white font-workSansBold'>Dấu ấn 2019-2024</span>
                 </a>
               </div>
+              ``
               {/* charts */}
-              <div className=' w-full mt-4 max-md:flex-col max-md:gap-y-4 justify-between bg-white flex '>
-                <div className='w-1/4    max-md:w-full  flex flex-col  gap-y-4 py-8'>
+              <div className=' w-full mt-4   flex-col max-md:gap-y-4 items-center justify-center  bg-white flex '>
+                <div className='w-[80%]  items-center justify-center  flex flex-col  gap-y-4 py-8'>
                   <PieChart type={1} />
                   <span className=' font-workSansBold'>Cấu hình thành phần</span>
                 </div>
-                <div className='w-1/4 max-md:w-full flex flex-col gap-y-4 py-8'>
+                <div className='w-[80%]  flex flex-col gap-y-4 py-8'>
                   <PieChart type={2} />
                   <span className=' font-workSansBold'>Trình độ chuyên môn</span>
                 </div>
-                <div className='w-1/4  max-md:w-full  flex flex-col gap-y-4 py-8'>
+                <div className='w-[80%]   flex flex-col gap-y-4 py-8'>
                   <PieChart type={3} />
                   <span className=' font-workSansBold'>Trình độ lý luận chính trị</span>
                 </div>
