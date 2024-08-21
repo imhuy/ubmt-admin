@@ -22,10 +22,7 @@ export default function Home() {
         getData(intervalId);
       }, 1000);
       getData(intervalId);
-      const newTimeoutId = setTimeout(() => {
-        setIsWaiting(true);
-      }, 30000); // 10 giây
-      setTimeoutId(newTimeoutId);
+
       return () => clearInterval(intervalId);
     }, [listHistory.data]);
 
