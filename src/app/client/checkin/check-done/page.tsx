@@ -24,7 +24,7 @@ export default function Home() {
       getData(intervalId);
       const newTimeoutId = setTimeout(() => {
         setIsWaiting(true);
-      }, 10000); // 10 giây
+      }, 20000); // 10 giây
       setTimeoutId(newTimeoutId);
       return () => clearInterval(intervalId);
     }, [listHistory.data]);
