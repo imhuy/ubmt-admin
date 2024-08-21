@@ -125,17 +125,8 @@ export default function Home() {
       }
     };
 
-    const listVip = ["HC3416779", "HC3305091", "HC3563039", "HC2334675", "HC3250018"];
+    const listVip = ["HC3416779", "HC3305091", "HC2334675", "HC3250018"];
 
-    const renderVip = (code: string) => {
-      switch (code) {
-        case "HC3416779":
-          return <span className='font-workSansBold'>{data?.position.replace("<br/>", "")}</span>;
-
-        default:
-          break;
-      }
-    };
     useEffect(() => {
       if (id) {
         fetchData(id);
